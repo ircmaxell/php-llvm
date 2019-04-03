@@ -1,6 +1,6 @@
 {
     "name": "ircmaxell/php-llvm",
-    "description": "A lightweight abstraction around ",
+    "description": "A lightweight abstraction around LLVM-C",
     "license": "MIT",
     "authors": [
         {
