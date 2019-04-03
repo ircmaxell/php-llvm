@@ -8,6 +8,8 @@ interface Context {
 
     public function moduleCreateWithName(string $name): Module;
 
+    public function builderCreate(): Builder;
+
     public function int1Type(): Type;
 
     public function int8Type(): Type;

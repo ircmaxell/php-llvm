@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "47abbd86a3889c1c1d5ed1ff638a8842",
+    "content-hash": "ee6a74d5ed9457fcb5be066f164b1baf",
     "packages": [],
     "packages-dev": [
         {
@@ -69,17 +69,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ircmaxell/FFIMe.git",
-                "reference": "a1ca1a45dbd463c7e6c608c4873bdec9214a0d22"
+                "reference": "2afcabca14f4ea63d433cdb885c9cc91590efc95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/a1ca1a45dbd463c7e6c608c4873bdec9214a0d22",
-                "reference": "a1ca1a45dbd463c7e6c608c4873bdec9214a0d22",
+                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/2afcabca14f4ea63d433cdb885c9cc91590efc95",
+                "reference": "2afcabca14f4ea63d433cdb885c9cc91590efc95",
                 "shasum": ""
             },
             "require": {
                 "ircmaxell/php-c-parser": "dev-master",
                 "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0"
             },
             "type": "library",
             "autoload": {
@@ -98,7 +101,7 @@
                 }
             ],
             "description": "Make life easy when working with 7.4's FFI",
-            "time": "2019-03-31 18:17:08"
+            "time": "2019-04-03T22:43:14+00:00"
         },
         {
             "name": "ircmaxell/php-c-parser",
@@ -138,7 +141,7 @@
                 }
             ],
             "description": "Parse C when using PHP",
-            "time": "2019-04-01T12:52:03+00:00"
+            "time": "2019-04-01 12:52:03"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1468,16 +1471,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/06b6ce404ee574e9c1787fb67bb9980ca4387c34",
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34",
                 "shasum": ""
             },
             "require": {
@@ -1504,7 +1507,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-03T18:37:40+00:00"
         },
         {
             "name": "webmozart/assert",

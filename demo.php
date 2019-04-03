@@ -5,15 +5,30 @@ use PHPLLVM\LLVM4\LLVM;
 use PHPLLVM\LLVM4\Type;
 
 $llvm = new LLVM;
-
+$llvm->initializeNativeTarget();
+$llvm->linkInMCJit();
 
 $context = $llvm->contextCreate();
+$builder = $context->builderCreate();
 $module = $context->moduleCreateWithName("test");
 
-$functionType = Type::functionType($context->int8Type(), false, $context->int16Type(), $context->int32Type());
+$functionType = Type::functionType($context->int32Type(), false, $context->int32Type(), $context->int32Type());
 
-echo " return = ", $functionType->getReturnType()->toString(), "\n";
+$add = $module->addFunction("add", $functionType);
+$main = $add->appendBasicBlock('main');
 
-foreach ($functionType->getParameters() as $index => $parameter) {
-    echo " param[$index] = ", $parameter->toString(), "\n";
-}
+$builder->positionAtEnd($main);
+$a = $add->getParam(0);
+$b = $add->getParam(1);
+
+$ret = $builder->add($a, $b);
+
+$builder->returnValue($ret);
+
+$module->verify($module::VERIFY_ACTION_THROW, $message);
+
+$engine = $module->createExecutionEngine();
+
+$machine = $engine->getTargetMachine();
+
+$machine->emitToFile($module, __DIR__ . '/test.asm', $machine::CODEGEN_FILE_TYPE_ASM);

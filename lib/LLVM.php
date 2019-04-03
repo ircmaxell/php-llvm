@@ -14,6 +14,26 @@ interface LLVM {
 
     public function createMessage(string $message): string;
 
-    public function disposeMessage(string $message): void;
+    public function getDefaultTargetTriple(): string;
+
+    public function createTargetData(string $rep): TargetData;
+
+    public function getTargetFromName(string $name): Target;
+
+    public function getTargetFromTriple(string $triple, string &$errorMessage): Target; 
+
+    public function linkInMCJit(): void;
+
+    public function linkInInterpreter(): void;
+
+    public function startMultithreaded(): bool;
+
+    public function stopMultithreaded(): void;
+
+    public function isMultiThreaded(): bool;
+
+    public function createPassManager(): PassManager;
+
+    public function initializeNativeTarget(): void;
 
 }

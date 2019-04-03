@@ -7,9 +7,15 @@ use PHPLLVM\Context as CoreContext;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
 use PHPLLVM\Value as CoreValue;
+use PHPLLVM\PassManager as CorePassManager;
+use PHPLLVM\ExecutionEngine as CoreExecutionEngine;
+use PHPLLVM\TargetData as CoreTargetData;
 
 use llvm4\llvm as lib;
 use llvm4\LLVMModuleRef;
+use llvm4\LLVMExecutionEngineRef;
+use llvm4\string_ptr;
+use FFI;
 
 class Module implements CoreModule {
 
@@ -66,13 +72,13 @@ class Module implements CoreModule {
         $error = new string_ptr(FFI::addr(FFI::new('char*')));
         $bool = $this->llvm->lib->LLVMPrintModuleToFile($this->module, $filename, $error);
 
-        // $error leaks here, since there's no way (yet) for us to call Dispose on it...
-        $errorMessage = $this->llvm->fromStringPointer($error);
+        $errorMessage = $error->deref(0)->toString();
+        $this->llvm->disposeMessage($error->deref(0));
         return $this->llvm->fromBool($bool);
     }
 
     public function printToString(): string {
-        return $this->llvm->lib->LLVMPrintModuleToString($this->module);
+        return $this->llvm->lib->LLVMPrintModuleToString($this->module)->toString();
     }
 
     public function setInlineAsm(string $asm): void {
@@ -83,20 +89,77 @@ class Module implements CoreModule {
         return new Type($this->llvm, $this->context, $this->llvm->lib->LLVMGetTypeByName($this->module, $name));
     }
 
-    public function addFunction(string $name, CoreType $type): CoreValue {
-        return new Value($this->lib, $this->context, $this->llvm->lib->LLVMAddFunction($this->module, $name, $type));
+    public function addFunction(string $name, CoreType\Function_ $func): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddFunction($this->module, $name, $func->type));
     }
 
     public function getNamedFunction(string $name): CoreValue {
-        return new Value($this->lib, $this->context, $this->llvm->lib->LLVMGetNamedFunction($this->module, $name));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetNamedFunction($this->module, $name));
     }
 
     public function getFirstFunction(): CoreValue {
-        return new Value($this->lib, $this->context, $this->llvm->lib->LLVMGetFirstFunction($this->module));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetFirstFunction($this->module));
     }
 
     public function getLastFunction(): CoreValue {
-        return new Value($this->lib, $this->context, $this->llvm->lib->LLVMGetLastFunction($this->module));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetLastFunction($this->module));
+    }
+
+    public function createFunctionPassManager(): CorePassManager {
+        return new PassManager($this->llvm, $this->lib->LLVMCreatePassManagerForModule($this->module));
+    }
+
+    public function getModuleDataLayout(): CoreTargetData {
+
+    }
+
+    public function setModuleDataLayout(CoreTargetData $targetData) {
+
+    }
+
+    public function createExecutionEngine(): CoreExecutionEngine {
+        $engine = new LLVMExecutionEngineRef($this->llvm->lib->getFFI()->new('LLVMExecutionEngineRef'));
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $result = $this->llvm->fromBool($this->llvm->lib->LLVMCreateExecutionEngineForModule($engine->addr(), $this->module, $error));
+        if (!$result) {
+            $message = $error->deref(0)->toString();
+            $this->llvm->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Could not create exeuction engine: $message");
+        }
+        return new ExecutionEngine($this->llvm, $this->context, $engine);
+    }
+
+    public function createInterpreter(): CoreExecutionEngine {
+
+    }
+
+    public function createJITCompiler(int $optLevel): CoreExecutionEngine {
+
+    }
+
+    public function verify(int $verifyAction, &$outMessage): bool {
+        switch ($verifyAction) {
+            case self::VERIFY_ACTION_ABORT :
+                $action = lib::LLVMAbortProcessAction;
+                break;
+            case self::VERIFY_ACTION_PRINT :
+                $action = lib::LLVMPrintMessageAction;
+                break;
+            case self::VERIFY_ACTION_RETURN:
+            case self::VERIFY_ACTION_THROW:
+                $action = lib::LLVMReturnStatusAction;
+                break;
+            default:
+                throw new \RuntimeException("Unknown verification action supplied: $verifyAction");
+        }
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $result = $this->llvm->fromBool($this->llvm->lib->LLVMVerifyModule($this->module, $action, $error));
+        $outMessage = $error->deref(0)->toString();
+        $this->llvm->disposeMessage($error->deref(0));
+        if (!$result && $verifyAction === self::VERIFY_ACTION_THROW) {
+            throw new \RuntimeException("Module verification failed due to $outMessage");
+        }
+        return $result;
     }
 
     

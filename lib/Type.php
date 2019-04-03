@@ -21,13 +21,13 @@ interface Type {
     const KIND_MMX      = 15;
     const KIND_TOKEN    = 16;
 
-    public static function functionType(Type $returnType, bool $isVarArgs, Type ... $parameters): Type;
+    public static function functionType(Type $returnType, bool $isVarArgs, Type ... $parameters): Type\Function_;
 
-    public function arrayType(int $numElements): Type;
+    public function arrayType(int $numElements): Type\Array_;
 
-    public function pointerType(int $addressSpace): Type;
+    public function pointerType(int $addressSpace): Type\Pointer;
 
-    public function vectorType(int $elementCount): Type;
+    public function vectorType(int $elementCount): Type\Vector;
 
     public function getKind(): int;
 
@@ -37,40 +37,14 @@ interface Type {
 
     public function toString(): string;
 
-    public function isFunctionVarArg(): bool;
-
-    public function getReturnType(): Type;
-
-    public function countParameters(): int;
-
-    public function getParameters(): array;
-
-    public function getStructName(): string;
-
-    public function setStructBody(bool $packed, Type ... $elements): void;
-
-    public function countStructElements(): int;
-
-    public function getStructElements(): array;
-
-    public function getStructElementAtIndex(int $index): Type;
-
-    public function isPackedStruct(): bool;
-
-    public function isOpaqueStruct(): bool;
-
-    public function getElementType(): Type;
-
-    public function getArrayLength(): int;
-
-    public function getPointerAddressSpace(): int;
-
-    public function getVectorSize(): int;
-
     public function constNull(): Value;
 
     public function constAllOnes(): Value;
 
     public function getUndef(): Value;
+
+    public function constInt(int $n, bool $signExtend): Value;
+
+    public function constReal(float $n): Value;
 
 }

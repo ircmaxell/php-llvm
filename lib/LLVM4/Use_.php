@@ -23,16 +23,20 @@ class Use_ implements CoreUse {
         $this->use = $use;
     }
 
-    public function getNextUse(): CoreUse {
-        return new Use_($this->llvm, $this->context, $this->llvm->lib->LLVMGetNextUse($this->use));
+    public function getNextUse(): ?CoreUse {
+        $use = $this->llvm->lib->LLVMGetNextUse($this->use);
+        if ($use === null) {
+            return null;
+        }
+        return new Use_($this->llvm, $this->context, $use);
     }
 
     public function getUser(): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMGetUser($this->use));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetUser($this->use));
     }
 
     public function getUsedValue(): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMGetUsedValue($this->use));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetUsedValue($this->use));
     }
 
 }

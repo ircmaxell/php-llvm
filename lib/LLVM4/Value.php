@@ -18,28 +18,34 @@ class Value implements CoreValue {
     public Context $context;
     public LLVMValueRef $value;
 
-    public function __construct(LLVM $llvm, Context $context, LLVMValueRef $value) {
+    private function __construct(LLVM $llvm, Context $context, LLVMValueRef $value) {
         $this->llvm = $llvm;
         $this->context = $context;
         $this->value = $value;
     }
 
-    public function getNextFunction(): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMGetNextFunction($this->value));
-    }
-
-    public function getPreviousFunction(): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMGetPreviousFunction($this->value));
+    public function value(LLVM $llvm, Context $context, LLVMValueRef $value): Value {
+        switch ($llvm->lib->LLVMGetValueKind($value)) {
+            case lib::LLVMArgumentValueKind:
+                return new Value\Argument($llvm, $context, $value);
+            case lib::LLVMBasicBlockValueKind:
+                return new Value\BasicBlock($llvm, $context, $value);
+            case lib::LLVMFunctionValueKind:
+                return new Value\Function_($llvm, $context, $value);
+            case lib::LLVMInstructionValueKind:
+                return new Value\Instruction($llvm, $context, $value);
+            default:
+                return new Value($llvm, $context, $value);
+        }
     }
 
     public function typeOf(): CoreType {
-        return new Type($this->llvm, $this->context, $this->llvm->lib->LLVMTypeOf($this->value));
+        return Type::type($this->llvm, $this->context, $this->llvm->lib->LLVMTypeOf($this->value));
     }
 
     public function getKind(): int {
-        public function getKind(): int {
         $kind = $this->llvm->lib->LLVMGetValueKind($this->value);
-        switch ($kind->getData() + 0) {
+        switch ($kind) {
             case lib::LLVMArgumentValueKind:
                 return self::KIND_ARGUMENT;
             case lib::LLVMBasicBlockValueKind:
@@ -88,10 +94,10 @@ class Value implements CoreValue {
                 return self::KIND_METADATA_AS_VALUE;
             case lib::LLVMInlineAsmValueKind:
                 return self::KIND_INLINE_ASM;
-            case lib::LLVMInstructionValueKin:
+            case lib::LLVMInstructionValueKind:
                 return self::KIND_INSTRUCTION;
         }
-        throw new \LogicException("Unknown kind returned from LLVM: " . ($kind->getData() + 0));
+        throw new \LogicException("Unknown kind returned from LLVM: $kind");
     }
 
     public function getName(): string {
@@ -110,7 +116,7 @@ class Value implements CoreValue {
         return $this->llvm->lib->LLVMPrintValueToString($this->value);
     }
 
-    public function replaceAllUsesWith(Value $new): void {
+    public function replaceAllUsesWith(CoreValue $new): void {
         $this->llvm->lib->LLVMReplaceAllUsesWith($this->value, $new->value);
     }
 
@@ -368,7 +374,7 @@ class Value implements CoreValue {
     }
 
     public function getOperand(int $index): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMGetOperand($this->value, $index));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetOperand($this->value, $index));
     }
 
     public function getOperandUse(int $index): CoreUse {
@@ -386,5 +392,11 @@ class Value implements CoreValue {
     public function isNull(): bool {
         return $this->llvm->fromBool($this->llvm->lib->LLVMIsNull($this->value));
     }
+
+    public function isConstantString(): bool {
+        return $this->llvm->fromBool($this->llvm->lib->LLVMIsConstantString($this->value));
+    }
+
+
     
 }

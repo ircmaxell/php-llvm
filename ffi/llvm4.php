@@ -1661,7 +1661,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function __get(string $name) {
         switch($name) {
             case 'signgam': return $this->ffi->signgam;
-            case '_LIB_VERSION': $tmp = $this->ffi->_LIB_VERSION; return $tmp === null ? null : new _LIB_VERSION_TYPE($tmp);
+            case '_LIB_VERSION': return $this->ffi->_LIB_VERSION;
             default: return $this->ffi->$name;
         }
     }
@@ -2526,7 +2526,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->scalbl($p0, $p1);
         return $result;
     }
- // typedefenum _LIB_VERSION_TYPE
+    // typedefenum _LIB_VERSION_TYPE
     const _IEEE_ = ((-1)) + 0;
     const _SVID_ = ((-1)) + 1;
     const _XOPEN_ = ((-1)) + 2;
@@ -2536,29 +2536,29 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->matherr($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function imaxabs(?intmax_t $p0): ?intmax_t {
-        $result = $this->ffi->imaxabs($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new intmax_t($result);
+    public function imaxabs(?int $p0): ?int {
+        $result = $this->ffi->imaxabs($p0);
+        return $result;
     }
-    public function imaxdiv(?intmax_t $p0, ?intmax_t $p1): ?imaxdiv_t {
-        $result = $this->ffi->imaxdiv($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function imaxdiv(?int $p0, ?int $p1): ?imaxdiv_t {
+        $result = $this->ffi->imaxdiv($p0, $p1);
         return $result === null ? null : new imaxdiv_t($result);
     }
-    public function strtoimax(?string $p0, ?string_ptr $p1, ?int $p2): ?intmax_t {
+    public function strtoimax(?string $p0, ?string_ptr $p1, ?int $p2): ?int {
         $result = $this->ffi->strtoimax($p0, $p1 === null ? null : $p1->getData(), $p2);
-        return $result === null ? null : new intmax_t($result);
+        return $result;
     }
-    public function strtoumax(?string $p0, ?string_ptr $p1, ?int $p2): ?uintmax_t {
+    public function strtoumax(?string $p0, ?string_ptr $p1, ?int $p2): ?int {
         $result = $this->ffi->strtoumax($p0, $p1 === null ? null : $p1->getData(), $p2);
-        return $result === null ? null : new uintmax_t($result);
+        return $result;
     }
-    public function wcstoimax(?__gwchar_t_ptr $p0, ?__gwchar_t_ptr_ptr $p1, ?int $p2): ?intmax_t {
+    public function wcstoimax(?int_ptr $p0, ?int_ptr_ptr $p1, ?int $p2): ?int {
         $result = $this->ffi->wcstoimax($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
-        return $result === null ? null : new intmax_t($result);
+        return $result;
     }
-    public function wcstoumax(?__gwchar_t_ptr $p0, ?__gwchar_t_ptr_ptr $p1, ?int $p2): ?uintmax_t {
+    public function wcstoumax(?int_ptr $p0, ?int_ptr_ptr $p1, ?int $p2): ?int {
         $result = $this->ffi->wcstoumax($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
-        return $result === null ? null : new uintmax_t($result);
+        return $result;
     }
     public function select(?int $p0, ?fd_set_ptr $p1, ?fd_set_ptr $p2, ?fd_set_ptr $p3, ?timeval_ptr $p4): ?int {
         $result = $this->ffi->select($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
@@ -2584,12 +2584,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const ITIMER_REAL = (0) + 0;
     const ITIMER_VIRTUAL = (1) + 0;
     const ITIMER_PROF = (2) + 0;
-    public function getitimer(?__itimer_which_t $p0, ?itimerval_ptr $p1): ?int {
-        $result = $this->ffi->getitimer($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function getitimer(?int $p0, ?itimerval_ptr $p1): ?int {
+        $result = $this->ffi->getitimer($p0, $p1 === null ? null : $p1->getData());
         return $result;
     }
-    public function setitimer(?__itimer_which_t $p0, ?itimerval_ptr $p1, ?itimerval_ptr $p2): ?int {
-        $result = $this->ffi->setitimer($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function setitimer(?int $p0, ?itimerval_ptr $p1, ?itimerval_ptr $p2): ?int {
+        $result = $this->ffi->setitimer($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
         return $result;
     }
     public function utimes(?string $p0, ?array $p1): ?int {
@@ -2616,7 +2616,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->gnu_dev_makedev($p0, $p1);
         return $result;
     }
- // typedefenum LLVMOpcode
+    // typedefenum LLVMOpcode
     const LLVMRet = (1) + 0;
     const LLVMBr = (2) + 0;
     const LLVMSwitch = (3) + 0;
@@ -2681,7 +2681,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMCatchPad = (63) + 0;
     const LLVMCleanupPad = (64) + 0;
     const LLVMCatchSwitch = (65) + 0;
- // typedefenum LLVMTypeKind
+    // typedefenum LLVMTypeKind
     const LLVMVoidTypeKind = (0) + 0;
     const LLVMHalfTypeKind = (0) + 1;
     const LLVMFloatTypeKind = (0) + 2;
@@ -2699,7 +2699,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMMetadataTypeKind = (0) + 14;
     const LLVMX86_MMXTypeKind = (0) + 15;
     const LLVMTokenTypeKind = (0) + 16;
- // typedefenum LLVMLinkage
+    // typedefenum LLVMLinkage
     const LLVMExternalLinkage = (0) + 0;
     const LLVMAvailableExternallyLinkage = (0) + 1;
     const LLVMLinkOnceAnyLinkage = (0) + 2;
@@ -2717,15 +2717,15 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMCommonLinkage = (0) + 14;
     const LLVMLinkerPrivateLinkage = (0) + 15;
     const LLVMLinkerPrivateWeakLinkage = (0) + 16;
- // typedefenum LLVMVisibility
+    // typedefenum LLVMVisibility
     const LLVMDefaultVisibility = (0) + 0;
     const LLVMHiddenVisibility = (0) + 1;
     const LLVMProtectedVisibility = (0) + 2;
- // typedefenum LLVMDLLStorageClass
+    // typedefenum LLVMDLLStorageClass
     const LLVMDefaultStorageClass = (0) + 0;
     const LLVMDLLImportStorageClass = (1) + 0;
     const LLVMDLLExportStorageClass = (2) + 0;
- // typedefenum LLVMCallConv
+    // typedefenum LLVMCallConv
     const LLVMCCallConv = (0) + 0;
     const LLVMFastCallConv = (8) + 0;
     const LLVMColdCallConv = (9) + 0;
@@ -2733,7 +2733,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMAnyRegCallConv = (13) + 0;
     const LLVMX86StdcallCallConv = (64) + 0;
     const LLVMX86FastcallCallConv = (65) + 0;
- // typedefenum LLVMValueKind
+    // typedefenum LLVMValueKind
     const LLVMArgumentValueKind = (0) + 0;
     const LLVMBasicBlockValueKind = (0) + 1;
     const LLVMMemoryUseValueKind = (0) + 2;
@@ -2759,7 +2759,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMMetadataAsValueValueKind = (0) + 22;
     const LLVMInlineAsmValueKind = (0) + 23;
     const LLVMInstructionValueKind = (0) + 24;
- // typedefenum LLVMIntPredicate
+    // typedefenum LLVMIntPredicate
     const LLVMIntEQ = (32) + 0;
     const LLVMIntNE = (32) + 1;
     const LLVMIntUGT = (32) + 2;
@@ -2770,7 +2770,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMIntSGE = (32) + 7;
     const LLVMIntSLT = (32) + 8;
     const LLVMIntSLE = (32) + 9;
- // typedefenum LLVMRealPredicate
+    // typedefenum LLVMRealPredicate
     const LLVMRealPredicateFalse = (0) + 0;
     const LLVMRealOEQ = (0) + 1;
     const LLVMRealOGT = (0) + 2;
@@ -2787,16 +2787,16 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMRealULE = (0) + 13;
     const LLVMRealUNE = (0) + 14;
     const LLVMRealPredicateTrue = (0) + 15;
- // typedefenum LLVMLandingPadClauseTy
+    // typedefenum LLVMLandingPadClauseTy
     const LLVMLandingPadCatch = (0) + 0;
     const LLVMLandingPadFilter = (0) + 1;
- // typedefenum LLVMThreadLocalMode
+    // typedefenum LLVMThreadLocalMode
     const LLVMNotThreadLocal = (0) + 0;
     const LLVMGeneralDynamicTLSModel = (0) + 1;
     const LLVMLocalDynamicTLSModel = (0) + 2;
     const LLVMInitialExecTLSModel = (0) + 3;
     const LLVMLocalExecTLSModel = (0) + 4;
- // typedefenum LLVMAtomicOrdering
+    // typedefenum LLVMAtomicOrdering
     const LLVMAtomicOrderingNotAtomic = (0) + 0;
     const LLVMAtomicOrderingUnordered = (1) + 0;
     const LLVMAtomicOrderingMonotonic = (2) + 0;
@@ -2804,7 +2804,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMAtomicOrderingRelease = (5) + 0;
     const LLVMAtomicOrderingAcquireRelease = (6) + 0;
     const LLVMAtomicOrderingSequentiallyConsistent = (7) + 0;
- // typedefenum LLVMAtomicRMWBinOp
+    // typedefenum LLVMAtomicRMWBinOp
     const LLVMAtomicRMWBinOpXchg = (0) + 0;
     const LLVMAtomicRMWBinOpAdd = (0) + 1;
     const LLVMAtomicRMWBinOpSub = (0) + 2;
@@ -2816,7 +2816,7 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVMAtomicRMWBinOpMin = (0) + 8;
     const LLVMAtomicRMWBinOpUMax = (0) + 9;
     const LLVMAtomicRMWBinOpUMin = (0) + 10;
- // typedefenum LLVMDiagnosticSeverity
+    // typedefenum LLVMDiagnosticSeverity
     const LLVMDSError = (0) + 0;
     const LLVMDSWarning = (0) + 1;
     const LLVMDSRemark = (0) + 2;
@@ -2829,9 +2829,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMShutdown(): void {
         $this->ffi->LLVMShutdown();
     }
-    public function LLVMCreateMessage(?string $p0): ?string {
+    public function LLVMCreateMessage(?string $p0): ?string_ {
         $result = $this->ffi->LLVMCreateMessage($p0);
-        return $result;
+        return $result === null ? null : new string_($result);
     }
     public function LLVMDisposeMessage(?string $p0): void {
         $this->ffi->LLVMDisposeMessage($p0);
@@ -2861,13 +2861,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMContextDispose(?LLVMContextRef $p0): void {
         $this->ffi->LLVMContextDispose($p0 === null ? null : $p0->getData());
     }
-    public function LLVMGetDiagInfoDescription(?LLVMDiagnosticInfoRef $p0): ?string {
+    public function LLVMGetDiagInfoDescription(?LLVMDiagnosticInfoRef $p0): ?string_ {
         $result = $this->ffi->LLVMGetDiagInfoDescription($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
-    public function LLVMGetDiagInfoSeverity(?LLVMDiagnosticInfoRef $p0): ?LLVMDiagnosticSeverity {
+    public function LLVMGetDiagInfoSeverity(?LLVMDiagnosticInfoRef $p0): ?int {
         $result = $this->ffi->LLVMGetDiagInfoSeverity($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMDiagnosticSeverity($result);
+        return $result;
     }
     public function LLVMGetMDKindIDInContext(?LLVMContextRef $p0, ?string $p1, ?int $p2): ?int {
         $result = $this->ffi->LLVMGetMDKindIDInContext($p0 === null ? null : $p0->getData(), $p1, $p2);
@@ -2885,17 +2885,17 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetLastEnumAttributeKind();
         return $result;
     }
-    public function LLVMCreateEnumAttribute(?LLVMContextRef $p0, ?int $p1, ?uint64_t $p2): ?LLVMAttributeRef {
-        $result = $this->ffi->LLVMCreateEnumAttribute($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMCreateEnumAttribute(?LLVMContextRef $p0, ?int $p1, ?int $p2): ?LLVMAttributeRef {
+        $result = $this->ffi->LLVMCreateEnumAttribute($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMAttributeRef($result);
     }
     public function LLVMGetEnumAttributeKind(?LLVMAttributeRef $p0): ?int {
         $result = $this->ffi->LLVMGetEnumAttributeKind($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMGetEnumAttributeValue(?LLVMAttributeRef $p0): ?uint64_t {
+    public function LLVMGetEnumAttributeValue(?LLVMAttributeRef $p0): ?int {
         $result = $this->ffi->LLVMGetEnumAttributeValue($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new uint64_t($result);
+        return $result;
     }
     public function LLVMCreateStringAttribute(?LLVMContextRef $p0, ?string $p1, ?int $p2, ?string $p3, ?int $p4): ?LLVMAttributeRef {
         $result = $this->ffi->LLVMCreateStringAttribute($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4);
@@ -2909,13 +2909,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetStringAttributeValue($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMIsEnumAttribute(?LLVMAttributeRef $p0): ?LLVMBool {
+    public function LLVMIsEnumAttribute(?LLVMAttributeRef $p0): ?int {
         $result = $this->ffi->LLVMIsEnumAttribute($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMIsStringAttribute(?LLVMAttributeRef $p0): ?LLVMBool {
+    public function LLVMIsStringAttribute(?LLVMAttributeRef $p0): ?int {
         $result = $this->ffi->LLVMIsStringAttribute($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMModuleCreateWithName(?string $p0): ?LLVMModuleRef {
         $result = $this->ffi->LLVMModuleCreateWithName($p0);
@@ -2960,13 +2960,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDumpModule(?LLVMModuleRef $p0): void {
         $this->ffi->LLVMDumpModule($p0 === null ? null : $p0->getData());
     }
-    public function LLVMPrintModuleToFile(?LLVMModuleRef $p0, ?string $p1, ?string_ptr $p2): ?LLVMBool {
+    public function LLVMPrintModuleToFile(?LLVMModuleRef $p0, ?string $p1, ?string_ptr $p2): ?int {
         $result = $this->ffi->LLVMPrintModuleToFile($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
-    }
-    public function LLVMPrintModuleToString(?LLVMModuleRef $p0): ?string {
-        $result = $this->ffi->LLVMPrintModuleToString($p0 === null ? null : $p0->getData());
         return $result;
+    }
+    public function LLVMPrintModuleToString(?LLVMModuleRef $p0): ?string_ {
+        $result = $this->ffi->LLVMPrintModuleToString($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new string_($result);
     }
     public function LLVMSetModuleInlineAsm(?LLVMModuleRef $p0, ?string $p1): void {
         $this->ffi->LLVMSetModuleInlineAsm($p0 === null ? null : $p0->getData(), $p1);
@@ -3013,13 +3013,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetPreviousFunction($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMGetTypeKind(?LLVMTypeRef $p0): ?LLVMTypeKind {
+    public function LLVMGetTypeKind(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMGetTypeKind($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMTypeKind($result);
+        return $result;
     }
-    public function LLVMTypeIsSized(?LLVMTypeRef $p0): ?LLVMBool {
+    public function LLVMTypeIsSized(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMTypeIsSized($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetTypeContext(?LLVMTypeRef $p0): ?LLVMContextRef {
         $result = $this->ffi->LLVMGetTypeContext($p0 === null ? null : $p0->getData());
@@ -3028,9 +3028,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDumpType(?LLVMTypeRef $p0): void {
         $this->ffi->LLVMDumpType($p0 === null ? null : $p0->getData());
     }
-    public function LLVMPrintTypeToString(?LLVMTypeRef $p0): ?string {
+    public function LLVMPrintTypeToString(?LLVMTypeRef $p0): ?string_ {
         $result = $this->ffi->LLVMPrintTypeToString($p0 === null ? null : $p0->getData());
-        return $result === null ? null : FFI::string($result);
+        return $result === null ? null : new string_($result);
     }
     public function LLVMInt1TypeInContext(?LLVMContextRef $p0): ?LLVMTypeRef {
         $result = $this->ffi->LLVMInt1TypeInContext($p0 === null ? null : $p0->getData());
@@ -3140,13 +3140,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMPPCFP128Type();
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMFunctionType(?LLVMTypeRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?LLVMBool $p3): ?LLVMTypeRef {
-        $result = $this->ffi->LLVMFunctionType($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMFunctionType(?LLVMTypeRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?int $p3): ?LLVMTypeRef {
+        $result = $this->ffi->LLVMFunctionType($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMIsFunctionVarArg(?LLVMTypeRef $p0): ?LLVMBool {
+    public function LLVMIsFunctionVarArg(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMIsFunctionVarArg($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetReturnType(?LLVMTypeRef $p0): ?LLVMTypeRef {
         $result = $this->ffi->LLVMGetReturnType($p0 === null ? null : $p0->getData());
@@ -3159,12 +3159,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMGetParamTypes(?LLVMTypeRef $p0, ?LLVMTypeRef_ptr $p1): void {
         $this->ffi->LLVMGetParamTypes($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMStructTypeInContext(?LLVMContextRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?LLVMBool $p3): ?LLVMTypeRef {
-        $result = $this->ffi->LLVMStructTypeInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMStructTypeInContext(?LLVMContextRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?int $p3): ?LLVMTypeRef {
+        $result = $this->ffi->LLVMStructTypeInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMStructType(?LLVMTypeRef_ptr $p0, ?int $p1, ?LLVMBool $p2): ?LLVMTypeRef {
-        $result = $this->ffi->LLVMStructType($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMStructType(?LLVMTypeRef_ptr $p0, ?int $p1, ?int $p2): ?LLVMTypeRef {
+        $result = $this->ffi->LLVMStructType($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMTypeRef($result);
     }
     public function LLVMStructCreateNamed(?LLVMContextRef $p0, ?string $p1): ?LLVMTypeRef {
@@ -3175,8 +3175,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetStructName($p0 === null ? null : $p0->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMStructSetBody(?LLVMTypeRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?LLVMBool $p3): void {
-        $this->ffi->LLVMStructSetBody($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMStructSetBody(?LLVMTypeRef $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?int $p3): void {
+        $this->ffi->LLVMStructSetBody($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
     }
     public function LLVMCountStructElementTypes(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMCountStructElementTypes($p0 === null ? null : $p0->getData());
@@ -3189,13 +3189,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMStructGetTypeAtIndex($p0 === null ? null : $p0->getData(), $p1);
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMIsPackedStruct(?LLVMTypeRef $p0): ?LLVMBool {
+    public function LLVMIsPackedStruct(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMIsPackedStruct($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMIsOpaqueStruct(?LLVMTypeRef $p0): ?LLVMBool {
+    public function LLVMIsOpaqueStruct(?LLVMTypeRef $p0): ?int {
         $result = $this->ffi->LLVMIsOpaqueStruct($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetElementType(?LLVMTypeRef $p0): ?LLVMTypeRef {
         $result = $this->ffi->LLVMGetElementType($p0 === null ? null : $p0->getData());
@@ -3253,9 +3253,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMTypeOf($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMGetValueKind(?LLVMValueRef $p0): ?LLVMValueKind {
+    public function LLVMGetValueKind(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetValueKind($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMValueKind($result);
+        return $result;
     }
     public function LLVMGetValueName(?LLVMValueRef $p0): ?int_ptr {
         $result = $this->ffi->LLVMGetValueName($p0 === null ? null : $p0->getData());
@@ -3267,20 +3267,20 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDumpValue(?LLVMValueRef $p0): void {
         $this->ffi->LLVMDumpValue($p0 === null ? null : $p0->getData());
     }
-    public function LLVMPrintValueToString(?LLVMValueRef $p0): ?string {
+    public function LLVMPrintValueToString(?LLVMValueRef $p0): ?string_ {
         $result = $this->ffi->LLVMPrintValueToString($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
     public function LLVMReplaceAllUsesWith(?LLVMValueRef $p0, ?LLVMValueRef $p1): void {
         $this->ffi->LLVMReplaceAllUsesWith($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMIsConstant(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsConstant(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsConstant($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMIsUndef(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsUndef(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsUndef($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMIsAArgument(?LLVMValueRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMIsAArgument($p0 === null ? null : $p0->getData());
@@ -3645,28 +3645,28 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetUndef($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMIsNull(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsNull(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsNull($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMConstPointerNull(?LLVMTypeRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMConstPointerNull($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstInt(?LLVMTypeRef $p0, ?int $p1, ?LLVMBool $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstInt($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMConstInt(?LLVMTypeRef $p0, ?int $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstInt($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMConstIntOfArbitraryPrecision(?LLVMTypeRef $p0, ?int $p1, ?array $p2): ?LLVMValueRef {
         $result = $this->ffi->LLVMConstIntOfArbitraryPrecision($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstIntOfString(?LLVMTypeRef $p0, ?string $p1, ?uint8_t $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstIntOfString($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMConstIntOfString(?LLVMTypeRef $p0, ?string $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstIntOfString($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstIntOfStringAndSize(?LLVMTypeRef $p0, ?string $p1, ?int $p2, ?uint8_t $p3): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstIntOfStringAndSize($p0 === null ? null : $p0->getData(), $p1, $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMConstIntOfStringAndSize(?LLVMTypeRef $p0, ?string $p1, ?int $p2, ?int $p3): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstIntOfStringAndSize($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMConstReal(?LLVMTypeRef $p0, ?float $p1): ?LLVMValueRef {
@@ -3689,32 +3689,32 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMConstIntGetSExtValue($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMConstRealGetDouble(?LLVMValueRef $p0, ?LLVMBool_ptr $p1): ?float {
+    public function LLVMConstRealGetDouble(?LLVMValueRef $p0, ?int_ptr $p1): ?float {
         $result = $this->ffi->LLVMConstRealGetDouble($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result;
     }
-    public function LLVMConstStringInContext(?LLVMContextRef $p0, ?string $p1, ?int $p2, ?LLVMBool $p3): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstStringInContext($p0 === null ? null : $p0->getData(), $p1, $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMConstStringInContext(?LLVMContextRef $p0, ?string $p1, ?int $p2, ?int $p3): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstStringInContext($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstString(?string $p0, ?int $p1, ?LLVMBool $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstString($p0, $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMConstString(?string $p0, ?int $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstString($p0, $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMIsConstantString(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsConstantString(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsConstantString($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetAsString(?LLVMValueRef $p0, ?size_t_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetAsString($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMConstStructInContext(?LLVMContextRef $p0, ?LLVMValueRef_ptr $p1, ?int $p2, ?LLVMBool $p3): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstStructInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMConstStructInContext(?LLVMContextRef $p0, ?LLVMValueRef_ptr $p1, ?int $p2, ?int $p3): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstStructInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstStruct(?LLVMValueRef_ptr $p0, ?int $p1, ?LLVMBool $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstStruct($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMConstStruct(?LLVMValueRef_ptr $p0, ?int $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstStruct($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMConstArray(?LLVMTypeRef $p0, ?LLVMValueRef_ptr $p1, ?int $p2): ?LLVMValueRef {
@@ -3733,9 +3733,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMConstVector($p0 === null ? null : $p0->getData(), $p1);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMGetConstOpcode(?LLVMValueRef $p0): ?LLVMOpcode {
+    public function LLVMGetConstOpcode(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetConstOpcode($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMOpcode($result);
+        return $result;
     }
     public function LLVMAlignOf(?LLVMTypeRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMAlignOf($p0 === null ? null : $p0->getData());
@@ -3857,12 +3857,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMConstXor($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstICmp(?LLVMIntPredicate $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstICmp($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMConstICmp(?int $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstICmp($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstFCmp(?LLVMRealPredicate $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstFCmp($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMConstFCmp(?int $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstFCmp($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMConstShl(?LLVMValueRef $p0, ?LLVMValueRef $p1): ?LLVMValueRef {
@@ -3953,8 +3953,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMConstPointerCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstIntCast(?LLVMValueRef $p0, ?LLVMTypeRef $p1, ?LLVMBool $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstIntCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMConstIntCast(?LLVMValueRef $p0, ?LLVMTypeRef $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstIntCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMConstFPCast(?LLVMValueRef $p0, ?LLVMTypeRef $p1): ?LLVMValueRef {
@@ -3985,8 +3985,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMConstInsertValue($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMConstInlineAsm(?LLVMTypeRef $p0, ?string $p1, ?string $p2, ?LLVMBool $p3, ?LLVMBool $p4): ?LLVMValueRef {
-        $result = $this->ffi->LLVMConstInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2, $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
+    public function LLVMConstInlineAsm(?LLVMTypeRef $p0, ?string $p1, ?string $p2, ?int $p3, ?int $p4): ?LLVMValueRef {
+        $result = $this->ffi->LLVMConstInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMBlockAddress(?LLVMValueRef $p0, ?LLVMBasicBlockRef $p1): ?LLVMValueRef {
@@ -3997,16 +3997,16 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetGlobalParent($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMModuleRef($result);
     }
-    public function LLVMIsDeclaration(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsDeclaration(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsDeclaration($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMGetLinkage(?LLVMValueRef $p0): ?LLVMLinkage {
+    public function LLVMGetLinkage(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetLinkage($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMLinkage($result);
+        return $result;
     }
-    public function LLVMSetLinkage(?LLVMValueRef $p0, ?LLVMLinkage $p1): void {
-        $this->ffi->LLVMSetLinkage($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetLinkage(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetLinkage($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMGetSection(?LLVMValueRef $p0): ?int_ptr {
         $result = $this->ffi->LLVMGetSection($p0 === null ? null : $p0->getData());
@@ -4015,26 +4015,26 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMSetSection(?LLVMValueRef $p0, ?string $p1): void {
         $this->ffi->LLVMSetSection($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetVisibility(?LLVMValueRef $p0): ?LLVMVisibility {
+    public function LLVMGetVisibility(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetVisibility($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMVisibility($result);
+        return $result;
     }
-    public function LLVMSetVisibility(?LLVMValueRef $p0, ?LLVMVisibility $p1): void {
-        $this->ffi->LLVMSetVisibility($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetVisibility(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetVisibility($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetDLLStorageClass(?LLVMValueRef $p0): ?LLVMDLLStorageClass {
+    public function LLVMGetDLLStorageClass(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetDLLStorageClass($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMDLLStorageClass($result);
+        return $result;
     }
-    public function LLVMSetDLLStorageClass(?LLVMValueRef $p0, ?LLVMDLLStorageClass $p1): void {
-        $this->ffi->LLVMSetDLLStorageClass($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetDLLStorageClass(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetDLLStorageClass($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMHasUnnamedAddr(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMHasUnnamedAddr(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMHasUnnamedAddr($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetUnnamedAddr(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetUnnamedAddr($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetUnnamedAddr(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetUnnamedAddr($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMGetAlignment(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetAlignment($p0 === null ? null : $p0->getData());
@@ -4081,33 +4081,33 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMSetInitializer(?LLVMValueRef $p0, ?LLVMValueRef $p1): void {
         $this->ffi->LLVMSetInitializer($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMIsThreadLocal(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsThreadLocal(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsThreadLocal($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetThreadLocal(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetThreadLocal($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetThreadLocal(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetThreadLocal($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMIsGlobalConstant(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsGlobalConstant(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsGlobalConstant($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetGlobalConstant(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetGlobalConstant($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetGlobalConstant(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetGlobalConstant($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetThreadLocalMode(?LLVMValueRef $p0): ?LLVMThreadLocalMode {
+    public function LLVMGetThreadLocalMode(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetThreadLocalMode($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMThreadLocalMode($result);
+        return $result;
     }
-    public function LLVMSetThreadLocalMode(?LLVMValueRef $p0, ?LLVMThreadLocalMode $p1): void {
-        $this->ffi->LLVMSetThreadLocalMode($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetThreadLocalMode(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetThreadLocalMode($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMIsExternallyInitialized(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsExternallyInitialized(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsExternallyInitialized($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetExternallyInitialized(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetExternallyInitialized($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetExternallyInitialized(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetExternallyInitialized($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMAddAlias(?LLVMModuleRef $p0, ?LLVMTypeRef $p1, ?LLVMValueRef $p2, ?string $p3): ?LLVMValueRef {
         $result = $this->ffi->LLVMAddAlias($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
@@ -4116,9 +4116,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDeleteFunction(?LLVMValueRef $p0): void {
         $this->ffi->LLVMDeleteFunction($p0 === null ? null : $p0->getData());
     }
-    public function LLVMHasPersonalityFn(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMHasPersonalityFn(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMHasPersonalityFn($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetPersonalityFn(?LLVMValueRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMGetPersonalityFn($p0 === null ? null : $p0->getData());
@@ -4145,29 +4145,29 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMSetGC(?LLVMValueRef $p0, ?string $p1): void {
         $this->ffi->LLVMSetGC($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMAddAttributeAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?LLVMAttributeRef $p2): void {
-        $this->ffi->LLVMAddAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMAddAttributeAtIndex(?LLVMValueRef $p0, ?int $p1, ?LLVMAttributeRef $p2): void {
+        $this->ffi->LLVMAddAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMGetAttributeCountAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1): ?int {
-        $result = $this->ffi->LLVMGetAttributeCountAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMGetAttributeCountAtIndex(?LLVMValueRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMGetAttributeCountAtIndex($p0 === null ? null : $p0->getData(), $p1);
         return $result;
     }
-    public function LLVMGetAttributesAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?LLVMAttributeRef_ptr $p2): void {
-        $this->ffi->LLVMGetAttributesAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMGetAttributesAtIndex(?LLVMValueRef $p0, ?int $p1, ?LLVMAttributeRef_ptr $p2): void {
+        $this->ffi->LLVMGetAttributesAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMGetEnumAttributeAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?int $p2): ?LLVMAttributeRef {
-        $result = $this->ffi->LLVMGetEnumAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
+    public function LLVMGetEnumAttributeAtIndex(?LLVMValueRef $p0, ?int $p1, ?int $p2): ?LLVMAttributeRef {
+        $result = $this->ffi->LLVMGetEnumAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMAttributeRef($result);
     }
-    public function LLVMGetStringAttributeAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?string $p2, ?int $p3): ?LLVMAttributeRef {
-        $result = $this->ffi->LLVMGetStringAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
+    public function LLVMGetStringAttributeAtIndex(?LLVMValueRef $p0, ?int $p1, ?string $p2, ?int $p3): ?LLVMAttributeRef {
+        $result = $this->ffi->LLVMGetStringAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
         return $result === null ? null : new LLVMAttributeRef($result);
     }
-    public function LLVMRemoveEnumAttributeAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?int $p2): void {
-        $this->ffi->LLVMRemoveEnumAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
+    public function LLVMRemoveEnumAttributeAtIndex(?LLVMValueRef $p0, ?int $p1, ?int $p2): void {
+        $this->ffi->LLVMRemoveEnumAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMRemoveStringAttributeAtIndex(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?string $p2, ?int $p3): void {
-        $this->ffi->LLVMRemoveStringAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
+    public function LLVMRemoveStringAttributeAtIndex(?LLVMValueRef $p0, ?int $p1, ?string $p2, ?int $p3): void {
+        $this->ffi->LLVMRemoveStringAttributeAtIndex($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
     }
     public function LLVMAddTargetDependentFunctionAttr(?LLVMValueRef $p0, ?string $p1, ?string $p2): void {
         $this->ffi->LLVMAddTargetDependentFunctionAttr($p0 === null ? null : $p0->getData(), $p1, $p2);
@@ -4237,9 +4237,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBasicBlockAsValue($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMValueIsBasicBlock(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMValueIsBasicBlock(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMValueIsBasicBlock($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMValueAsBasicBlock(?LLVMValueRef $p0): ?LLVMBasicBlockRef {
         $result = $this->ffi->LLVMValueAsBasicBlock($p0 === null ? null : $p0->getData());
@@ -4349,17 +4349,17 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMInstructionEraseFromParent(?LLVMValueRef $p0): void {
         $this->ffi->LLVMInstructionEraseFromParent($p0 === null ? null : $p0->getData());
     }
-    public function LLVMGetInstructionOpcode(?LLVMValueRef $p0): ?LLVMOpcode {
+    public function LLVMGetInstructionOpcode(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetInstructionOpcode($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMOpcode($result);
+        return $result;
     }
-    public function LLVMGetICmpPredicate(?LLVMValueRef $p0): ?LLVMIntPredicate {
+    public function LLVMGetICmpPredicate(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetICmpPredicate($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMIntPredicate($result);
+        return $result;
     }
-    public function LLVMGetFCmpPredicate(?LLVMValueRef $p0): ?LLVMRealPredicate {
+    public function LLVMGetFCmpPredicate(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetFCmpPredicate($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMRealPredicate($result);
+        return $result;
     }
     public function LLVMInstructionClone(?LLVMValueRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMInstructionClone($p0 === null ? null : $p0->getData());
@@ -4379,40 +4379,40 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMSetInstrParamAlignment(?LLVMValueRef $p0, ?int $p1, ?int $p2): void {
         $this->ffi->LLVMSetInstrParamAlignment($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMAddCallSiteAttribute(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?LLVMAttributeRef $p2): void {
-        $this->ffi->LLVMAddCallSiteAttribute($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMAddCallSiteAttribute(?LLVMValueRef $p0, ?int $p1, ?LLVMAttributeRef $p2): void {
+        $this->ffi->LLVMAddCallSiteAttribute($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMGetCallSiteAttributeCount(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1): ?int {
-        $result = $this->ffi->LLVMGetCallSiteAttributeCount($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMGetCallSiteAttributeCount(?LLVMValueRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMGetCallSiteAttributeCount($p0 === null ? null : $p0->getData(), $p1);
         return $result;
     }
-    public function LLVMGetCallSiteAttributes(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?LLVMAttributeRef_ptr $p2): void {
-        $this->ffi->LLVMGetCallSiteAttributes($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+    public function LLVMGetCallSiteAttributes(?LLVMValueRef $p0, ?int $p1, ?LLVMAttributeRef_ptr $p2): void {
+        $this->ffi->LLVMGetCallSiteAttributes($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMGetCallSiteEnumAttribute(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?int $p2): ?LLVMAttributeRef {
-        $result = $this->ffi->LLVMGetCallSiteEnumAttribute($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
+    public function LLVMGetCallSiteEnumAttribute(?LLVMValueRef $p0, ?int $p1, ?int $p2): ?LLVMAttributeRef {
+        $result = $this->ffi->LLVMGetCallSiteEnumAttribute($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMAttributeRef($result);
     }
-    public function LLVMGetCallSiteStringAttribute(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?string $p2, ?int $p3): ?LLVMAttributeRef {
-        $result = $this->ffi->LLVMGetCallSiteStringAttribute($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
+    public function LLVMGetCallSiteStringAttribute(?LLVMValueRef $p0, ?int $p1, ?string $p2, ?int $p3): ?LLVMAttributeRef {
+        $result = $this->ffi->LLVMGetCallSiteStringAttribute($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
         return $result === null ? null : new LLVMAttributeRef($result);
     }
-    public function LLVMRemoveCallSiteEnumAttribute(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?int $p2): void {
-        $this->ffi->LLVMRemoveCallSiteEnumAttribute($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
+    public function LLVMRemoveCallSiteEnumAttribute(?LLVMValueRef $p0, ?int $p1, ?int $p2): void {
+        $this->ffi->LLVMRemoveCallSiteEnumAttribute($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMRemoveCallSiteStringAttribute(?LLVMValueRef $p0, ?LLVMAttributeIndex $p1, ?string $p2, ?int $p3): void {
-        $this->ffi->LLVMRemoveCallSiteStringAttribute($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
+    public function LLVMRemoveCallSiteStringAttribute(?LLVMValueRef $p0, ?int $p1, ?string $p2, ?int $p3): void {
+        $this->ffi->LLVMRemoveCallSiteStringAttribute($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
     }
     public function LLVMGetCalledValue(?LLVMValueRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMGetCalledValue($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMIsTailCall(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsTailCall(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsTailCall($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetTailCall(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetTailCall($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetTailCall(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetTailCall($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMGetNormalDest(?LLVMValueRef $p0): ?LLVMBasicBlockRef {
         $result = $this->ffi->LLVMGetNormalDest($p0 === null ? null : $p0->getData());
@@ -4439,9 +4439,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMSetSuccessor(?LLVMValueRef $p0, ?int $p1, ?LLVMBasicBlockRef $p2): void {
         $this->ffi->LLVMSetSuccessor($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMIsConditional(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsConditional(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsConditional($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetCondition(?LLVMValueRef $p0): ?LLVMValueRef {
         $result = $this->ffi->LLVMGetCondition($p0 === null ? null : $p0->getData());
@@ -4458,12 +4458,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetAllocatedType($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMIsInBounds(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsInBounds(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsInBounds($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetIsInBounds(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetIsInBounds($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetIsInBounds(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetIsInBounds($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMAddIncoming(?LLVMValueRef $p0, ?LLVMValueRef_ptr $p1, ?LLVMBasicBlockRef_ptr $p2, ?int $p3): void {
         $this->ffi->LLVMAddIncoming($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
@@ -4592,12 +4592,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMAddClause(?LLVMValueRef $p0, ?LLVMValueRef $p1): void {
         $this->ffi->LLVMAddClause($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMIsCleanup(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsCleanup(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsCleanup($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetCleanup(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetCleanup($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetCleanup(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetCleanup($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMBuildAdd(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2, ?string $p3): ?LLVMValueRef {
         $result = $this->ffi->LLVMBuildAdd($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
@@ -4703,8 +4703,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBuildXor($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildBinOp(?LLVMBuilderRef $p0, ?LLVMOpcode $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildBinOp($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
+    public function LLVMBuildBinOp(?LLVMBuilderRef $p0, ?int $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildBinOp($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMBuildNeg(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?string $p2): ?LLVMValueRef {
@@ -4775,19 +4775,19 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBuildGlobalStringPtr($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMGetVolatile(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMGetVolatile(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetVolatile($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetVolatile(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetVolatile($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetVolatile(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetVolatile($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetOrdering(?LLVMValueRef $p0): ?LLVMAtomicOrdering {
+    public function LLVMGetOrdering(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetOrdering($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMAtomicOrdering($result);
+        return $result;
     }
-    public function LLVMSetOrdering(?LLVMValueRef $p0, ?LLVMAtomicOrdering $p1): void {
-        $this->ffi->LLVMSetOrdering($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetOrdering(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetOrdering($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMBuildTrunc(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?LLVMTypeRef $p2, ?string $p3): ?LLVMValueRef {
         $result = $this->ffi->LLVMBuildTrunc($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
@@ -4853,8 +4853,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBuildTruncOrBitCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildCast(?LLVMBuilderRef $p0, ?LLVMOpcode $p1, ?LLVMValueRef $p2, ?LLVMTypeRef $p3, ?string $p4): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
+    public function LLVMBuildCast(?LLVMBuilderRef $p0, ?int $p1, ?LLVMValueRef $p2, ?LLVMTypeRef $p3, ?string $p4): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildCast($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMBuildPointerCast(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?LLVMTypeRef $p2, ?string $p3): ?LLVMValueRef {
@@ -4869,12 +4869,12 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBuildFPCast($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildICmp(?LLVMBuilderRef $p0, ?LLVMIntPredicate $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildICmp($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
+    public function LLVMBuildICmp(?LLVMBuilderRef $p0, ?int $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildICmp($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildFCmp(?LLVMBuilderRef $p0, ?LLVMRealPredicate $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildFCmp($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
+    public function LLVMBuildFCmp(?LLVMBuilderRef $p0, ?int $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?string $p4): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildFCmp($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMBuildPhi(?LLVMBuilderRef $p0, ?LLVMTypeRef $p1, ?string $p2): ?LLVMValueRef {
@@ -4925,38 +4925,38 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMBuildPtrDiff($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildFence(?LLVMBuilderRef $p0, ?LLVMAtomicOrdering $p1, ?LLVMBool $p2, ?string $p3): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildFence($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
+    public function LLVMBuildFence(?LLVMBuilderRef $p0, ?int $p1, ?int $p2, ?string $p3): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildFence($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildAtomicRMW(?LLVMBuilderRef $p0, ?LLVMAtomicRMWBinOp $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?LLVMAtomicOrdering $p4, ?LLVMBool $p5): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildAtomicRMW($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData(), $p5 === null ? null : $p5->getData());
+    public function LLVMBuildAtomicRMW(?LLVMBuilderRef $p0, ?int $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?int $p4, ?int $p5): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildAtomicRMW($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4, $p5);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMBuildAtomicCmpXchg(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?LLVMAtomicOrdering $p4, ?LLVMAtomicOrdering $p5, ?LLVMBool $p6): ?LLVMValueRef {
-        $result = $this->ffi->LLVMBuildAtomicCmpXchg($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData(), $p5 === null ? null : $p5->getData(), $p6 === null ? null : $p6->getData());
+    public function LLVMBuildAtomicCmpXchg(?LLVMBuilderRef $p0, ?LLVMValueRef $p1, ?LLVMValueRef $p2, ?LLVMValueRef $p3, ?int $p4, ?int $p5, ?int $p6): ?LLVMValueRef {
+        $result = $this->ffi->LLVMBuildAtomicCmpXchg($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4, $p5, $p6);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMIsAtomicSingleThread(?LLVMValueRef $p0): ?LLVMBool {
+    public function LLVMIsAtomicSingleThread(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMIsAtomicSingleThread($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMSetAtomicSingleThread(?LLVMValueRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetAtomicSingleThread($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetAtomicSingleThread(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetAtomicSingleThread($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetCmpXchgSuccessOrdering(?LLVMValueRef $p0): ?LLVMAtomicOrdering {
+    public function LLVMGetCmpXchgSuccessOrdering(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetCmpXchgSuccessOrdering($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMAtomicOrdering($result);
+        return $result;
     }
-    public function LLVMSetCmpXchgSuccessOrdering(?LLVMValueRef $p0, ?LLVMAtomicOrdering $p1): void {
-        $this->ffi->LLVMSetCmpXchgSuccessOrdering($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetCmpXchgSuccessOrdering(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetCmpXchgSuccessOrdering($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMGetCmpXchgFailureOrdering(?LLVMValueRef $p0): ?LLVMAtomicOrdering {
+    public function LLVMGetCmpXchgFailureOrdering(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetCmpXchgFailureOrdering($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMAtomicOrdering($result);
+        return $result;
     }
-    public function LLVMSetCmpXchgFailureOrdering(?LLVMValueRef $p0, ?LLVMAtomicOrdering $p1): void {
-        $this->ffi->LLVMSetCmpXchgFailureOrdering($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetCmpXchgFailureOrdering(?LLVMValueRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetCmpXchgFailureOrdering($p0 === null ? null : $p0->getData(), $p1);
     }
     public function LLVMCreateModuleProviderForExistingModule(?LLVMModuleRef $p0): ?LLVMModuleProviderRef {
         $result = $this->ffi->LLVMCreateModuleProviderForExistingModule($p0 === null ? null : $p0->getData());
@@ -4965,16 +4965,16 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDisposeModuleProvider(?LLVMModuleProviderRef $p0): void {
         $this->ffi->LLVMDisposeModuleProvider($p0 === null ? null : $p0->getData());
     }
-    public function LLVMCreateMemoryBufferWithContentsOfFile(?string $p0, ?LLVMMemoryBufferRef_ptr $p1, ?string_ptr $p2): ?LLVMBool {
+    public function LLVMCreateMemoryBufferWithContentsOfFile(?string $p0, ?LLVMMemoryBufferRef_ptr $p1, ?string_ptr $p2): ?int {
         $result = $this->ffi->LLVMCreateMemoryBufferWithContentsOfFile($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMCreateMemoryBufferWithSTDIN(?LLVMMemoryBufferRef_ptr $p0, ?string_ptr $p1): ?LLVMBool {
+    public function LLVMCreateMemoryBufferWithSTDIN(?LLVMMemoryBufferRef_ptr $p0, ?string_ptr $p1): ?int {
         $result = $this->ffi->LLVMCreateMemoryBufferWithSTDIN($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMCreateMemoryBufferWithMemoryRange(?string $p0, ?size_t $p1, ?string $p2, ?LLVMBool $p3): ?LLVMMemoryBufferRef {
-        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRange($p0, $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
+    public function LLVMCreateMemoryBufferWithMemoryRange(?string $p0, ?size_t $p1, ?string $p2, ?int $p3): ?LLVMMemoryBufferRef {
+        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRange($p0, $p1 === null ? null : $p1->getData(), $p2, $p3);
         return $result === null ? null : new LLVMMemoryBufferRef($result);
     }
     public function LLVMCreateMemoryBufferWithMemoryRangeCopy(?string $p0, ?size_t $p1, ?string $p2): ?LLVMMemoryBufferRef {
@@ -5008,35 +5008,35 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMCreateFunctionPassManager($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMPassManagerRef($result);
     }
-    public function LLVMRunPassManager(?LLVMPassManagerRef $p0, ?LLVMModuleRef $p1): ?LLVMBool {
+    public function LLVMRunPassManager(?LLVMPassManagerRef $p0, ?LLVMModuleRef $p1): ?int {
         $result = $this->ffi->LLVMRunPassManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMInitializeFunctionPassManager(?LLVMPassManagerRef $p0): ?LLVMBool {
+    public function LLVMInitializeFunctionPassManager(?LLVMPassManagerRef $p0): ?int {
         $result = $this->ffi->LLVMInitializeFunctionPassManager($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMRunFunctionPassManager(?LLVMPassManagerRef $p0, ?LLVMValueRef $p1): ?LLVMBool {
+    public function LLVMRunFunctionPassManager(?LLVMPassManagerRef $p0, ?LLVMValueRef $p1): ?int {
         $result = $this->ffi->LLVMRunFunctionPassManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMFinalizeFunctionPassManager(?LLVMPassManagerRef $p0): ?LLVMBool {
+    public function LLVMFinalizeFunctionPassManager(?LLVMPassManagerRef $p0): ?int {
         $result = $this->ffi->LLVMFinalizeFunctionPassManager($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMDisposePassManager(?LLVMPassManagerRef $p0): void {
         $this->ffi->LLVMDisposePassManager($p0 === null ? null : $p0->getData());
     }
-    public function LLVMStartMultithreaded(): ?LLVMBool {
+    public function LLVMStartMultithreaded(): ?int {
         $result = $this->ffi->LLVMStartMultithreaded();
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMStopMultithreaded(): void {
         $this->ffi->LLVMStopMultithreaded();
     }
-    public function LLVMIsMultithreaded(): ?LLVMBool {
+    public function LLVMIsMultithreaded(): ?int {
         $result = $this->ffi->LLVMIsMultithreaded();
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     // enum LLVMByteOrdering
     const LLVMBigEndian = (0) + 0;
@@ -5301,9 +5301,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMAddTargetLibraryInfo(?LLVMTargetLibraryInfoRef $p0, ?LLVMPassManagerRef $p1): void {
         $this->ffi->LLVMAddTargetLibraryInfo($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMCopyStringRepOfTargetData(?LLVMTargetDataRef $p0): ?string {
+    public function LLVMCopyStringRepOfTargetData(?LLVMTargetDataRef $p0): ?string_ {
         $result = $this->ffi->LLVMCopyStringRepOfTargetData($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
     public function LLVMByteOrder(?LLVMTargetDataRef $p0): ?int {
         $result = $this->ffi->LLVMByteOrder($p0 === null ? null : $p0->getData());
@@ -5369,24 +5369,24 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMOffsetOfElement($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
         return $result;
     }
- // typedefenum LLVMCodeGenOptLevel
+    // typedefenum LLVMCodeGenOptLevel
     const LLVMCodeGenLevelNone = (0) + 0;
     const LLVMCodeGenLevelLess = (0) + 1;
     const LLVMCodeGenLevelDefault = (0) + 2;
     const LLVMCodeGenLevelAggressive = (0) + 3;
- // typedefenum LLVMRelocMode
+    // typedefenum LLVMRelocMode
     const LLVMRelocDefault = (0) + 0;
     const LLVMRelocStatic = (0) + 1;
     const LLVMRelocPIC = (0) + 2;
     const LLVMRelocDynamicNoPic = (0) + 3;
- // typedefenum LLVMCodeModel
+    // typedefenum LLVMCodeModel
     const LLVMCodeModelDefault = (0) + 0;
     const LLVMCodeModelJITDefault = (0) + 1;
     const LLVMCodeModelSmall = (0) + 2;
     const LLVMCodeModelKernel = (0) + 3;
     const LLVMCodeModelMedium = (0) + 4;
     const LLVMCodeModelLarge = (0) + 5;
- // typedefenum LLVMCodeGenFileType
+    // typedefenum LLVMCodeGenFileType
     const LLVMAssemblyFile = (0) + 0;
     const LLVMObjectFile = (0) + 1;
     public function LLVMGetFirstTarget(): ?LLVMTargetRef {
@@ -5401,9 +5401,9 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetTargetFromName($p0);
         return $result === null ? null : new LLVMTargetRef($result);
     }
-    public function LLVMGetTargetFromTriple(?string $p0, ?LLVMTargetRef_ptr $p1, ?string_ptr $p2): ?LLVMBool {
+    public function LLVMGetTargetFromTriple(?string $p0, ?LLVMTargetRef_ptr $p1, ?string_ptr $p2): ?int {
         $result = $this->ffi->LLVMGetTargetFromTriple($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMGetTargetName(?LLVMTargetRef $p0): ?int_ptr {
         $result = $this->ffi->LLVMGetTargetName($p0 === null ? null : $p0->getData());
@@ -5413,20 +5413,20 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetTargetDescription($p0 === null ? null : $p0->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMTargetHasJIT(?LLVMTargetRef $p0): ?LLVMBool {
+    public function LLVMTargetHasJIT(?LLVMTargetRef $p0): ?int {
         $result = $this->ffi->LLVMTargetHasJIT($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMTargetHasTargetMachine(?LLVMTargetRef $p0): ?LLVMBool {
+    public function LLVMTargetHasTargetMachine(?LLVMTargetRef $p0): ?int {
         $result = $this->ffi->LLVMTargetHasTargetMachine($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMTargetHasAsmBackend(?LLVMTargetRef $p0): ?LLVMBool {
+    public function LLVMTargetHasAsmBackend(?LLVMTargetRef $p0): ?int {
         $result = $this->ffi->LLVMTargetHasAsmBackend($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMCreateTargetMachine(?LLVMTargetRef $p0, ?string $p1, ?string $p2, ?string $p3, ?LLVMCodeGenOptLevel $p4, ?LLVMRelocMode $p5, ?LLVMCodeModel $p6): ?LLVMTargetMachineRef {
-        $result = $this->ffi->LLVMCreateTargetMachine($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4 === null ? null : $p4->getData(), $p5 === null ? null : $p5->getData(), $p6 === null ? null : $p6->getData());
+    public function LLVMCreateTargetMachine(?LLVMTargetRef $p0, ?string $p1, ?string $p2, ?string $p3, ?int $p4, ?int $p5, ?int $p6): ?LLVMTargetMachineRef {
+        $result = $this->ffi->LLVMCreateTargetMachine($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4, $p5, $p6);
         return $result === null ? null : new LLVMTargetMachineRef($result);
     }
     public function LLVMDisposeTargetMachine(?LLVMTargetMachineRef $p0): void {
@@ -5436,36 +5436,36 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetTargetMachineTarget($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMTargetRef($result);
     }
-    public function LLVMGetTargetMachineTriple(?LLVMTargetMachineRef $p0): ?string {
+    public function LLVMGetTargetMachineTriple(?LLVMTargetMachineRef $p0): ?string_ {
         $result = $this->ffi->LLVMGetTargetMachineTriple($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
-    public function LLVMGetTargetMachineCPU(?LLVMTargetMachineRef $p0): ?string {
+    public function LLVMGetTargetMachineCPU(?LLVMTargetMachineRef $p0): ?string_ {
         $result = $this->ffi->LLVMGetTargetMachineCPU($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
-    public function LLVMGetTargetMachineFeatureString(?LLVMTargetMachineRef $p0): ?string {
+    public function LLVMGetTargetMachineFeatureString(?LLVMTargetMachineRef $p0): ?string_ {
         $result = $this->ffi->LLVMGetTargetMachineFeatureString($p0 === null ? null : $p0->getData());
-        return $result;
+        return $result === null ? null : new string_($result);
     }
     public function LLVMCreateTargetDataLayout(?LLVMTargetMachineRef $p0): ?LLVMTargetDataRef {
         $result = $this->ffi->LLVMCreateTargetDataLayout($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMTargetDataRef($result);
     }
-    public function LLVMSetTargetMachineAsmVerbosity(?LLVMTargetMachineRef $p0, ?LLVMBool $p1): void {
-        $this->ffi->LLVMSetTargetMachineAsmVerbosity($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMSetTargetMachineAsmVerbosity(?LLVMTargetMachineRef $p0, ?int $p1): void {
+        $this->ffi->LLVMSetTargetMachineAsmVerbosity($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMTargetMachineEmitToFile(?LLVMTargetMachineRef $p0, ?LLVMModuleRef $p1, ?string $p2, ?LLVMCodeGenFileType $p3, ?string_ptr $p4): ?LLVMBool {
-        $result = $this->ffi->LLVMTargetMachineEmitToFile($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
-        return $result === null ? null : new LLVMBool($result);
-    }
-    public function LLVMTargetMachineEmitToMemoryBuffer(?LLVMTargetMachineRef $p0, ?LLVMModuleRef $p1, ?LLVMCodeGenFileType $p2, ?string_ptr $p3, ?LLVMMemoryBufferRef_ptr $p4): ?LLVMBool {
-        $result = $this->ffi->LLVMTargetMachineEmitToMemoryBuffer($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
-        return $result === null ? null : new LLVMBool($result);
-    }
-    public function LLVMGetDefaultTargetTriple(): ?string {
-        $result = $this->ffi->LLVMGetDefaultTargetTriple();
+    public function LLVMTargetMachineEmitToFile(?LLVMTargetMachineRef $p0, ?LLVMModuleRef $p1, ?string $p2, ?int $p3, ?string_ptr $p4): ?int {
+        $result = $this->ffi->LLVMTargetMachineEmitToFile($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3, $p4 === null ? null : $p4->getData());
         return $result;
+    }
+    public function LLVMTargetMachineEmitToMemoryBuffer(?LLVMTargetMachineRef $p0, ?LLVMModuleRef $p1, ?int $p2, ?string_ptr $p3, ?LLVMMemoryBufferRef_ptr $p4): ?int {
+        $result = $this->ffi->LLVMTargetMachineEmitToMemoryBuffer($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
+        return $result;
+    }
+    public function LLVMGetDefaultTargetTriple(): ?string_ {
+        $result = $this->ffi->LLVMGetDefaultTargetTriple();
+        return $result === null ? null : new string_($result);
     }
     public function LLVMAddAnalysisPasses(?LLVMTargetMachineRef $p0, ?LLVMPassManagerRef $p1): void {
         $this->ffi->LLVMAddAnalysisPasses($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
@@ -5476,8 +5476,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMLinkInInterpreter(): void {
         $this->ffi->LLVMLinkInInterpreter();
     }
-    public function LLVMCreateGenericValueOfInt(?LLVMTypeRef $p0, ?int $p1, ?LLVMBool $p2): ?LLVMGenericValueRef {
-        $result = $this->ffi->LLVMCreateGenericValueOfInt($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMCreateGenericValueOfInt(?LLVMTypeRef $p0, ?int $p1, ?int $p2): ?LLVMGenericValueRef {
+        $result = $this->ffi->LLVMCreateGenericValueOfInt($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMGenericValueRef($result);
     }
     public function LLVMCreateGenericValueOfPointer(?void_ptr $p0): ?LLVMGenericValueRef {
@@ -5492,8 +5492,8 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGenericValueIntWidth($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMGenericValueToInt(?LLVMGenericValueRef $p0, ?LLVMBool $p1): ?int {
-        $result = $this->ffi->LLVMGenericValueToInt($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMGenericValueToInt(?LLVMGenericValueRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMGenericValueToInt($p0 === null ? null : $p0->getData(), $p1);
         return $result;
     }
     public function LLVMGenericValueToPointer(?LLVMGenericValueRef $p0): ?void_ptr {
@@ -5507,24 +5507,24 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDisposeGenericValue(?LLVMGenericValueRef $p0): void {
         $this->ffi->LLVMDisposeGenericValue($p0 === null ? null : $p0->getData());
     }
-    public function LLVMCreateExecutionEngineForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?string_ptr $p2): ?LLVMBool {
+    public function LLVMCreateExecutionEngineForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?string_ptr $p2): ?int {
         $result = $this->ffi->LLVMCreateExecutionEngineForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMCreateInterpreterForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?string_ptr $p2): ?LLVMBool {
+    public function LLVMCreateInterpreterForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?string_ptr $p2): ?int {
         $result = $this->ffi->LLVMCreateInterpreterForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMCreateJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?int $p2, ?string_ptr $p3): ?LLVMBool {
+    public function LLVMCreateJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?int $p2, ?string_ptr $p3): ?int {
         $result = $this->ffi->LLVMCreateJITCompilerForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMInitializeMCJITCompilerOptions(?LLVMMCJITCompilerOptions_ptr $p0, ?size_t $p1): void {
         $this->ffi->LLVMInitializeMCJITCompilerOptions($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMCreateMCJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?LLVMMCJITCompilerOptions_ptr $p2, ?size_t $p3, ?string_ptr $p4): ?LLVMBool {
+    public function LLVMCreateMCJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?LLVMMCJITCompilerOptions_ptr $p2, ?size_t $p3, ?string_ptr $p4): ?int {
         $result = $this->ffi->LLVMCreateMCJITCompilerForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMDisposeExecutionEngine(?LLVMExecutionEngineRef $p0): void {
         $this->ffi->LLVMDisposeExecutionEngine($p0 === null ? null : $p0->getData());
@@ -5549,13 +5549,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMAddModule(?LLVMExecutionEngineRef $p0, ?LLVMModuleRef $p1): void {
         $this->ffi->LLVMAddModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMRemoveModule(?LLVMExecutionEngineRef $p0, ?LLVMModuleRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?LLVMBool {
+    public function LLVMRemoveModule(?LLVMExecutionEngineRef $p0, ?LLVMModuleRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?int {
         $result = $this->ffi->LLVMRemoveModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
-    public function LLVMFindFunction(?LLVMExecutionEngineRef $p0, ?string $p1, ?LLVMValueRef_ptr $p2): ?LLVMBool {
+    public function LLVMFindFunction(?LLVMExecutionEngineRef $p0, ?string $p1, ?LLVMValueRef_ptr $p2): ?int {
         $result = $this->ffi->LLVMFindFunction($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+        return $result;
     }
     public function LLVMRecompileAndRelinkFunction(?LLVMExecutionEngineRef $p0, ?LLVMValueRef $p1): ?void_ptr {
         $result = $this->ffi->LLVMRecompileAndRelinkFunction($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
@@ -5576,13 +5576,13 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
         $result = $this->ffi->LLVMGetPointerToGlobal($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new void_ptr($result);
     }
-    public function LLVMGetGlobalValueAddress(?LLVMExecutionEngineRef $p0, ?string $p1): ?uint64_t {
+    public function LLVMGetGlobalValueAddress(?LLVMExecutionEngineRef $p0, ?string $p1): ?int {
         $result = $this->ffi->LLVMGetGlobalValueAddress($p0 === null ? null : $p0->getData(), $p1);
-        return $result === null ? null : new uint64_t($result);
+        return $result;
     }
-    public function LLVMGetFunctionAddress(?LLVMExecutionEngineRef $p0, ?string $p1): ?uint64_t {
+    public function LLVMGetFunctionAddress(?LLVMExecutionEngineRef $p0, ?string $p1): ?int {
         $result = $this->ffi->LLVMGetFunctionAddress($p0 === null ? null : $p0->getData(), $p1);
-        return $result === null ? null : new uint64_t($result);
+        return $result;
     }
     public function LLVMCreateSimpleMCJITMemoryManager(?void_ptr $p0, ?LLVMMemoryManagerAllocateCodeSectionCallback $p1, ?LLVMMemoryManagerAllocateDataSectionCallback $p2, ?LLVMMemoryManagerFinalizeMemoryCallback $p3, ?LLVMMemoryManagerDestroyCallback $p4): ?LLVMMCJITMemoryManagerRef {
         $result = $this->ffi->LLVMCreateSimpleMCJITMemoryManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
@@ -5591,17 +5591,17 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     public function LLVMDisposeMCJITMemoryManager(?LLVMMCJITMemoryManagerRef $p0): void {
         $this->ffi->LLVMDisposeMCJITMemoryManager($p0 === null ? null : $p0->getData());
     }
- // typedefenum LLVMVerifierFailureAction
+    // typedefenum LLVMVerifierFailureAction
     const LLVMAbortProcessAction = (0) + 0;
     const LLVMPrintMessageAction = (0) + 1;
     const LLVMReturnStatusAction = (0) + 2;
-    public function LLVMVerifyModule(?LLVMModuleRef $p0, ?LLVMVerifierFailureAction $p1, ?string_ptr $p2): ?LLVMBool {
-        $result = $this->ffi->LLVMVerifyModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result === null ? null : new LLVMBool($result);
+    public function LLVMVerifyModule(?LLVMModuleRef $p0, ?int $p1, ?string_ptr $p2): ?int {
+        $result = $this->ffi->LLVMVerifyModule($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+        return $result;
     }
-    public function LLVMVerifyFunction(?LLVMValueRef $p0, ?LLVMVerifierFailureAction $p1): ?LLVMBool {
-        $result = $this->ffi->LLVMVerifyFunction($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result === null ? null : new LLVMBool($result);
+    public function LLVMVerifyFunction(?LLVMValueRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMVerifyFunction($p0 === null ? null : $p0->getData(), $p1);
+        return $result;
     }
     public function LLVMViewFunctionCFG(?LLVMValueRef $p0): void {
         $this->ffi->LLVMViewFunctionCFG($p0 === null ? null : $p0->getData());
@@ -5611,6 +5611,42 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     }
 }
 
+class string_ implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(string_ $other): bool { return $this->data == $other->data; }
+    public function addr(): string_ptr { return new string_ptr(FFI::addr($this->data)); }
+    public function toString(?int $length = null): string { return $length === null ? FFI::string($this->data) : FFI::string($this->data, $length); }
+    public static function getType(): string { return 'char*'; }
+}
+class string_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(string_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): string_ptr_ptr { return new string_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): string_ { return new string_($this->data[$n]); }
+    public static function getType(): string { return 'char**'; }
+}
+class string_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(string_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): string_ptr_ptr_ptr { return new string_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): string_ptr { return new string_ptr($this->data[$n]); }
+    public static function getType(): string { return 'char***'; }
+}
+class string_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(string_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): string_ptr_ptr_ptr_ptr { return new string_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): string_ptr_ptr { return new string_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'char****'; }
+}
 class void_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
@@ -5681,21 +5717,13 @@ class LLVMFatalErrorHandler_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): LLVMFatalErrorHandler_ptr_ptr_ptr { return new LLVMFatalErrorHandler_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'LLVMFatalErrorHandler****'; }
 }
-class float_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('float'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(float_t $other): bool { return $this->data == $other->data; }
-    public function addr(): float_t_ptr { return new float_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'float_t'; }
-}
 class float_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(float_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): float_t_ptr_ptr { return new float_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): float_t { return new float_t($this->data[$n]); }
+    public function deref(int $n = 0): float { return $this->data[$n] + 0.0; }
     public static function getType(): string { return 'float_t*'; }
 }
 class float_t_ptr_ptr implements illvm {
@@ -5725,21 +5753,13 @@ class float_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): float_t_ptr_ptr_ptr { return new float_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'float_t****'; }
 }
-class double_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('double'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(double_t $other): bool { return $this->data == $other->data; }
-    public function addr(): double_t_ptr { return new double_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'double_t'; }
-}
 class double_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(double_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): double_t_ptr_ptr { return new double_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): double_t { return new double_t($this->data[$n]); }
+    public function deref(int $n = 0): float { return $this->data[$n] + 0.0; }
     public static function getType(): string { return 'double_t*'; }
 }
 class double_t_ptr_ptr implements illvm {
@@ -5769,65 +5789,13 @@ class double_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): double_t_ptr_ptr_ptr { return new double_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'double_t****'; }
 }
-class _LIB_VERSION_TYPE implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(_LIB_VERSION_TYPE $other): bool { return $this->data == $other->data; }
-    public function addr(): _LIB_VERSION_TYPE_ptr { return new _LIB_VERSION_TYPE_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '_LIB_VERSION_TYPE'; }
-}
-class _LIB_VERSION_TYPE_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(_LIB_VERSION_TYPE_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): _LIB_VERSION_TYPE_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): _LIB_VERSION_TYPE { return new _LIB_VERSION_TYPE($this->data[$n]); }
-    public static function getType(): string { return '_LIB_VERSION_TYPE*'; }
-}
-class _LIB_VERSION_TYPE_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(_LIB_VERSION_TYPE_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): _LIB_VERSION_TYPE_ptr_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): _LIB_VERSION_TYPE_ptr { return new _LIB_VERSION_TYPE_ptr($this->data[$n]); }
-    public static function getType(): string { return '_LIB_VERSION_TYPE**'; }
-}
-class _LIB_VERSION_TYPE_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(_LIB_VERSION_TYPE_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): _LIB_VERSION_TYPE_ptr_ptr_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): _LIB_VERSION_TYPE_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return '_LIB_VERSION_TYPE***'; }
-}
-class _LIB_VERSION_TYPE_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(_LIB_VERSION_TYPE_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): _LIB_VERSION_TYPE_ptr_ptr_ptr_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): _LIB_VERSION_TYPE_ptr_ptr_ptr { return new _LIB_VERSION_TYPE_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return '_LIB_VERSION_TYPE****'; }
-}
-class int_least8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_least8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_least8_t_ptr { return new int_least8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_least8_t'; }
-}
 class int_least8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_least8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_least8_t_ptr_ptr { return new int_least8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_least8_t { return new int_least8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'int_least8_t*'; }
 }
 class int_least8_t_ptr_ptr implements illvm {
@@ -5857,21 +5825,13 @@ class int_least8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_least8_t_ptr_ptr_ptr { return new int_least8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_least8_t****'; }
 }
-class int_least16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_least16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_least16_t_ptr { return new int_least16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_least16_t'; }
-}
 class int_least16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_least16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_least16_t_ptr_ptr { return new int_least16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_least16_t { return new int_least16_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'int_least16_t*'; }
 }
 class int_least16_t_ptr_ptr implements illvm {
@@ -5901,21 +5861,13 @@ class int_least16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_least16_t_ptr_ptr_ptr { return new int_least16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_least16_t****'; }
 }
-class int_least32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_least32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_least32_t_ptr { return new int_least32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_least32_t'; }
-}
 class int_least32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_least32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_least32_t_ptr_ptr { return new int_least32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_least32_t { return new int_least32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'int_least32_t*'; }
 }
 class int_least32_t_ptr_ptr implements illvm {
@@ -5945,21 +5897,13 @@ class int_least32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_least32_t_ptr_ptr_ptr { return new int_least32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_least32_t****'; }
 }
-class int_least64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_least64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_least64_t_ptr { return new int_least64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_least64_t'; }
-}
 class int_least64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_least64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_least64_t_ptr_ptr { return new int_least64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_least64_t { return new int_least64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'int_least64_t*'; }
 }
 class int_least64_t_ptr_ptr implements illvm {
@@ -5989,21 +5933,13 @@ class int_least64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_least64_t_ptr_ptr_ptr { return new int_least64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_least64_t****'; }
 }
-class uint_least8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_least8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_least8_t_ptr { return new uint_least8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_least8_t'; }
-}
 class uint_least8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_least8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_least8_t_ptr_ptr { return new uint_least8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_least8_t { return new uint_least8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'uint_least8_t*'; }
 }
 class uint_least8_t_ptr_ptr implements illvm {
@@ -6033,21 +5969,13 @@ class uint_least8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_least8_t_ptr_ptr_ptr { return new uint_least8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_least8_t****'; }
 }
-class uint_least16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_least16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_least16_t_ptr { return new uint_least16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_least16_t'; }
-}
 class uint_least16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_least16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_least16_t_ptr_ptr { return new uint_least16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_least16_t { return new uint_least16_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'uint_least16_t*'; }
 }
 class uint_least16_t_ptr_ptr implements illvm {
@@ -6077,21 +6005,13 @@ class uint_least16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_least16_t_ptr_ptr_ptr { return new uint_least16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_least16_t****'; }
 }
-class uint_least32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_least32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_least32_t_ptr { return new uint_least32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_least32_t'; }
-}
 class uint_least32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_least32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_least32_t_ptr_ptr { return new uint_least32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_least32_t { return new uint_least32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint_least32_t*'; }
 }
 class uint_least32_t_ptr_ptr implements illvm {
@@ -6121,21 +6041,13 @@ class uint_least32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_least32_t_ptr_ptr_ptr { return new uint_least32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_least32_t****'; }
 }
-class uint_least64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_least64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_least64_t_ptr { return new uint_least64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_least64_t'; }
-}
 class uint_least64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_least64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_least64_t_ptr_ptr { return new uint_least64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_least64_t { return new uint_least64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint_least64_t*'; }
 }
 class uint_least64_t_ptr_ptr implements illvm {
@@ -6165,21 +6077,13 @@ class uint_least64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_least64_t_ptr_ptr_ptr { return new uint_least64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_least64_t****'; }
 }
-class int_fast8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_fast8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_fast8_t_ptr { return new int_fast8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_fast8_t'; }
-}
 class int_fast8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_fast8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_fast8_t_ptr_ptr { return new int_fast8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_fast8_t { return new int_fast8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'int_fast8_t*'; }
 }
 class int_fast8_t_ptr_ptr implements illvm {
@@ -6209,21 +6113,13 @@ class int_fast8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_fast8_t_ptr_ptr_ptr { return new int_fast8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_fast8_t****'; }
 }
-class int_fast16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_fast16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_fast16_t_ptr { return new int_fast16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_fast16_t'; }
-}
 class int_fast16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_fast16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_fast16_t_ptr_ptr { return new int_fast16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_fast16_t { return new int_fast16_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'int_fast16_t*'; }
 }
 class int_fast16_t_ptr_ptr implements illvm {
@@ -6253,21 +6149,13 @@ class int_fast16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_fast16_t_ptr_ptr_ptr { return new int_fast16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_fast16_t****'; }
 }
-class int_fast32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_fast32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_fast32_t_ptr { return new int_fast32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_fast32_t'; }
-}
 class int_fast32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_fast32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_fast32_t_ptr_ptr { return new int_fast32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_fast32_t { return new int_fast32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'int_fast32_t*'; }
 }
 class int_fast32_t_ptr_ptr implements illvm {
@@ -6297,21 +6185,13 @@ class int_fast32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_fast32_t_ptr_ptr_ptr { return new int_fast32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_fast32_t****'; }
 }
-class int_fast64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(int_fast64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): int_fast64_t_ptr { return new int_fast64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'int_fast64_t'; }
-}
 class int_fast64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(int_fast64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): int_fast64_t_ptr_ptr { return new int_fast64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): int_fast64_t { return new int_fast64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'int_fast64_t*'; }
 }
 class int_fast64_t_ptr_ptr implements illvm {
@@ -6341,21 +6221,13 @@ class int_fast64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): int_fast64_t_ptr_ptr_ptr { return new int_fast64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'int_fast64_t****'; }
 }
-class uint_fast8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_fast8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_fast8_t_ptr { return new uint_fast8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_fast8_t'; }
-}
 class uint_fast8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_fast8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_fast8_t_ptr_ptr { return new uint_fast8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_fast8_t { return new uint_fast8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'uint_fast8_t*'; }
 }
 class uint_fast8_t_ptr_ptr implements illvm {
@@ -6385,21 +6257,13 @@ class uint_fast8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_fast8_t_ptr_ptr_ptr { return new uint_fast8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_fast8_t****'; }
 }
-class uint_fast16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_fast16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_fast16_t_ptr { return new uint_fast16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_fast16_t'; }
-}
 class uint_fast16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_fast16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_fast16_t_ptr_ptr { return new uint_fast16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_fast16_t { return new uint_fast16_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint_fast16_t*'; }
 }
 class uint_fast16_t_ptr_ptr implements illvm {
@@ -6429,21 +6293,13 @@ class uint_fast16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_fast16_t_ptr_ptr_ptr { return new uint_fast16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_fast16_t****'; }
 }
-class uint_fast32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_fast32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_fast32_t_ptr { return new uint_fast32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_fast32_t'; }
-}
 class uint_fast32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_fast32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_fast32_t_ptr_ptr { return new uint_fast32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_fast32_t { return new uint_fast32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint_fast32_t*'; }
 }
 class uint_fast32_t_ptr_ptr implements illvm {
@@ -6473,21 +6329,13 @@ class uint_fast32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_fast32_t_ptr_ptr_ptr { return new uint_fast32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_fast32_t****'; }
 }
-class uint_fast64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint_fast64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_fast64_t_ptr { return new uint_fast64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint_fast64_t'; }
-}
 class uint_fast64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_fast64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_fast64_t_ptr_ptr { return new uint_fast64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint_fast64_t { return new uint_fast64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint_fast64_t*'; }
 }
 class uint_fast64_t_ptr_ptr implements illvm {
@@ -6517,21 +6365,13 @@ class uint_fast64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_fast64_t_ptr_ptr_ptr { return new uint_fast64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint_fast64_t****'; }
 }
-class intmax_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(intmax_t $other): bool { return $this->data == $other->data; }
-    public function addr(): intmax_t_ptr { return new intmax_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'intmax_t'; }
-}
 class intmax_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(intmax_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): intmax_t_ptr_ptr { return new intmax_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): intmax_t { return new intmax_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'intmax_t*'; }
 }
 class intmax_t_ptr_ptr implements illvm {
@@ -6561,21 +6401,13 @@ class intmax_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): intmax_t_ptr_ptr_ptr { return new intmax_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'intmax_t****'; }
 }
-class uintmax_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uintmax_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uintmax_t_ptr { return new uintmax_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uintmax_t'; }
-}
 class uintmax_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uintmax_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uintmax_t_ptr_ptr { return new uintmax_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uintmax_t { return new uintmax_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uintmax_t*'; }
 }
 class uintmax_t_ptr_ptr implements illvm {
@@ -6605,21 +6437,13 @@ class uintmax_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uintmax_t_ptr_ptr_ptr { return new uintmax_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uintmax_t****'; }
 }
-class wchar_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(wchar_t $other): bool { return $this->data == $other->data; }
-    public function addr(): wchar_t_ptr { return new wchar_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'wchar_t'; }
-}
 class wchar_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(wchar_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): wchar_t_ptr_ptr { return new wchar_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): wchar_t { return new wchar_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'wchar_t*'; }
 }
 class wchar_t_ptr_ptr implements illvm {
@@ -6649,21 +6473,13 @@ class wchar_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): wchar_t_ptr_ptr_ptr { return new wchar_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'wchar_t****'; }
 }
-class __gwchar_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__gwchar_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __gwchar_t_ptr { return new __gwchar_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__gwchar_t'; }
-}
 class __gwchar_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__gwchar_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __gwchar_t_ptr_ptr { return new __gwchar_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __gwchar_t { return new __gwchar_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__gwchar_t*'; }
 }
 class __gwchar_t_ptr_ptr implements illvm {
@@ -6737,21 +6553,13 @@ class imaxdiv_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): imaxdiv_t_ptr_ptr_ptr { return new imaxdiv_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'imaxdiv_t****'; }
 }
-class __u_char implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__u_char $other): bool { return $this->data == $other->data; }
-    public function addr(): __u_char_ptr { return new __u_char_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__u_char'; }
-}
 class __u_char_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__u_char_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __u_char_ptr_ptr { return new __u_char_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __u_char { return new __u_char($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__u_char*'; }
 }
 class __u_char_ptr_ptr implements illvm {
@@ -6781,21 +6589,13 @@ class __u_char_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __u_char_ptr_ptr_ptr { return new __u_char_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__u_char****'; }
 }
-class __u_short implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__u_short $other): bool { return $this->data == $other->data; }
-    public function addr(): __u_short_ptr { return new __u_short_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__u_short'; }
-}
 class __u_short_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__u_short_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __u_short_ptr_ptr { return new __u_short_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __u_short { return new __u_short($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__u_short*'; }
 }
 class __u_short_ptr_ptr implements illvm {
@@ -6825,21 +6625,13 @@ class __u_short_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __u_short_ptr_ptr_ptr { return new __u_short_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__u_short****'; }
 }
-class __u_int implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__u_int $other): bool { return $this->data == $other->data; }
-    public function addr(): __u_int_ptr { return new __u_int_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__u_int'; }
-}
 class __u_int_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__u_int_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __u_int_ptr_ptr { return new __u_int_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __u_int { return new __u_int($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__u_int*'; }
 }
 class __u_int_ptr_ptr implements illvm {
@@ -6869,21 +6661,13 @@ class __u_int_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __u_int_ptr_ptr_ptr { return new __u_int_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__u_int****'; }
 }
-class __u_long implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__u_long $other): bool { return $this->data == $other->data; }
-    public function addr(): __u_long_ptr { return new __u_long_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__u_long'; }
-}
 class __u_long_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__u_long_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __u_long_ptr_ptr { return new __u_long_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __u_long { return new __u_long($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__u_long*'; }
 }
 class __u_long_ptr_ptr implements illvm {
@@ -6913,21 +6697,13 @@ class __u_long_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __u_long_ptr_ptr_ptr { return new __u_long_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__u_long****'; }
 }
-class __int8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__int8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __int8_t_ptr { return new __int8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__int8_t'; }
-}
 class __int8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__int8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __int8_t_ptr_ptr { return new __int8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __int8_t { return new __int8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__int8_t*'; }
 }
 class __int8_t_ptr_ptr implements illvm {
@@ -6957,21 +6733,13 @@ class __int8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __int8_t_ptr_ptr_ptr { return new __int8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__int8_t****'; }
 }
-class __uint8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__uint8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __uint8_t_ptr { return new __uint8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__uint8_t'; }
-}
 class __uint8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__uint8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __uint8_t_ptr_ptr { return new __uint8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __uint8_t { return new __uint8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__uint8_t*'; }
 }
 class __uint8_t_ptr_ptr implements illvm {
@@ -7001,21 +6769,13 @@ class __uint8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __uint8_t_ptr_ptr_ptr { return new __uint8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__uint8_t****'; }
 }
-class __int16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__int16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __int16_t_ptr { return new __int16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__int16_t'; }
-}
 class __int16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__int16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __int16_t_ptr_ptr { return new __int16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __int16_t { return new __int16_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__int16_t*'; }
 }
 class __int16_t_ptr_ptr implements illvm {
@@ -7045,21 +6805,13 @@ class __int16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __int16_t_ptr_ptr_ptr { return new __int16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__int16_t****'; }
 }
-class __uint16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__uint16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __uint16_t_ptr { return new __uint16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__uint16_t'; }
-}
 class __uint16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__uint16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __uint16_t_ptr_ptr { return new __uint16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __uint16_t { return new __uint16_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__uint16_t*'; }
 }
 class __uint16_t_ptr_ptr implements illvm {
@@ -7089,21 +6841,13 @@ class __uint16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __uint16_t_ptr_ptr_ptr { return new __uint16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__uint16_t****'; }
 }
-class __int32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__int32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __int32_t_ptr { return new __int32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__int32_t'; }
-}
 class __int32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__int32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __int32_t_ptr_ptr { return new __int32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __int32_t { return new __int32_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__int32_t*'; }
 }
 class __int32_t_ptr_ptr implements illvm {
@@ -7133,21 +6877,13 @@ class __int32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __int32_t_ptr_ptr_ptr { return new __int32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__int32_t****'; }
 }
-class __uint32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__uint32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __uint32_t_ptr { return new __uint32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__uint32_t'; }
-}
 class __uint32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__uint32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __uint32_t_ptr_ptr { return new __uint32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __uint32_t { return new __uint32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__uint32_t*'; }
 }
 class __uint32_t_ptr_ptr implements illvm {
@@ -7177,21 +6913,13 @@ class __uint32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __uint32_t_ptr_ptr_ptr { return new __uint32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__uint32_t****'; }
 }
-class __int64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('signed long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__int64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __int64_t_ptr { return new __int64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__int64_t'; }
-}
 class __int64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__int64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __int64_t_ptr_ptr { return new __int64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __int64_t { return new __int64_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return '__int64_t*'; }
 }
 class __int64_t_ptr_ptr implements illvm {
@@ -7221,21 +6949,13 @@ class __int64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __int64_t_ptr_ptr_ptr { return new __int64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__int64_t****'; }
 }
-class __uint64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__uint64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __uint64_t_ptr { return new __uint64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__uint64_t'; }
-}
 class __uint64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__uint64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __uint64_t_ptr_ptr { return new __uint64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __uint64_t { return new __uint64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__uint64_t*'; }
 }
 class __uint64_t_ptr_ptr implements illvm {
@@ -7265,21 +6985,13 @@ class __uint64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __uint64_t_ptr_ptr_ptr { return new __uint64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__uint64_t****'; }
 }
-class __quad_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__quad_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __quad_t_ptr { return new __quad_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__quad_t'; }
-}
 class __quad_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__quad_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __quad_t_ptr_ptr { return new __quad_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __quad_t { return new __quad_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__quad_t*'; }
 }
 class __quad_t_ptr_ptr implements illvm {
@@ -7309,21 +7021,13 @@ class __quad_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __quad_t_ptr_ptr_ptr { return new __quad_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__quad_t****'; }
 }
-class __u_quad_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__u_quad_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __u_quad_t_ptr { return new __u_quad_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__u_quad_t'; }
-}
 class __u_quad_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__u_quad_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __u_quad_t_ptr_ptr { return new __u_quad_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __u_quad_t { return new __u_quad_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__u_quad_t*'; }
 }
 class __u_quad_t_ptr_ptr implements illvm {
@@ -7353,21 +7057,13 @@ class __u_quad_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __u_quad_t_ptr_ptr_ptr { return new __u_quad_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__u_quad_t****'; }
 }
-class __dev_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__dev_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __dev_t_ptr { return new __dev_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__dev_t'; }
-}
 class __dev_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__dev_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __dev_t_ptr_ptr { return new __dev_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __dev_t { return new __dev_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__dev_t*'; }
 }
 class __dev_t_ptr_ptr implements illvm {
@@ -7397,21 +7093,13 @@ class __dev_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __dev_t_ptr_ptr_ptr { return new __dev_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__dev_t****'; }
 }
-class __uid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__uid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __uid_t_ptr { return new __uid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__uid_t'; }
-}
 class __uid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__uid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __uid_t_ptr_ptr { return new __uid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __uid_t { return new __uid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__uid_t*'; }
 }
 class __uid_t_ptr_ptr implements illvm {
@@ -7441,21 +7129,13 @@ class __uid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __uid_t_ptr_ptr_ptr { return new __uid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__uid_t****'; }
 }
-class __gid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__gid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __gid_t_ptr { return new __gid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__gid_t'; }
-}
 class __gid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__gid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __gid_t_ptr_ptr { return new __gid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __gid_t { return new __gid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__gid_t*'; }
 }
 class __gid_t_ptr_ptr implements illvm {
@@ -7485,21 +7165,13 @@ class __gid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __gid_t_ptr_ptr_ptr { return new __gid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__gid_t****'; }
 }
-class __ino_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__ino_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __ino_t_ptr { return new __ino_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__ino_t'; }
-}
 class __ino_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__ino_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __ino_t_ptr_ptr { return new __ino_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __ino_t { return new __ino_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__ino_t*'; }
 }
 class __ino_t_ptr_ptr implements illvm {
@@ -7529,21 +7201,13 @@ class __ino_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __ino_t_ptr_ptr_ptr { return new __ino_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__ino_t****'; }
 }
-class __ino64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__ino64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __ino64_t_ptr { return new __ino64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__ino64_t'; }
-}
 class __ino64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__ino64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __ino64_t_ptr_ptr { return new __ino64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __ino64_t { return new __ino64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__ino64_t*'; }
 }
 class __ino64_t_ptr_ptr implements illvm {
@@ -7573,21 +7237,13 @@ class __ino64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __ino64_t_ptr_ptr_ptr { return new __ino64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__ino64_t****'; }
 }
-class __mode_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__mode_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __mode_t_ptr { return new __mode_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__mode_t'; }
-}
 class __mode_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__mode_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __mode_t_ptr_ptr { return new __mode_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __mode_t { return new __mode_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__mode_t*'; }
 }
 class __mode_t_ptr_ptr implements illvm {
@@ -7617,21 +7273,13 @@ class __mode_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __mode_t_ptr_ptr_ptr { return new __mode_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__mode_t****'; }
 }
-class __nlink_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__nlink_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __nlink_t_ptr { return new __nlink_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__nlink_t'; }
-}
 class __nlink_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__nlink_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __nlink_t_ptr_ptr { return new __nlink_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __nlink_t { return new __nlink_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__nlink_t*'; }
 }
 class __nlink_t_ptr_ptr implements illvm {
@@ -7661,21 +7309,13 @@ class __nlink_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __nlink_t_ptr_ptr_ptr { return new __nlink_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__nlink_t****'; }
 }
-class __off_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__off_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __off_t_ptr { return new __off_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__off_t'; }
-}
 class __off_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__off_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __off_t_ptr_ptr { return new __off_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __off_t { return new __off_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__off_t*'; }
 }
 class __off_t_ptr_ptr implements illvm {
@@ -7705,21 +7345,13 @@ class __off_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __off_t_ptr_ptr_ptr { return new __off_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__off_t****'; }
 }
-class __off64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__off64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __off64_t_ptr { return new __off64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__off64_t'; }
-}
 class __off64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__off64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __off64_t_ptr_ptr { return new __off64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __off64_t { return new __off64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__off64_t*'; }
 }
 class __off64_t_ptr_ptr implements illvm {
@@ -7749,21 +7381,13 @@ class __off64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __off64_t_ptr_ptr_ptr { return new __off64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__off64_t****'; }
 }
-class __pid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__pid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __pid_t_ptr { return new __pid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__pid_t'; }
-}
 class __pid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__pid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __pid_t_ptr_ptr { return new __pid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __pid_t { return new __pid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__pid_t*'; }
 }
 class __pid_t_ptr_ptr implements illvm {
@@ -7837,21 +7461,13 @@ class __fsid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsid_t_ptr_ptr_ptr { return new __fsid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsid_t****'; }
 }
-class __clock_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__clock_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __clock_t_ptr { return new __clock_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__clock_t'; }
-}
 class __clock_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__clock_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __clock_t_ptr_ptr { return new __clock_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __clock_t { return new __clock_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__clock_t*'; }
 }
 class __clock_t_ptr_ptr implements illvm {
@@ -7881,21 +7497,13 @@ class __clock_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __clock_t_ptr_ptr_ptr { return new __clock_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__clock_t****'; }
 }
-class __rlim_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__rlim_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __rlim_t_ptr { return new __rlim_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__rlim_t'; }
-}
 class __rlim_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__rlim_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __rlim_t_ptr_ptr { return new __rlim_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __rlim_t { return new __rlim_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__rlim_t*'; }
 }
 class __rlim_t_ptr_ptr implements illvm {
@@ -7925,21 +7533,13 @@ class __rlim_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __rlim_t_ptr_ptr_ptr { return new __rlim_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__rlim_t****'; }
 }
-class __rlim64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__rlim64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __rlim64_t_ptr { return new __rlim64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__rlim64_t'; }
-}
 class __rlim64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__rlim64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __rlim64_t_ptr_ptr { return new __rlim64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __rlim64_t { return new __rlim64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__rlim64_t*'; }
 }
 class __rlim64_t_ptr_ptr implements illvm {
@@ -7969,21 +7569,13 @@ class __rlim64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __rlim64_t_ptr_ptr_ptr { return new __rlim64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__rlim64_t****'; }
 }
-class __id_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__id_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __id_t_ptr { return new __id_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__id_t'; }
-}
 class __id_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__id_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __id_t_ptr_ptr { return new __id_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __id_t { return new __id_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__id_t*'; }
 }
 class __id_t_ptr_ptr implements illvm {
@@ -8013,21 +7605,13 @@ class __id_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __id_t_ptr_ptr_ptr { return new __id_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__id_t****'; }
 }
-class __time_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__time_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __time_t_ptr { return new __time_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__time_t'; }
-}
 class __time_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__time_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __time_t_ptr_ptr { return new __time_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __time_t { return new __time_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__time_t*'; }
 }
 class __time_t_ptr_ptr implements illvm {
@@ -8057,21 +7641,13 @@ class __time_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __time_t_ptr_ptr_ptr { return new __time_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__time_t****'; }
 }
-class __useconds_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__useconds_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __useconds_t_ptr { return new __useconds_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__useconds_t'; }
-}
 class __useconds_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__useconds_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __useconds_t_ptr_ptr { return new __useconds_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __useconds_t { return new __useconds_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__useconds_t*'; }
 }
 class __useconds_t_ptr_ptr implements illvm {
@@ -8101,21 +7677,13 @@ class __useconds_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __useconds_t_ptr_ptr_ptr { return new __useconds_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__useconds_t****'; }
 }
-class __suseconds_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__suseconds_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __suseconds_t_ptr { return new __suseconds_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__suseconds_t'; }
-}
 class __suseconds_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__suseconds_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __suseconds_t_ptr_ptr { return new __suseconds_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __suseconds_t { return new __suseconds_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__suseconds_t*'; }
 }
 class __suseconds_t_ptr_ptr implements illvm {
@@ -8145,21 +7713,13 @@ class __suseconds_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __suseconds_t_ptr_ptr_ptr { return new __suseconds_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__suseconds_t****'; }
 }
-class __daddr_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__daddr_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __daddr_t_ptr { return new __daddr_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__daddr_t'; }
-}
 class __daddr_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__daddr_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __daddr_t_ptr_ptr { return new __daddr_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __daddr_t { return new __daddr_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__daddr_t*'; }
 }
 class __daddr_t_ptr_ptr implements illvm {
@@ -8189,21 +7749,13 @@ class __daddr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __daddr_t_ptr_ptr_ptr { return new __daddr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__daddr_t****'; }
 }
-class __key_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__key_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __key_t_ptr { return new __key_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__key_t'; }
-}
 class __key_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__key_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __key_t_ptr_ptr { return new __key_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __key_t { return new __key_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__key_t*'; }
 }
 class __key_t_ptr_ptr implements illvm {
@@ -8233,21 +7785,13 @@ class __key_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __key_t_ptr_ptr_ptr { return new __key_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__key_t****'; }
 }
-class __clockid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__clockid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __clockid_t_ptr { return new __clockid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__clockid_t'; }
-}
 class __clockid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__clockid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __clockid_t_ptr_ptr { return new __clockid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __clockid_t { return new __clockid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__clockid_t*'; }
 }
 class __clockid_t_ptr_ptr implements illvm {
@@ -8321,21 +7865,13 @@ class __timer_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __timer_t_ptr_ptr_ptr { return new __timer_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__timer_t****'; }
 }
-class __blksize_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__blksize_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __blksize_t_ptr { return new __blksize_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__blksize_t'; }
-}
 class __blksize_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__blksize_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __blksize_t_ptr_ptr { return new __blksize_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __blksize_t { return new __blksize_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__blksize_t*'; }
 }
 class __blksize_t_ptr_ptr implements illvm {
@@ -8365,21 +7901,13 @@ class __blksize_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __blksize_t_ptr_ptr_ptr { return new __blksize_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__blksize_t****'; }
 }
-class __blkcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__blkcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __blkcnt_t_ptr { return new __blkcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__blkcnt_t'; }
-}
 class __blkcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__blkcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __blkcnt_t_ptr_ptr { return new __blkcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __blkcnt_t { return new __blkcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__blkcnt_t*'; }
 }
 class __blkcnt_t_ptr_ptr implements illvm {
@@ -8409,21 +7937,13 @@ class __blkcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __blkcnt_t_ptr_ptr_ptr { return new __blkcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__blkcnt_t****'; }
 }
-class __blkcnt64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__blkcnt64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __blkcnt64_t_ptr { return new __blkcnt64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__blkcnt64_t'; }
-}
 class __blkcnt64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__blkcnt64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __blkcnt64_t_ptr_ptr { return new __blkcnt64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __blkcnt64_t { return new __blkcnt64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__blkcnt64_t*'; }
 }
 class __blkcnt64_t_ptr_ptr implements illvm {
@@ -8453,21 +7973,13 @@ class __blkcnt64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __blkcnt64_t_ptr_ptr_ptr { return new __blkcnt64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__blkcnt64_t****'; }
 }
-class __fsblkcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fsblkcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __fsblkcnt_t_ptr { return new __fsblkcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fsblkcnt_t'; }
-}
 class __fsblkcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fsblkcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fsblkcnt_t_ptr_ptr { return new __fsblkcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fsblkcnt_t { return new __fsblkcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fsblkcnt_t*'; }
 }
 class __fsblkcnt_t_ptr_ptr implements illvm {
@@ -8497,21 +8009,13 @@ class __fsblkcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsblkcnt_t_ptr_ptr_ptr { return new __fsblkcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsblkcnt_t****'; }
 }
-class __fsblkcnt64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fsblkcnt64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __fsblkcnt64_t_ptr { return new __fsblkcnt64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fsblkcnt64_t'; }
-}
 class __fsblkcnt64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fsblkcnt64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fsblkcnt64_t_ptr_ptr { return new __fsblkcnt64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fsblkcnt64_t { return new __fsblkcnt64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fsblkcnt64_t*'; }
 }
 class __fsblkcnt64_t_ptr_ptr implements illvm {
@@ -8541,21 +8045,13 @@ class __fsblkcnt64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsblkcnt64_t_ptr_ptr_ptr { return new __fsblkcnt64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsblkcnt64_t****'; }
 }
-class __fsfilcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fsfilcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __fsfilcnt_t_ptr { return new __fsfilcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fsfilcnt_t'; }
-}
 class __fsfilcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fsfilcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fsfilcnt_t_ptr_ptr { return new __fsfilcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fsfilcnt_t { return new __fsfilcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fsfilcnt_t*'; }
 }
 class __fsfilcnt_t_ptr_ptr implements illvm {
@@ -8585,21 +8081,13 @@ class __fsfilcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsfilcnt_t_ptr_ptr_ptr { return new __fsfilcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsfilcnt_t****'; }
 }
-class __fsfilcnt64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fsfilcnt64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __fsfilcnt64_t_ptr { return new __fsfilcnt64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fsfilcnt64_t'; }
-}
 class __fsfilcnt64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fsfilcnt64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fsfilcnt64_t_ptr_ptr { return new __fsfilcnt64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fsfilcnt64_t { return new __fsfilcnt64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fsfilcnt64_t*'; }
 }
 class __fsfilcnt64_t_ptr_ptr implements illvm {
@@ -8629,21 +8117,13 @@ class __fsfilcnt64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsfilcnt64_t_ptr_ptr_ptr { return new __fsfilcnt64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsfilcnt64_t****'; }
 }
-class __fsword_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fsword_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __fsword_t_ptr { return new __fsword_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fsword_t'; }
-}
 class __fsword_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fsword_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fsword_t_ptr_ptr { return new __fsword_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fsword_t { return new __fsword_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fsword_t*'; }
 }
 class __fsword_t_ptr_ptr implements illvm {
@@ -8673,21 +8153,13 @@ class __fsword_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __fsword_t_ptr_ptr_ptr { return new __fsword_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__fsword_t****'; }
 }
-class __ssize_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__ssize_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __ssize_t_ptr { return new __ssize_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__ssize_t'; }
-}
 class __ssize_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__ssize_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __ssize_t_ptr_ptr { return new __ssize_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __ssize_t { return new __ssize_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__ssize_t*'; }
 }
 class __ssize_t_ptr_ptr implements illvm {
@@ -8717,21 +8189,13 @@ class __ssize_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __ssize_t_ptr_ptr_ptr { return new __ssize_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__ssize_t****'; }
 }
-class __syscall_slong_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__syscall_slong_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __syscall_slong_t_ptr { return new __syscall_slong_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__syscall_slong_t'; }
-}
 class __syscall_slong_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__syscall_slong_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __syscall_slong_t_ptr_ptr { return new __syscall_slong_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __syscall_slong_t { return new __syscall_slong_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__syscall_slong_t*'; }
 }
 class __syscall_slong_t_ptr_ptr implements illvm {
@@ -8761,21 +8225,13 @@ class __syscall_slong_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __syscall_slong_t_ptr_ptr_ptr { return new __syscall_slong_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__syscall_slong_t****'; }
 }
-class __syscall_ulong_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__syscall_ulong_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __syscall_ulong_t_ptr { return new __syscall_ulong_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__syscall_ulong_t'; }
-}
 class __syscall_ulong_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__syscall_ulong_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __syscall_ulong_t_ptr_ptr { return new __syscall_ulong_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __syscall_ulong_t { return new __syscall_ulong_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__syscall_ulong_t*'; }
 }
 class __syscall_ulong_t_ptr_ptr implements illvm {
@@ -8805,21 +8261,13 @@ class __syscall_ulong_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __syscall_ulong_t_ptr_ptr_ptr { return new __syscall_ulong_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__syscall_ulong_t****'; }
 }
-class __loff_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__loff_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __loff_t_ptr { return new __loff_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__loff_t'; }
-}
 class __loff_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__loff_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __loff_t_ptr_ptr { return new __loff_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __loff_t { return new __loff_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__loff_t*'; }
 }
 class __loff_t_ptr_ptr implements illvm {
@@ -8937,21 +8385,13 @@ class __caddr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __caddr_t_ptr_ptr_ptr { return new __caddr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__caddr_t****'; }
 }
-class __intptr_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__intptr_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __intptr_t_ptr { return new __intptr_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__intptr_t'; }
-}
 class __intptr_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__intptr_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __intptr_t_ptr_ptr { return new __intptr_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __intptr_t { return new __intptr_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__intptr_t*'; }
 }
 class __intptr_t_ptr_ptr implements illvm {
@@ -8981,21 +8421,13 @@ class __intptr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __intptr_t_ptr_ptr_ptr { return new __intptr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__intptr_t****'; }
 }
-class __socklen_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__socklen_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __socklen_t_ptr { return new __socklen_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__socklen_t'; }
-}
 class __socklen_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__socklen_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __socklen_t_ptr_ptr { return new __socklen_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __socklen_t { return new __socklen_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__socklen_t*'; }
 }
 class __socklen_t_ptr_ptr implements illvm {
@@ -9025,21 +8457,13 @@ class __socklen_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __socklen_t_ptr_ptr_ptr { return new __socklen_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__socklen_t****'; }
 }
-class u_char implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_char $other): bool { return $this->data == $other->data; }
-    public function addr(): u_char_ptr { return new u_char_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_char'; }
-}
 class u_char_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_char_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_char_ptr_ptr { return new u_char_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_char { return new u_char($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'u_char*'; }
 }
 class u_char_ptr_ptr implements illvm {
@@ -9069,21 +8493,13 @@ class u_char_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_char_ptr_ptr_ptr { return new u_char_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_char****'; }
 }
-class u_short implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_short $other): bool { return $this->data == $other->data; }
-    public function addr(): u_short_ptr { return new u_short_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_short'; }
-}
 class u_short_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_short_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_short_ptr_ptr { return new u_short_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_short { return new u_short($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'u_short*'; }
 }
 class u_short_ptr_ptr implements illvm {
@@ -9113,21 +8529,13 @@ class u_short_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_short_ptr_ptr_ptr { return new u_short_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_short****'; }
 }
-class u_int implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_int $other): bool { return $this->data == $other->data; }
-    public function addr(): u_int_ptr { return new u_int_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_int'; }
-}
 class u_int_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_int_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_int_ptr_ptr { return new u_int_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_int { return new u_int($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'u_int*'; }
 }
 class u_int_ptr_ptr implements illvm {
@@ -9157,21 +8565,13 @@ class u_int_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_int_ptr_ptr_ptr { return new u_int_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_int****'; }
 }
-class u_long implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_long $other): bool { return $this->data == $other->data; }
-    public function addr(): u_long_ptr { return new u_long_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_long'; }
-}
 class u_long_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_long_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_long_ptr_ptr { return new u_long_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_long { return new u_long($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'u_long*'; }
 }
 class u_long_ptr_ptr implements illvm {
@@ -9201,21 +8601,13 @@ class u_long_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_long_ptr_ptr_ptr { return new u_long_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_long****'; }
 }
-class quad_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(quad_t $other): bool { return $this->data == $other->data; }
-    public function addr(): quad_t_ptr { return new quad_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'quad_t'; }
-}
 class quad_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(quad_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): quad_t_ptr_ptr { return new quad_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): quad_t { return new quad_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'quad_t*'; }
 }
 class quad_t_ptr_ptr implements illvm {
@@ -9245,21 +8637,13 @@ class quad_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): quad_t_ptr_ptr_ptr { return new quad_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'quad_t****'; }
 }
-class u_quad_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_quad_t $other): bool { return $this->data == $other->data; }
-    public function addr(): u_quad_t_ptr { return new u_quad_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_quad_t'; }
-}
 class u_quad_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_quad_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_quad_t_ptr_ptr { return new u_quad_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_quad_t { return new u_quad_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'u_quad_t*'; }
 }
 class u_quad_t_ptr_ptr implements illvm {
@@ -9333,21 +8717,13 @@ class fsid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): fsid_t_ptr_ptr_ptr { return new fsid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'fsid_t****'; }
 }
-class loff_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(loff_t $other): bool { return $this->data == $other->data; }
-    public function addr(): loff_t_ptr { return new loff_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'loff_t'; }
-}
 class loff_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(loff_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): loff_t_ptr_ptr { return new loff_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): loff_t { return new loff_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'loff_t*'; }
 }
 class loff_t_ptr_ptr implements illvm {
@@ -9377,21 +8753,13 @@ class loff_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): loff_t_ptr_ptr_ptr { return new loff_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'loff_t****'; }
 }
-class ino_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(ino_t $other): bool { return $this->data == $other->data; }
-    public function addr(): ino_t_ptr { return new ino_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'ino_t'; }
-}
 class ino_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(ino_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): ino_t_ptr_ptr { return new ino_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): ino_t { return new ino_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'ino_t*'; }
 }
 class ino_t_ptr_ptr implements illvm {
@@ -9421,21 +8789,13 @@ class ino_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): ino_t_ptr_ptr_ptr { return new ino_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'ino_t****'; }
 }
-class dev_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(dev_t $other): bool { return $this->data == $other->data; }
-    public function addr(): dev_t_ptr { return new dev_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'dev_t'; }
-}
 class dev_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(dev_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): dev_t_ptr_ptr { return new dev_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): dev_t { return new dev_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'dev_t*'; }
 }
 class dev_t_ptr_ptr implements illvm {
@@ -9465,21 +8825,13 @@ class dev_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): dev_t_ptr_ptr_ptr { return new dev_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'dev_t****'; }
 }
-class gid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(gid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): gid_t_ptr { return new gid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'gid_t'; }
-}
 class gid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(gid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): gid_t_ptr_ptr { return new gid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): gid_t { return new gid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'gid_t*'; }
 }
 class gid_t_ptr_ptr implements illvm {
@@ -9509,21 +8861,13 @@ class gid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): gid_t_ptr_ptr_ptr { return new gid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'gid_t****'; }
 }
-class mode_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(mode_t $other): bool { return $this->data == $other->data; }
-    public function addr(): mode_t_ptr { return new mode_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'mode_t'; }
-}
 class mode_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(mode_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): mode_t_ptr_ptr { return new mode_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): mode_t { return new mode_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'mode_t*'; }
 }
 class mode_t_ptr_ptr implements illvm {
@@ -9553,21 +8897,13 @@ class mode_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): mode_t_ptr_ptr_ptr { return new mode_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'mode_t****'; }
 }
-class nlink_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(nlink_t $other): bool { return $this->data == $other->data; }
-    public function addr(): nlink_t_ptr { return new nlink_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'nlink_t'; }
-}
 class nlink_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(nlink_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): nlink_t_ptr_ptr { return new nlink_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): nlink_t { return new nlink_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'nlink_t*'; }
 }
 class nlink_t_ptr_ptr implements illvm {
@@ -9597,21 +8933,13 @@ class nlink_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): nlink_t_ptr_ptr_ptr { return new nlink_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'nlink_t****'; }
 }
-class uid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uid_t_ptr { return new uid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uid_t'; }
-}
 class uid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uid_t_ptr_ptr { return new uid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uid_t { return new uid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uid_t*'; }
 }
 class uid_t_ptr_ptr implements illvm {
@@ -9641,21 +8969,13 @@ class uid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uid_t_ptr_ptr_ptr { return new uid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uid_t****'; }
 }
-class pid_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(pid_t $other): bool { return $this->data == $other->data; }
-    public function addr(): pid_t_ptr { return new pid_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'pid_t'; }
-}
 class pid_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(pid_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): pid_t_ptr_ptr { return new pid_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): pid_t { return new pid_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'pid_t*'; }
 }
 class pid_t_ptr_ptr implements illvm {
@@ -9685,21 +9005,13 @@ class pid_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): pid_t_ptr_ptr_ptr { return new pid_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'pid_t****'; }
 }
-class id_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(id_t $other): bool { return $this->data == $other->data; }
-    public function addr(): id_t_ptr { return new id_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'id_t'; }
-}
 class id_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(id_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): id_t_ptr_ptr { return new id_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): id_t { return new id_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'id_t*'; }
 }
 class id_t_ptr_ptr implements illvm {
@@ -9729,21 +9041,13 @@ class id_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): id_t_ptr_ptr_ptr { return new id_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'id_t****'; }
 }
-class daddr_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(daddr_t $other): bool { return $this->data == $other->data; }
-    public function addr(): daddr_t_ptr { return new daddr_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'daddr_t'; }
-}
 class daddr_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(daddr_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): daddr_t_ptr_ptr { return new daddr_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): daddr_t { return new daddr_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'daddr_t*'; }
 }
 class daddr_t_ptr_ptr implements illvm {
@@ -9817,21 +9121,13 @@ class caddr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): caddr_t_ptr_ptr_ptr { return new caddr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'caddr_t****'; }
 }
-class key_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(key_t $other): bool { return $this->data == $other->data; }
-    public function addr(): key_t_ptr { return new key_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'key_t'; }
-}
 class key_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(key_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): key_t_ptr_ptr { return new key_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): key_t { return new key_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'key_t*'; }
 }
 class key_t_ptr_ptr implements illvm {
@@ -9861,21 +9157,13 @@ class key_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): key_t_ptr_ptr_ptr { return new key_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'key_t****'; }
 }
-class __sig_atomic_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__sig_atomic_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __sig_atomic_t_ptr { return new __sig_atomic_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__sig_atomic_t'; }
-}
 class __sig_atomic_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__sig_atomic_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __sig_atomic_t_ptr_ptr { return new __sig_atomic_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __sig_atomic_t { return new __sig_atomic_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__sig_atomic_t*'; }
 }
 class __sig_atomic_t_ptr_ptr implements illvm {
@@ -9993,21 +9281,13 @@ class sigset_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): sigset_t_ptr_ptr_ptr { return new sigset_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'sigset_t****'; }
 }
-class suseconds_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(suseconds_t $other): bool { return $this->data == $other->data; }
-    public function addr(): suseconds_t_ptr { return new suseconds_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'suseconds_t'; }
-}
 class suseconds_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(suseconds_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): suseconds_t_ptr_ptr { return new suseconds_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): suseconds_t { return new suseconds_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'suseconds_t*'; }
 }
 class suseconds_t_ptr_ptr implements illvm {
@@ -10037,21 +9317,13 @@ class suseconds_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): suseconds_t_ptr_ptr_ptr { return new suseconds_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'suseconds_t****'; }
 }
-class __fd_mask implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__fd_mask $other): bool { return $this->data == $other->data; }
-    public function addr(): __fd_mask_ptr { return new __fd_mask_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__fd_mask'; }
-}
 class __fd_mask_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__fd_mask_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __fd_mask_ptr_ptr { return new __fd_mask_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __fd_mask { return new __fd_mask($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__fd_mask*'; }
 }
 class __fd_mask_ptr_ptr implements illvm {
@@ -10125,21 +9397,13 @@ class fd_set_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): fd_set_ptr_ptr_ptr { return new fd_set_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'fd_set****'; }
 }
-class fd_mask implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(fd_mask $other): bool { return $this->data == $other->data; }
-    public function addr(): fd_mask_ptr { return new fd_mask_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'fd_mask'; }
-}
 class fd_mask_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(fd_mask_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): fd_mask_ptr_ptr { return new fd_mask_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): fd_mask { return new fd_mask($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'fd_mask*'; }
 }
 class fd_mask_ptr_ptr implements illvm {
@@ -10213,21 +9477,13 @@ class __timezone_ptr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __timezone_ptr_t_ptr_ptr_ptr { return new __timezone_ptr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__timezone_ptr_t****'; }
 }
-class __itimer_which_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(__itimer_which_t $other): bool { return $this->data == $other->data; }
-    public function addr(): __itimer_which_t_ptr { return new __itimer_which_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return '__itimer_which_t'; }
-}
 class __itimer_which_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(__itimer_which_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): __itimer_which_t_ptr_ptr { return new __itimer_which_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): __itimer_which_t { return new __itimer_which_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return '__itimer_which_t*'; }
 }
 class __itimer_which_t_ptr_ptr implements illvm {
@@ -10257,21 +9513,13 @@ class __itimer_which_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): __itimer_which_t_ptr_ptr_ptr { return new __itimer_which_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return '__itimer_which_t****'; }
 }
-class ulong implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(ulong $other): bool { return $this->data == $other->data; }
-    public function addr(): ulong_ptr { return new ulong_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'ulong'; }
-}
 class ulong_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(ulong_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): ulong_ptr_ptr { return new ulong_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): ulong { return new ulong($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'ulong*'; }
 }
 class ulong_ptr_ptr implements illvm {
@@ -10301,21 +9549,13 @@ class ulong_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): ulong_ptr_ptr_ptr { return new ulong_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'ulong****'; }
 }
-class ushort implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(ushort $other): bool { return $this->data == $other->data; }
-    public function addr(): ushort_ptr { return new ushort_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'ushort'; }
-}
 class ushort_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(ushort_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): ushort_ptr_ptr { return new ushort_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): ushort { return new ushort($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'ushort*'; }
 }
 class ushort_ptr_ptr implements illvm {
@@ -10345,21 +9585,13 @@ class ushort_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): ushort_ptr_ptr_ptr { return new ushort_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'ushort****'; }
 }
-class uint implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint $other): bool { return $this->data == $other->data; }
-    public function addr(): uint_ptr { return new uint_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint'; }
-}
 class uint_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(uint_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): uint_ptr_ptr { return new uint_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): uint { return new uint($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'uint*'; }
 }
 class uint_ptr_ptr implements illvm {
@@ -10389,21 +9621,13 @@ class uint_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): uint_ptr_ptr_ptr { return new uint_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'uint****'; }
 }
-class u_int8_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned char'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_int8_t $other): bool { return $this->data == $other->data; }
-    public function addr(): u_int8_t_ptr { return new u_int8_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_int8_t'; }
-}
 class u_int8_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_int8_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_int8_t_ptr_ptr { return new u_int8_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_int8_t { return new u_int8_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'u_int8_t*'; }
 }
 class u_int8_t_ptr_ptr implements illvm {
@@ -10433,21 +9657,13 @@ class u_int8_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_int8_t_ptr_ptr_ptr { return new u_int8_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_int8_t****'; }
 }
-class u_int16_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned short int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_int16_t $other): bool { return $this->data == $other->data; }
-    public function addr(): u_int16_t_ptr { return new u_int16_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_int16_t'; }
-}
 class u_int16_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_int16_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_int16_t_ptr_ptr { return new u_int16_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_int16_t { return new u_int16_t($this->data[$n]); }
+    public function deref(int $n = 0) { return $this->data[$n]; }
     public static function getType(): string { return 'u_int16_t*'; }
 }
 class u_int16_t_ptr_ptr implements illvm {
@@ -10477,21 +9693,13 @@ class u_int16_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_int16_t_ptr_ptr_ptr { return new u_int16_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_int16_t****'; }
 }
-class u_int32_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_int32_t $other): bool { return $this->data == $other->data; }
-    public function addr(): u_int32_t_ptr { return new u_int32_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_int32_t'; }
-}
 class u_int32_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_int32_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_int32_t_ptr_ptr { return new u_int32_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_int32_t { return new u_int32_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'u_int32_t*'; }
 }
 class u_int32_t_ptr_ptr implements illvm {
@@ -10521,21 +9729,13 @@ class u_int32_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_int32_t_ptr_ptr_ptr { return new u_int32_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_int32_t****'; }
 }
-class u_int64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(u_int64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): u_int64_t_ptr { return new u_int64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'u_int64_t'; }
-}
 class u_int64_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(u_int64_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): u_int64_t_ptr_ptr { return new u_int64_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): u_int64_t { return new u_int64_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'u_int64_t*'; }
 }
 class u_int64_t_ptr_ptr implements illvm {
@@ -10565,21 +9765,13 @@ class u_int64_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): u_int64_t_ptr_ptr_ptr { return new u_int64_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'u_int64_t****'; }
 }
-class register_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(register_t $other): bool { return $this->data == $other->data; }
-    public function addr(): register_t_ptr { return new register_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'register_t'; }
-}
 class register_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(register_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): register_t_ptr_ptr { return new register_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): register_t { return new register_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'register_t*'; }
 }
 class register_t_ptr_ptr implements illvm {
@@ -10609,21 +9801,13 @@ class register_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): register_t_ptr_ptr_ptr { return new register_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'register_t****'; }
 }
-class blksize_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(blksize_t $other): bool { return $this->data == $other->data; }
-    public function addr(): blksize_t_ptr { return new blksize_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'blksize_t'; }
-}
 class blksize_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(blksize_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): blksize_t_ptr_ptr { return new blksize_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): blksize_t { return new blksize_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'blksize_t*'; }
 }
 class blksize_t_ptr_ptr implements illvm {
@@ -10653,21 +9837,13 @@ class blksize_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): blksize_t_ptr_ptr_ptr { return new blksize_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'blksize_t****'; }
 }
-class blkcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(blkcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): blkcnt_t_ptr { return new blkcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'blkcnt_t'; }
-}
 class blkcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(blkcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): blkcnt_t_ptr_ptr { return new blkcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): blkcnt_t { return new blkcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'blkcnt_t*'; }
 }
 class blkcnt_t_ptr_ptr implements illvm {
@@ -10697,21 +9873,13 @@ class blkcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): blkcnt_t_ptr_ptr_ptr { return new blkcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'blkcnt_t****'; }
 }
-class fsblkcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(fsblkcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): fsblkcnt_t_ptr { return new fsblkcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'fsblkcnt_t'; }
-}
 class fsblkcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(fsblkcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): fsblkcnt_t_ptr_ptr { return new fsblkcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): fsblkcnt_t { return new fsblkcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'fsblkcnt_t*'; }
 }
 class fsblkcnt_t_ptr_ptr implements illvm {
@@ -10741,21 +9909,13 @@ class fsblkcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): fsblkcnt_t_ptr_ptr_ptr { return new fsblkcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'fsblkcnt_t****'; }
 }
-class fsfilcnt_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(fsfilcnt_t $other): bool { return $this->data == $other->data; }
-    public function addr(): fsfilcnt_t_ptr { return new fsfilcnt_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'fsfilcnt_t'; }
-}
 class fsfilcnt_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(fsfilcnt_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): fsfilcnt_t_ptr_ptr { return new fsfilcnt_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): fsfilcnt_t { return new fsfilcnt_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'fsfilcnt_t*'; }
 }
 class fsfilcnt_t_ptr_ptr implements illvm {
@@ -10785,21 +9945,13 @@ class fsfilcnt_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): fsfilcnt_t_ptr_ptr_ptr { return new fsfilcnt_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'fsfilcnt_t****'; }
 }
-class pthread_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(pthread_t $other): bool { return $this->data == $other->data; }
-    public function addr(): pthread_t_ptr { return new pthread_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'pthread_t'; }
-}
 class pthread_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(pthread_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): pthread_t_ptr_ptr { return new pthread_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): pthread_t { return new pthread_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'pthread_t*'; }
 }
 class pthread_t_ptr_ptr implements illvm {
@@ -11093,21 +10245,13 @@ class pthread_condattr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): pthread_condattr_t_ptr_ptr_ptr { return new pthread_condattr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'pthread_condattr_t****'; }
 }
-class pthread_key_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(pthread_key_t $other): bool { return $this->data == $other->data; }
-    public function addr(): pthread_key_t_ptr { return new pthread_key_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'pthread_key_t'; }
-}
 class pthread_key_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(pthread_key_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): pthread_key_t_ptr_ptr { return new pthread_key_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): pthread_key_t { return new pthread_key_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'pthread_key_t*'; }
 }
 class pthread_key_t_ptr_ptr implements illvm {
@@ -11137,21 +10281,13 @@ class pthread_key_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): pthread_key_t_ptr_ptr_ptr { return new pthread_key_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'pthread_key_t****'; }
 }
-class pthread_once_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(pthread_once_t $other): bool { return $this->data == $other->data; }
-    public function addr(): pthread_once_t_ptr { return new pthread_once_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'pthread_once_t'; }
-}
 class pthread_once_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(pthread_once_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): pthread_once_t_ptr_ptr { return new pthread_once_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): pthread_once_t { return new pthread_once_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'pthread_once_t*'; }
 }
 class pthread_once_t_ptr_ptr implements illvm {
@@ -11269,21 +10405,13 @@ class pthread_rwlockattr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): pthread_rwlockattr_t_ptr_ptr_ptr { return new pthread_rwlockattr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'pthread_rwlockattr_t****'; }
 }
-class pthread_spinlock_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(pthread_spinlock_t $other): bool { return $this->data == $other->data; }
-    public function addr(): pthread_spinlock_t_ptr { return new pthread_spinlock_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'pthread_spinlock_t'; }
-}
 class pthread_spinlock_t_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(pthread_spinlock_t_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): pthread_spinlock_t_ptr_ptr { return new pthread_spinlock_t_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): pthread_spinlock_t { return new pthread_spinlock_t($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'pthread_spinlock_t*'; }
 }
 class pthread_spinlock_t_ptr_ptr implements illvm {
@@ -11401,21 +10529,13 @@ class pthread_barrierattr_t_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): pthread_barrierattr_t_ptr_ptr_ptr { return new pthread_barrierattr_t_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'pthread_barrierattr_t****'; }
 }
-class LLVMBool implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('int'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMBool $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMBool_ptr { return new LLVMBool_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMBool'; }
-}
 class LLVMBool_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(LLVMBool_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): LLVMBool_ptr_ptr { return new LLVMBool_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMBool { return new LLVMBool($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'LLVMBool*'; }
 }
 class LLVMBool_ptr_ptr implements illvm {
@@ -12017,637 +11137,13 @@ class LLVMDiagnosticInfoRef_ptr_ptr_ptr_ptr implements illvm {
     public function deref(int $n = 0): LLVMDiagnosticInfoRef_ptr_ptr_ptr { return new LLVMDiagnosticInfoRef_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'LLVMDiagnosticInfoRef****'; }
 }
-class LLVMOpcode implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMOpcode $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMOpcode_ptr { return new LLVMOpcode_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMOpcode'; }
-}
-class LLVMOpcode_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMOpcode_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMOpcode_ptr_ptr { return new LLVMOpcode_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMOpcode { return new LLVMOpcode($this->data[$n]); }
-    public static function getType(): string { return 'LLVMOpcode*'; }
-}
-class LLVMOpcode_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMOpcode_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMOpcode_ptr_ptr_ptr { return new LLVMOpcode_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMOpcode_ptr { return new LLVMOpcode_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMOpcode**'; }
-}
-class LLVMOpcode_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMOpcode_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMOpcode_ptr_ptr_ptr_ptr { return new LLVMOpcode_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMOpcode_ptr_ptr { return new LLVMOpcode_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMOpcode***'; }
-}
-class LLVMOpcode_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMOpcode_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMOpcode_ptr_ptr_ptr_ptr_ptr { return new LLVMOpcode_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMOpcode_ptr_ptr_ptr { return new LLVMOpcode_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMOpcode****'; }
-}
-class LLVMTypeKind implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMTypeKind $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMTypeKind_ptr { return new LLVMTypeKind_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMTypeKind'; }
-}
-class LLVMTypeKind_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMTypeKind_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMTypeKind_ptr_ptr { return new LLVMTypeKind_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMTypeKind { return new LLVMTypeKind($this->data[$n]); }
-    public static function getType(): string { return 'LLVMTypeKind*'; }
-}
-class LLVMTypeKind_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMTypeKind_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMTypeKind_ptr_ptr_ptr { return new LLVMTypeKind_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMTypeKind_ptr { return new LLVMTypeKind_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMTypeKind**'; }
-}
-class LLVMTypeKind_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMTypeKind_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMTypeKind_ptr_ptr_ptr_ptr { return new LLVMTypeKind_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMTypeKind_ptr_ptr { return new LLVMTypeKind_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMTypeKind***'; }
-}
-class LLVMTypeKind_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMTypeKind_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMTypeKind_ptr_ptr_ptr_ptr_ptr { return new LLVMTypeKind_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMTypeKind_ptr_ptr_ptr { return new LLVMTypeKind_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMTypeKind****'; }
-}
-class LLVMLinkage implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLinkage $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLinkage_ptr { return new LLVMLinkage_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMLinkage'; }
-}
-class LLVMLinkage_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLinkage_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLinkage_ptr_ptr { return new LLVMLinkage_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLinkage { return new LLVMLinkage($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLinkage*'; }
-}
-class LLVMLinkage_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLinkage_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLinkage_ptr_ptr_ptr { return new LLVMLinkage_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLinkage_ptr { return new LLVMLinkage_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLinkage**'; }
-}
-class LLVMLinkage_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLinkage_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLinkage_ptr_ptr_ptr_ptr { return new LLVMLinkage_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLinkage_ptr_ptr { return new LLVMLinkage_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLinkage***'; }
-}
-class LLVMLinkage_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLinkage_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLinkage_ptr_ptr_ptr_ptr_ptr { return new LLVMLinkage_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLinkage_ptr_ptr_ptr { return new LLVMLinkage_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLinkage****'; }
-}
-class LLVMVisibility implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVisibility $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVisibility_ptr { return new LLVMVisibility_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMVisibility'; }
-}
-class LLVMVisibility_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVisibility_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVisibility_ptr_ptr { return new LLVMVisibility_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVisibility { return new LLVMVisibility($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVisibility*'; }
-}
-class LLVMVisibility_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVisibility_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVisibility_ptr_ptr_ptr { return new LLVMVisibility_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVisibility_ptr { return new LLVMVisibility_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVisibility**'; }
-}
-class LLVMVisibility_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVisibility_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVisibility_ptr_ptr_ptr_ptr { return new LLVMVisibility_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVisibility_ptr_ptr { return new LLVMVisibility_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVisibility***'; }
-}
-class LLVMVisibility_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVisibility_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVisibility_ptr_ptr_ptr_ptr_ptr { return new LLVMVisibility_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVisibility_ptr_ptr_ptr { return new LLVMVisibility_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVisibility****'; }
-}
-class LLVMDLLStorageClass implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDLLStorageClass $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDLLStorageClass_ptr { return new LLVMDLLStorageClass_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMDLLStorageClass'; }
-}
-class LLVMDLLStorageClass_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDLLStorageClass_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDLLStorageClass_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDLLStorageClass { return new LLVMDLLStorageClass($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDLLStorageClass*'; }
-}
-class LLVMDLLStorageClass_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDLLStorageClass_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDLLStorageClass_ptr_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDLLStorageClass_ptr { return new LLVMDLLStorageClass_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDLLStorageClass**'; }
-}
-class LLVMDLLStorageClass_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDLLStorageClass_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDLLStorageClass_ptr_ptr_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDLLStorageClass_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDLLStorageClass***'; }
-}
-class LLVMDLLStorageClass_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDLLStorageClass_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDLLStorageClass_ptr_ptr_ptr_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDLLStorageClass_ptr_ptr_ptr { return new LLVMDLLStorageClass_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDLLStorageClass****'; }
-}
-class LLVMCallConv implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCallConv $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCallConv_ptr { return new LLVMCallConv_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMCallConv'; }
-}
-class LLVMCallConv_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCallConv_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCallConv_ptr_ptr { return new LLVMCallConv_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCallConv { return new LLVMCallConv($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCallConv*'; }
-}
-class LLVMCallConv_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCallConv_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCallConv_ptr_ptr_ptr { return new LLVMCallConv_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCallConv_ptr { return new LLVMCallConv_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCallConv**'; }
-}
-class LLVMCallConv_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCallConv_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCallConv_ptr_ptr_ptr_ptr { return new LLVMCallConv_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCallConv_ptr_ptr { return new LLVMCallConv_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCallConv***'; }
-}
-class LLVMCallConv_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCallConv_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCallConv_ptr_ptr_ptr_ptr_ptr { return new LLVMCallConv_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCallConv_ptr_ptr_ptr { return new LLVMCallConv_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCallConv****'; }
-}
-class LLVMValueKind implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMValueKind $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMValueKind_ptr { return new LLVMValueKind_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMValueKind'; }
-}
-class LLVMValueKind_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMValueKind_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMValueKind_ptr_ptr { return new LLVMValueKind_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMValueKind { return new LLVMValueKind($this->data[$n]); }
-    public static function getType(): string { return 'LLVMValueKind*'; }
-}
-class LLVMValueKind_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMValueKind_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMValueKind_ptr_ptr_ptr { return new LLVMValueKind_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMValueKind_ptr { return new LLVMValueKind_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMValueKind**'; }
-}
-class LLVMValueKind_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMValueKind_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMValueKind_ptr_ptr_ptr_ptr { return new LLVMValueKind_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMValueKind_ptr_ptr { return new LLVMValueKind_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMValueKind***'; }
-}
-class LLVMValueKind_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMValueKind_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMValueKind_ptr_ptr_ptr_ptr_ptr { return new LLVMValueKind_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMValueKind_ptr_ptr_ptr { return new LLVMValueKind_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMValueKind****'; }
-}
-class LLVMIntPredicate implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMIntPredicate $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMIntPredicate_ptr { return new LLVMIntPredicate_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMIntPredicate'; }
-}
-class LLVMIntPredicate_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMIntPredicate_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMIntPredicate_ptr_ptr { return new LLVMIntPredicate_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMIntPredicate { return new LLVMIntPredicate($this->data[$n]); }
-    public static function getType(): string { return 'LLVMIntPredicate*'; }
-}
-class LLVMIntPredicate_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMIntPredicate_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMIntPredicate_ptr_ptr_ptr { return new LLVMIntPredicate_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMIntPredicate_ptr { return new LLVMIntPredicate_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMIntPredicate**'; }
-}
-class LLVMIntPredicate_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMIntPredicate_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMIntPredicate_ptr_ptr_ptr_ptr { return new LLVMIntPredicate_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMIntPredicate_ptr_ptr { return new LLVMIntPredicate_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMIntPredicate***'; }
-}
-class LLVMIntPredicate_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMIntPredicate_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMIntPredicate_ptr_ptr_ptr_ptr_ptr { return new LLVMIntPredicate_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMIntPredicate_ptr_ptr_ptr { return new LLVMIntPredicate_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMIntPredicate****'; }
-}
-class LLVMRealPredicate implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRealPredicate $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRealPredicate_ptr { return new LLVMRealPredicate_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMRealPredicate'; }
-}
-class LLVMRealPredicate_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRealPredicate_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRealPredicate_ptr_ptr { return new LLVMRealPredicate_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRealPredicate { return new LLVMRealPredicate($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRealPredicate*'; }
-}
-class LLVMRealPredicate_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRealPredicate_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRealPredicate_ptr_ptr_ptr { return new LLVMRealPredicate_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRealPredicate_ptr { return new LLVMRealPredicate_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRealPredicate**'; }
-}
-class LLVMRealPredicate_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRealPredicate_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRealPredicate_ptr_ptr_ptr_ptr { return new LLVMRealPredicate_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRealPredicate_ptr_ptr { return new LLVMRealPredicate_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRealPredicate***'; }
-}
-class LLVMRealPredicate_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRealPredicate_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRealPredicate_ptr_ptr_ptr_ptr_ptr { return new LLVMRealPredicate_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRealPredicate_ptr_ptr_ptr { return new LLVMRealPredicate_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRealPredicate****'; }
-}
-class LLVMLandingPadClauseTy implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLandingPadClauseTy $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLandingPadClauseTy_ptr { return new LLVMLandingPadClauseTy_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMLandingPadClauseTy'; }
-}
-class LLVMLandingPadClauseTy_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLandingPadClauseTy_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLandingPadClauseTy_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLandingPadClauseTy { return new LLVMLandingPadClauseTy($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLandingPadClauseTy*'; }
-}
-class LLVMLandingPadClauseTy_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLandingPadClauseTy_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLandingPadClauseTy_ptr_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLandingPadClauseTy_ptr { return new LLVMLandingPadClauseTy_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLandingPadClauseTy**'; }
-}
-class LLVMLandingPadClauseTy_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLandingPadClauseTy_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLandingPadClauseTy_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLandingPadClauseTy***'; }
-}
-class LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMLandingPadClauseTy_ptr_ptr_ptr { return new LLVMLandingPadClauseTy_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMLandingPadClauseTy****'; }
-}
-class LLVMThreadLocalMode implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMThreadLocalMode $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMThreadLocalMode_ptr { return new LLVMThreadLocalMode_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMThreadLocalMode'; }
-}
-class LLVMThreadLocalMode_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMThreadLocalMode_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMThreadLocalMode_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMThreadLocalMode { return new LLVMThreadLocalMode($this->data[$n]); }
-    public static function getType(): string { return 'LLVMThreadLocalMode*'; }
-}
-class LLVMThreadLocalMode_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMThreadLocalMode_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMThreadLocalMode_ptr_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMThreadLocalMode_ptr { return new LLVMThreadLocalMode_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMThreadLocalMode**'; }
-}
-class LLVMThreadLocalMode_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMThreadLocalMode_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMThreadLocalMode_ptr_ptr_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMThreadLocalMode_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMThreadLocalMode***'; }
-}
-class LLVMThreadLocalMode_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMThreadLocalMode_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMThreadLocalMode_ptr_ptr_ptr_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMThreadLocalMode_ptr_ptr_ptr { return new LLVMThreadLocalMode_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMThreadLocalMode****'; }
-}
-class LLVMAtomicOrdering implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicOrdering $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicOrdering_ptr { return new LLVMAtomicOrdering_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMAtomicOrdering'; }
-}
-class LLVMAtomicOrdering_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicOrdering_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicOrdering_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicOrdering { return new LLVMAtomicOrdering($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicOrdering*'; }
-}
-class LLVMAtomicOrdering_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicOrdering_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicOrdering_ptr_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicOrdering_ptr { return new LLVMAtomicOrdering_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicOrdering**'; }
-}
-class LLVMAtomicOrdering_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicOrdering_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicOrdering_ptr_ptr_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicOrdering_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicOrdering***'; }
-}
-class LLVMAtomicOrdering_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicOrdering_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicOrdering_ptr_ptr_ptr_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicOrdering_ptr_ptr_ptr { return new LLVMAtomicOrdering_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicOrdering****'; }
-}
-class LLVMAtomicRMWBinOp implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicRMWBinOp $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicRMWBinOp_ptr { return new LLVMAtomicRMWBinOp_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMAtomicRMWBinOp'; }
-}
-class LLVMAtomicRMWBinOp_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicRMWBinOp_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicRMWBinOp_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicRMWBinOp { return new LLVMAtomicRMWBinOp($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicRMWBinOp*'; }
-}
-class LLVMAtomicRMWBinOp_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicRMWBinOp_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicRMWBinOp_ptr_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicRMWBinOp_ptr { return new LLVMAtomicRMWBinOp_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicRMWBinOp**'; }
-}
-class LLVMAtomicRMWBinOp_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicRMWBinOp_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicRMWBinOp_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicRMWBinOp***'; }
-}
-class LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAtomicRMWBinOp_ptr_ptr_ptr { return new LLVMAtomicRMWBinOp_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMAtomicRMWBinOp****'; }
-}
-class LLVMDiagnosticSeverity implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDiagnosticSeverity $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDiagnosticSeverity_ptr { return new LLVMDiagnosticSeverity_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMDiagnosticSeverity'; }
-}
-class LLVMDiagnosticSeverity_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDiagnosticSeverity_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDiagnosticSeverity_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDiagnosticSeverity { return new LLVMDiagnosticSeverity($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDiagnosticSeverity*'; }
-}
-class LLVMDiagnosticSeverity_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDiagnosticSeverity_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDiagnosticSeverity_ptr_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDiagnosticSeverity_ptr { return new LLVMDiagnosticSeverity_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDiagnosticSeverity**'; }
-}
-class LLVMDiagnosticSeverity_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDiagnosticSeverity_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDiagnosticSeverity_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDiagnosticSeverity***'; }
-}
-class LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMDiagnosticSeverity_ptr_ptr_ptr { return new LLVMDiagnosticSeverity_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMDiagnosticSeverity****'; }
-}
-class LLVMAttributeIndex implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMAttributeIndex $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMAttributeIndex_ptr { return new LLVMAttributeIndex_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMAttributeIndex'; }
-}
 class LLVMAttributeIndex_ptr implements illvm {
     private FFI\CData $data;
     public function __construct(FFI\CData $data) { $this->data = $data; }
     public function getData(): FFI\CData { return $this->data; }
     public function equals(LLVMAttributeIndex_ptr $other): bool { return $this->data == $other->data; }
     public function addr(): LLVMAttributeIndex_ptr_ptr { return new LLVMAttributeIndex_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMAttributeIndex { return new LLVMAttributeIndex($this->data[$n]); }
+    public function deref(int $n = 0): int { return $this->data[$n] + 0; }
     public static function getType(): string { return 'LLVMAttributeIndex*'; }
 }
 class LLVMAttributeIndex_ptr_ptr implements illvm {
@@ -12940,182 +11436,6 @@ class LLVMTargetRef_ptr_ptr_ptr_ptr implements illvm {
     public function addr(): LLVMTargetRef_ptr_ptr_ptr_ptr_ptr { return new LLVMTargetRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
     public function deref(int $n = 0): LLVMTargetRef_ptr_ptr_ptr { return new LLVMTargetRef_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'LLVMTargetRef****'; }
-}
-class LLVMCodeGenOptLevel implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenOptLevel $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenOptLevel_ptr { return new LLVMCodeGenOptLevel_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMCodeGenOptLevel'; }
-}
-class LLVMCodeGenOptLevel_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenOptLevel_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenOptLevel_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenOptLevel { return new LLVMCodeGenOptLevel($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenOptLevel*'; }
-}
-class LLVMCodeGenOptLevel_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenOptLevel_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenOptLevel_ptr_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenOptLevel_ptr { return new LLVMCodeGenOptLevel_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenOptLevel**'; }
-}
-class LLVMCodeGenOptLevel_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenOptLevel_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenOptLevel_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenOptLevel***'; }
-}
-class LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenOptLevel_ptr_ptr_ptr { return new LLVMCodeGenOptLevel_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenOptLevel****'; }
-}
-class LLVMRelocMode implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRelocMode $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRelocMode_ptr { return new LLVMRelocMode_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMRelocMode'; }
-}
-class LLVMRelocMode_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRelocMode_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRelocMode_ptr_ptr { return new LLVMRelocMode_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRelocMode { return new LLVMRelocMode($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRelocMode*'; }
-}
-class LLVMRelocMode_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRelocMode_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRelocMode_ptr_ptr_ptr { return new LLVMRelocMode_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRelocMode_ptr { return new LLVMRelocMode_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRelocMode**'; }
-}
-class LLVMRelocMode_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRelocMode_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRelocMode_ptr_ptr_ptr_ptr { return new LLVMRelocMode_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRelocMode_ptr_ptr { return new LLVMRelocMode_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRelocMode***'; }
-}
-class LLVMRelocMode_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMRelocMode_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMRelocMode_ptr_ptr_ptr_ptr_ptr { return new LLVMRelocMode_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMRelocMode_ptr_ptr_ptr { return new LLVMRelocMode_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMRelocMode****'; }
-}
-class LLVMCodeModel implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeModel $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeModel_ptr { return new LLVMCodeModel_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMCodeModel'; }
-}
-class LLVMCodeModel_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeModel_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeModel_ptr_ptr { return new LLVMCodeModel_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeModel { return new LLVMCodeModel($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeModel*'; }
-}
-class LLVMCodeModel_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeModel_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeModel_ptr_ptr_ptr { return new LLVMCodeModel_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeModel_ptr { return new LLVMCodeModel_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeModel**'; }
-}
-class LLVMCodeModel_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeModel_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeModel_ptr_ptr_ptr_ptr { return new LLVMCodeModel_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeModel_ptr_ptr { return new LLVMCodeModel_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeModel***'; }
-}
-class LLVMCodeModel_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeModel_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeModel_ptr_ptr_ptr_ptr_ptr { return new LLVMCodeModel_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeModel_ptr_ptr_ptr { return new LLVMCodeModel_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeModel****'; }
-}
-class LLVMCodeGenFileType implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenFileType $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenFileType_ptr { return new LLVMCodeGenFileType_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMCodeGenFileType'; }
-}
-class LLVMCodeGenFileType_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenFileType_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenFileType_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenFileType { return new LLVMCodeGenFileType($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenFileType*'; }
-}
-class LLVMCodeGenFileType_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenFileType_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenFileType_ptr_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenFileType_ptr { return new LLVMCodeGenFileType_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenFileType**'; }
-}
-class LLVMCodeGenFileType_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenFileType_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenFileType_ptr_ptr_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenFileType_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenFileType***'; }
-}
-class LLVMCodeGenFileType_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMCodeGenFileType_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMCodeGenFileType_ptr_ptr_ptr_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMCodeGenFileType_ptr_ptr_ptr { return new LLVMCodeGenFileType_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMCodeGenFileType****'; }
 }
 class LLVMGenericValueRef implements illvm {
     private FFI\CData $data;
@@ -13424,64 +11744,4 @@ class LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr implements illvm {
     public function addr(): LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr_ptr { return new LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
     public function deref(int $n = 0): LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr { return new LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'LLVMMemoryManagerDestroyCallback****'; }
-}
-class LLVMVerifierFailureAction implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVerifierFailureAction $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVerifierFailureAction_ptr { return new LLVMVerifierFailureAction_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'LLVMVerifierFailureAction'; }
-}
-class LLVMVerifierFailureAction_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVerifierFailureAction_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVerifierFailureAction_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVerifierFailureAction { return new LLVMVerifierFailureAction($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVerifierFailureAction*'; }
-}
-class LLVMVerifierFailureAction_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVerifierFailureAction_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVerifierFailureAction_ptr_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVerifierFailureAction_ptr { return new LLVMVerifierFailureAction_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVerifierFailureAction**'; }
-}
-class LLVMVerifierFailureAction_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVerifierFailureAction_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVerifierFailureAction_ptr_ptr_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVerifierFailureAction_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVerifierFailureAction***'; }
-}
-class LLVMVerifierFailureAction_ptr_ptr_ptr_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(LLVMVerifierFailureAction_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): LLVMVerifierFailureAction_ptr_ptr_ptr_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
-    public function deref(int $n = 0): LLVMVerifierFailureAction_ptr_ptr_ptr { return new LLVMVerifierFailureAction_ptr_ptr_ptr($this->data[$n]); }
-    public static function getType(): string { return 'LLVMVerifierFailureAction****'; }
-}
-class string_ptr implements illvm {
-    private FFI\CData $data;
-    public function __construct(FFI\CData $data) { $this->data = $data; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(string_ptr $other): bool { return $this->data == $other->data; }
-    public function addr(): string_ptr_ptr { return new string_ptr_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'char**'; }
-}
-class uint64_t implements illvm {
-    private FFI\CData $data;
-    public function __construct($data) { $tmp = FFI::new('unsigned long long'); $tmp = $data; $this->data = $tmp; }
-    public function getData(): FFI\CData { return $this->data; }
-    public function equals(uint64_t $other): bool { return $this->data == $other->data; }
-    public function addr(): uint64_t_ptr { return new uint64_t_ptr(FFI::addr($this->data)); }
-    public static function getType(): string { return 'uint64_t'; }
 }

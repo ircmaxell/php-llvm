@@ -29,10 +29,6 @@ interface Value {
     const KIND_INLINE_ASM = 24;
     const KIND_INSTRUCTION = 25;
 
-    public function getNextFunction(): Value;
-
-    public function getPreviousFunction(): Value;
-
     public function typeOf(): Type;
 
     public function getKind(): int;
@@ -224,4 +220,7 @@ interface Value {
     public function isNull(): bool;
 
     public function isConstantString(): bool;
+
+    
+
 }
