@@ -49,7 +49,7 @@ class ExecutionEngine implements CoreExecutionEngine {
     }
 
     public function getTargetData(): CoreTargetData {
-        // todo
+        return new TargetData($this->llvm, $this->llvm->lib->LLVMGetExecutionEngineTargetData($this->engine));
     }
 
     public function getTargetMachine(): CoreTargetMachine {
