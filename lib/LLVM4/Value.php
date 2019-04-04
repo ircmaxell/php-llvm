@@ -24,7 +24,7 @@ class Value implements CoreValue {
         $this->value = $value;
     }
 
-    public function value(LLVM $llvm, Context $context, LLVMValueRef $value): Value {
+    public static function value(LLVM $llvm, Context $context, LLVMValueRef $value): Value {
         switch ($llvm->lib->LLVMGetValueKind($value)) {
             case lib::LLVMArgumentValueKind:
                 return new Value\Argument($llvm, $context, $value);
@@ -34,6 +34,8 @@ class Value implements CoreValue {
                 return new Value\Function_($llvm, $context, $value);
             case lib::LLVMInstructionValueKind:
                 return new Value\Instruction($llvm, $context, $value);
+            case lib::LLVMGlobalVariableValueKind:
+                return new Value\Global_($llvm, $context, $value);
             default:
                 return new Value($llvm, $context, $value);
         }

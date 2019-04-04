@@ -25,10 +25,6 @@ class TargetData implements CoreTargetData {
         $this->targetData = $targetData;
     }
 
-    public function __destruct() {
-        $this->dispose();
-    }
-
     public function dispose(): void {
         $this->llvm->lib->LLVMDisposeTargetData($this->targetData);
     }

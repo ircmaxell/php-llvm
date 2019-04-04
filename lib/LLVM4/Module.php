@@ -32,10 +32,6 @@ class Module implements CoreModule {
         $this->name = $name;
     }
 
-    public function __destruct() {
-        $this->dispose();
-    }
-
     public function dispose(): void {
         $this->llvm->lib->LLVMDisposeModule($this->module);
     }

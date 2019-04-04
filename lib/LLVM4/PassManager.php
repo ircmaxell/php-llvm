@@ -28,10 +28,6 @@ class PassManager implements CorePassManager {
         $this->passManager = $passManager;
     }
 
-    public function __destruct() {
-        $this->dispose();
-    }
-
     public function run(CoreModule $module): bool {
         return $this->llvm->fromBool($this->llvm->lib->LLVMRunPassManager($this->passManager, $module->module));
     }
