@@ -7,7 +7,6 @@ use PHPLLVM\Context as CoreContext;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
 use PHPLLVM\Type\Array_ as CoreArrayType;
-use PHPLLVM\Type\Function_ as CoreFunctionType;
 use PHPLLVM\Type\Pointer as CorePointerType;
 use PHPLLVM\Type\Struct as CoreStructType;
 use PHPLLVM\Type\Vector as CoreVectorType;
@@ -46,33 +45,6 @@ class Type implements CoreType {
             default:
                 return new Type($llvm, $context, $type);
         }
-    }
-
-    public static function functionType(CoreType $returnType, bool $isVarArgs, CoreType ... $parameters): CoreFunctionType {
-        $llvm = $returnType->llvm;
-        $context = $returnType->context;
-        $paramWrapper = $llvm->lib->makeArray(
-            LLVMTypeRef_ptr::class,
-            array_map(
-                function(Type $type) use ($llvm, $context) {
-                    if ($type->llvm !== $llvm || $type->context !== $context) {
-                        throw new \LogicException("Parameter not created from this instance of context");
-                    }
-                    return $type->type;
-                }, 
-                $parameters
-            )
-        );
-        return new Type\Function_(
-            $llvm, 
-            $context, 
-            $llvm->lib->LLVMFunctionType(
-                $returnType->type,
-                $paramWrapper,
-                count($parameters),
-                $llvm->toBool($isVarArgs)
-            )
-        );
     }
 
     public function arrayType(int $numElements): CoreArrayType {

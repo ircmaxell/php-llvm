@@ -9,6 +9,8 @@ use PHPLLVM\Context as CoreContext;
 use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
+use PHPLLVM\Type\Function_ as CoreFunctionType;
+
 use PHPLLVM\Value as CoreValue;
 
 use llvm4\llvm as lib;
@@ -88,6 +90,28 @@ class Context implements CoreContext {
 
     public function ppcfp128Type(): CoreType {
         return Type::type($this->llvm, $this, $this->llvm->lib->LLVMPPCFP128TypeInContext($this->context));
+    }
+
+    public function functionType(CoreType $returnType, bool $isVarArgs, CoreType ... $parameters): CoreFunctionType {
+        $paramWrapper = $this->llvm->lib->makeArray(
+            LLVMTypeRef_ptr::class,
+            array_map(
+                function(Type $type) {
+                    return $type->type;
+                }, 
+                $parameters
+            )
+        );
+        return Type::type(
+            $this->llvm, 
+            $this, 
+            $this->llvm->lib->LLVMFunctionType(
+                $returnType->type,
+                $paramWrapper,
+                count($parameters),
+                $this->llvm->toBool($isVarArgs)
+            )
+        );
     }
 
     public function structType(bool $packed, CoreType ... $elements): CoreType {

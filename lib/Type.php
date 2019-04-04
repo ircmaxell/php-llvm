@@ -21,8 +21,6 @@ interface Type {
     const KIND_MMX      = 15;
     const KIND_TOKEN    = 16;
 
-    public static function functionType(Type $returnType, bool $isVarArgs, Type ... $parameters): Type\Function_;
-
     public function arrayType(int $numElements): Type\Array_;
 
     public function pointerType(int $addressSpace): Type\Pointer;

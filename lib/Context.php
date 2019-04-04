@@ -36,6 +36,8 @@ interface Context {
 
     public function ppcfp128Type(): Type;
 
+    public function functionType(Type $returnType, bool $isVarArgs, Type ... $parameters): Type\Function_;
+
     public function structType(bool $packed, Type ... $elements): Type;
 
     public function namedStructType(string $name): Type;
@@ -53,5 +55,5 @@ interface Context {
     public function createStringAttribute(string $kind, string $value): Attribute;
 
     public function parseIR(MemoryBuffer $buffer, string &$message): Module;
-    
+
 }

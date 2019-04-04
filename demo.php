@@ -1,10 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use PHPLLVM\LLVM4\LLVM;
-use PHPLLVM\LLVM4\Type;
-
-$llvm = new LLVM;
+$llvm = PHPLLVM\Chooser::choose();
 $llvm->initializeNative();
 $llvm->linkInMCJit();
 
@@ -12,7 +9,7 @@ $context = $llvm->contextCreate();
 $builder = $context->builderCreate();
 $module = $context->moduleCreateWithName("test");
 
-$functionType = Type::functionType($context->int32Type(), false, $context->int32Type(), $context->int32Type());
+$functionType = $context->functionType($context->int32Type(), false, $context->int32Type(), $context->int32Type());
 
 $add = $module->addFunction("add", $functionType);
 $main = $add->appendBasicBlock('main');
