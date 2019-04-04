@@ -53,11 +53,13 @@ class TargetData implements CoreTargetData {
     }
 
     public function intPointerType(): CoreType {
-        return Type::type($this->llvm->lib->LLVMIntPtrType($this->targetData));
+        $type = $this->llvm->lib->LLVMIntPtrType($this->targetData);
+        return Type::type($this->llvm, new Context($this->llvm, $this->llvm->lib->LLVMGetTypeContext($type)), $type);
     }
 
     public function intPointerTypeForAddressSpace(int $addressSpace): CoreType {
-        return Type::type($this->llvm->lib->LLVMIntPtrTypeForAS($this->targetData, $addressSpace));
+        $type = $this->llvm->lib->LLVMIntPtrTypeForAS($this->targetData, $addressSpace);
+        return Type::type($this->llvm, new Context($this->llvm, $this->llvm->lib->LLVMGetTypeContext($type)), $type);
     }
 
     public function sizeOfTypeInBits(CoreType $type): int {
