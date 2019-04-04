@@ -413,7 +413,7 @@ class Builder implements CoreBuilder {
             default:
                 throw new \LogicException("Unknown operator for icmp: $op");
         }
-        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildICmp($this->buiilder, $predicate, $left->value, $right->value, ''));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildICmp($this->builder, $predicate, $left->value, $right->value, ''));
     }
 
     public function fCmp(int $op, CoreValue $left, CoreValue $right): CoreValue {
@@ -463,7 +463,7 @@ class Builder implements CoreBuilder {
             default:
                 throw new \LogicException("Unknown operator for fcmp: $op");
         }
-        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildFCmp($this->buiilder, $predicate, $left->value, $right->value, ''));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildFCmp($this->builder, $predicate, $left->value, $right->value, ''));
     }
 
     public function phi(CoreType $type): CoreValue {
