@@ -291,7 +291,7 @@ class Builder implements CoreBuilder {
     }
 
     public function structGep(CoreValue $struct, int $index): CoreValue {
-        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildStructGEP($this->builder, $struct->value, index, ''));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildStructGEP($this->builder, $struct->value, $index, ''));
     }
 
     public function globalString(string $string): CoreValue {
