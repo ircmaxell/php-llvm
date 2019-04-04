@@ -21,7 +21,7 @@ class Pointer extends Type implements CoreType\Pointer {
     }
 
     public function constNull(): CoreValue {
-        return new Value($this->llvm, $this->context, $this->llvm->lib->LLVMConstPointerNull($this->type));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMConstPointerNull($this->type));
     }
 
     public function getKind(): int {
