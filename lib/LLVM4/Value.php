@@ -397,6 +397,18 @@ class Value implements CoreValue {
         return $this->llvm->fromBool($this->llvm->lib->LLVMIsConstantString($this->value));
     }
 
+    public function hasMetadata(): bool {
+        return $this->llvm->fromBool($this->llvm->lib->LLVMHasMetadta($this->value));
+    }
 
-    
+    public function getMetadata(int $kind): CoreValue {
+        // Todo: map kind
+        return Value::value($this->llvm->lib->LLVMGetMetadata($this->value, $kind));
+    }
+
+    public function setMetadata(int $kind, CoreValue $node): void {
+        // Todo: map kind
+        $this->llvm->lib->LLVMSetMetadata($this->value, $kind, $node->value);
+    }
+
 }

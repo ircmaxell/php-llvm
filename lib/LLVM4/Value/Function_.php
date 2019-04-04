@@ -2,12 +2,15 @@
 
 namespace PHPLLVM\LLVM4\Value;
 
+use PHPLLVM\Attribute as CoreAttribute;
 use PHPLLVM\BasicBlock as CoreBasicBlock;
 use PHPLLVM\Value as CoreValue;
 
+use PHPLLVM\LLVM4\Attribute;
 use PHPLLVM\LLVM4\BasicBlock;
 use PHPLLVM\LLVM4\Value;
 
+use llvm4\LLVMAttributeRef_ptr;
 use llvm4\LLVMTypeRef_ptr;
 use llvm4\LLVMBasicBlockRef_ptr;
 
@@ -140,4 +143,44 @@ class Function_ extends Value implements CoreValue\Function_ {
     public function viewCFGOnly(): void {
         $this->llvm->lib->LLVMViewFunctionCFGOnly($this->value);
     }
+
+    public function blockAddress(CoreBasicBlock $block): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBlockAddress($this->value, $block->block));
+    }
+
+    public function addAttributeAtIndex(int $index, CoreAttribute $attribute): void {
+        $this->llvm->lib->LLVMAddAttributeAtIndex($this->value, $index, $attribute->attribute);
+    }
+
+    public function getAttributeCountAtIndex(int $index): int {
+        return $this->llvm->lib->LLVMGetAttributeCountAtIndex($this->value, $index);
+    }
+
+    public function getAttributesAtIndex(int $index): array {
+        $nAttributes = $this->getAttributeCountAtIndex($index);
+        $attributes = new LLVMAttributeRef_ptr($this->llvm->lib->getFFI()->new('LLVMAttributeRef[' . $nAttributes . ']'));
+        $this->llvm->getAttributesAtIndex($this->value, $index, $attributes);
+        $result = [];
+        for ($i = 0; $i < $nAttributes; $i++) {
+            $result[$i] = Attribute::attribute($this->llvm, $this->context, $attributes->deref($i));
+        }
+        return $result;
+    }
+
+    public function getEnumAttributeAtIndex(int $index, int $kind): CoreAttribute {
+        return Attribute::attribute($this->llvm, $this->context, $this->llvm->lib->LLVMGetEnumAttributeAtIndex($this->value, $index, $kind));
+    }
+
+    public function getStringAttributeAtIndex(int $index, string $kind): CoreAttribute {
+        return Attribute::attribute($this->llvm, $this->context, $this->llvm->lib->LLVMGetStringAttributeAtIndex($this->value, $index, $kind, strlen($kind)));
+    }
+
+    public function removeEnumAttributeAtIndex(int $index, int $kind): void {
+        $this->llvm->lib->LLVMRemoveEnumAttributeAtIndex($this->value, $index, $kind);
+    }
+
+    public function removeStringAttributeAtIndex(int $index, string $kind): void {
+        $this->llvm->lib->LLVMRemoveStringAttributeAtIndex($this->value, $index, $kind, strlen($kind));
+    }
+
 }

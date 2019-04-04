@@ -2,6 +2,7 @@
 
 namespace PHPLLVM\Value;
 
+use PHPLLVM\Attribute;
 use PHPLLVM\BasicBlock;
 use PHPLLVM\Value;
 
@@ -26,8 +27,6 @@ interface Function_ extends Value {
     public function getGc(): string;
 
     public function setGc(string $value): void;
-
-    public function addTargetDependentAttribute(string $a, string $v): void;
 
     public function countParams(): int;
 
@@ -54,5 +53,23 @@ interface Function_ extends Value {
     public function viewCFG(): void;
 
     public function viewCFGOnly(): void;
+
+    public function blockAddress(BasicBlock $block): Value;
+
+    public function addAttributeAtIndex(int $index, Attribute $attribute): void;
+
+    public function getAttributeCountAtIndex(int $index): int;
+
+    public function getAttributesAtIndex(int $index): array;
+
+    public function getEnumAttributeAtIndex(int $index, int $kind): Attribute;
+
+    public function getStringAttributeAtIndex(int $index, string $kind): Attribute;
+
+    public function removeEnumAttributeAtIndex(int $index, int $kind): void;
+
+    public function removeStringAttributeAtIndex(int $index, string $kind): void;
+
+    public function addTargetDependentAttribute(string $a, string $v): void;
 
 }

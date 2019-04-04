@@ -36,32 +36,15 @@ interface LLVM {
 
     public function initializeNative(): void;
 
-    public function initializeAArch64(): void;
+    public function initializeAll(): void;
 
-    public function initializeAMDGPU(): void;
+    public function initialize(string $name): void;
 
-    public function initializeARM(): void;
+    public function addTargetSet(TargetSet $targetSet);
 
-    public function initializeHexagon(): void;
+    public function createMemoryBufferWithFile(string $path, string &$message): MemoryBuffer;
 
-    public function initializeLenai(): void;
+    public function createMemoryBufferWithString(string $data, string $name): MemoryBuffer;
 
-    public function initializeMips(): void;
-
-    public function initializeMSP430(): void;
-
-    public function initializeNVPTXT(): void;
-
-    public function initializePowerPC(): void;
-
-    public function initializeRISCV(): void;
-
-    public function initializeSparc(): void;
-
-    public function initializeSystemZ(): void;
-
-    public function initializeX86(): void;
-
-    public function initializeXCore(): void;
-
+    public function createPassManagerBuilder(): PassManagerBuilder;
 }

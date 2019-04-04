@@ -1511,6 +1511,149 @@ LLVMBool LLVMVerifyModule(LLVMModuleRef M, LLVMVerifierFailureAction Action, cha
 LLVMBool LLVMVerifyFunction(LLVMValueRef Fn, LLVMVerifierFailureAction Action);
 void LLVMViewFunctionCFG(LLVMValueRef Fn);
 void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
+LLVMBool LLVMParseBitcode(LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutModule, char **OutMessage);
+LLVMBool LLVMParseBitcode2(LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutModule);
+LLVMBool LLVMParseBitcodeInContext(LLVMContextRef ContextRef, LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutModule, char **OutMessage);
+LLVMBool LLVMParseBitcodeInContext2(LLVMContextRef ContextRef, LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutModule);
+LLVMBool LLVMGetBitcodeModuleInContext(LLVMContextRef ContextRef, LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutM, char **OutMessage);
+LLVMBool LLVMGetBitcodeModuleInContext2(LLVMContextRef ContextRef, LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutM);
+LLVMBool LLVMGetBitcodeModule(LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutM, char **OutMessage);
+LLVMBool LLVMGetBitcodeModule2(LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutM);
+int LLVMWriteBitcodeToFile(LLVMModuleRef M, char *Path);
+int LLVMWriteBitcodeToFD(LLVMModuleRef M, int FD, int ShouldClose, int Unbuffered);
+int LLVMWriteBitcodeToFileHandle(LLVMModuleRef M, int Handle);
+LLVMMemoryBufferRef LLVMWriteBitcodeToMemoryBuffer(LLVMModuleRef M);
+typedef void * LLVMDisasmContextRef;
+typedef int(*LLVMOpInfoCallback)(void *DisInfo, uint64_t PC, uint64_t Offset, uint64_t Size, int TagType, void *TagBuf);
+struct LLVMOpInfoSymbol1 {
+  uint64_t Present;
+  char *Name;
+  uint64_t Value;
+};
+struct LLVMOpInfo1 {
+  struct LLVMOpInfoSymbol1 AddSymbol;
+  struct LLVMOpInfoSymbol1 SubtractSymbol;
+  uint64_t Value;
+  uint64_t VariantKind;
+};
+typedef char *(*LLVMSymbolLookupCallback)(void *DisInfo, uint64_t ReferenceValue, uint64_t *ReferenceType, uint64_t ReferencePC, char **ReferenceName);
+LLVMDisasmContextRef LLVMCreateDisasm(char *TripleName, void *DisInfo, int TagType, LLVMOpInfoCallback GetOpInfo, LLVMSymbolLookupCallback SymbolLookUp);
+LLVMDisasmContextRef LLVMCreateDisasmCPU(char *Triple, char *CPU, void *DisInfo, int TagType, LLVMOpInfoCallback GetOpInfo, LLVMSymbolLookupCallback SymbolLookUp);
+LLVMDisasmContextRef LLVMCreateDisasmCPUFeatures(char *Triple, char *CPU, char *Features, void *DisInfo, int TagType, LLVMOpInfoCallback GetOpInfo, LLVMSymbolLookupCallback SymbolLookUp);
+int LLVMSetDisasmOptions(LLVMDisasmContextRef DC, uint64_t Options);
+void LLVMDisasmDispose(LLVMDisasmContextRef DC);
+size_t LLVMDisasmInstruction(LLVMDisasmContextRef DC, uint8_t *Bytes, uint64_t BytesSize, uint64_t PC, char *OutString, size_t OutStringSize);
+LLVMBool LLVMParseIRInContext(LLVMContextRef ContextRef, LLVMMemoryBufferRef MemBuf, LLVMModuleRef *OutM, char **OutMessage);
+typedef enum {
+  LLVMLinkerDestroySource = 0,
+  LLVMLinkerPreserveSource_Removed = 1,
+} LLVMLinkerMode;
+LLVMBool LLVMLinkModules2(LLVMModuleRef Dest, LLVMModuleRef Src);
+typedef struct LLVMOpaqueObjectFile * LLVMObjectFileRef;
+typedef struct LLVMOpaqueSectionIterator * LLVMSectionIteratorRef;
+typedef struct LLVMOpaqueSymbolIterator * LLVMSymbolIteratorRef;
+typedef struct LLVMOpaqueRelocationIterator * LLVMRelocationIteratorRef;
+LLVMObjectFileRef LLVMCreateObjectFile(LLVMMemoryBufferRef MemBuf);
+void LLVMDisposeObjectFile(LLVMObjectFileRef ObjectFile);
+LLVMSectionIteratorRef LLVMGetSections(LLVMObjectFileRef ObjectFile);
+void LLVMDisposeSectionIterator(LLVMSectionIteratorRef SI);
+LLVMBool LLVMIsSectionIteratorAtEnd(LLVMObjectFileRef ObjectFile, LLVMSectionIteratorRef SI);
+void LLVMMoveToNextSection(LLVMSectionIteratorRef SI);
+void LLVMMoveToContainingSection(LLVMSectionIteratorRef Sect, LLVMSymbolIteratorRef Sym);
+LLVMSymbolIteratorRef LLVMGetSymbols(LLVMObjectFileRef ObjectFile);
+void LLVMDisposeSymbolIterator(LLVMSymbolIteratorRef SI);
+LLVMBool LLVMIsSymbolIteratorAtEnd(LLVMObjectFileRef ObjectFile, LLVMSymbolIteratorRef SI);
+void LLVMMoveToNextSymbol(LLVMSymbolIteratorRef SI);
+char * LLVMGetSectionName(LLVMSectionIteratorRef SI);
+uint64_t LLVMGetSectionSize(LLVMSectionIteratorRef SI);
+char * LLVMGetSectionContents(LLVMSectionIteratorRef SI);
+uint64_t LLVMGetSectionAddress(LLVMSectionIteratorRef SI);
+LLVMBool LLVMGetSectionContainsSymbol(LLVMSectionIteratorRef SI, LLVMSymbolIteratorRef Sym);
+LLVMRelocationIteratorRef LLVMGetRelocations(LLVMSectionIteratorRef Section);
+void LLVMDisposeRelocationIterator(LLVMRelocationIteratorRef RI);
+LLVMBool LLVMIsRelocationIteratorAtEnd(LLVMSectionIteratorRef Section, LLVMRelocationIteratorRef RI);
+void LLVMMoveToNextRelocation(LLVMRelocationIteratorRef RI);
+char * LLVMGetSymbolName(LLVMSymbolIteratorRef SI);
+uint64_t LLVMGetSymbolAddress(LLVMSymbolIteratorRef SI);
+uint64_t LLVMGetSymbolSize(LLVMSymbolIteratorRef SI);
+uint64_t LLVMGetRelocationOffset(LLVMRelocationIteratorRef RI);
+LLVMSymbolIteratorRef LLVMGetRelocationSymbol(LLVMRelocationIteratorRef RI);
+uint64_t LLVMGetRelocationType(LLVMRelocationIteratorRef RI);
+char * LLVMGetRelocationTypeName(LLVMRelocationIteratorRef RI);
+char * LLVMGetRelocationValueString(LLVMRelocationIteratorRef RI);
+LLVMBool LLVMLoadLibraryPermanently(char *Filename);
+void LLVMParseCommandLineOptions(int argc, char **argv, char *Overview);
+void * LLVMSearchForAddressOfSymbol(char *symbolName);
+void LLVMAddSymbol(char *symbolName, void *symbolValue);
+typedef struct LLVMOpaquePassManagerBuilder * LLVMPassManagerBuilderRef;
+LLVMPassManagerBuilderRef LLVMPassManagerBuilderCreate(void);
+void LLVMPassManagerBuilderDispose(LLVMPassManagerBuilderRef PMB);
+void LLVMPassManagerBuilderSetOptLevel(LLVMPassManagerBuilderRef PMB, unsigned OptLevel);
+void LLVMPassManagerBuilderSetSizeLevel(LLVMPassManagerBuilderRef PMB, unsigned SizeLevel);
+void LLVMPassManagerBuilderSetDisableUnitAtATime(LLVMPassManagerBuilderRef PMB, LLVMBool Value);
+void LLVMPassManagerBuilderSetDisableUnrollLoops(LLVMPassManagerBuilderRef PMB, LLVMBool Value);
+void LLVMPassManagerBuilderSetDisableSimplifyLibCalls(LLVMPassManagerBuilderRef PMB, LLVMBool Value);
+void LLVMPassManagerBuilderUseInlinerWithThreshold(LLVMPassManagerBuilderRef PMB, unsigned Threshold);
+void LLVMPassManagerBuilderPopulateFunctionPassManager(LLVMPassManagerBuilderRef PMB, LLVMPassManagerRef PM);
+void LLVMPassManagerBuilderPopulateModulePassManager(LLVMPassManagerBuilderRef PMB, LLVMPassManagerRef PM);
+void LLVMPassManagerBuilderPopulateLTOPassManager(LLVMPassManagerBuilderRef PMB, LLVMPassManagerRef PM, LLVMBool Internalize, LLVMBool RunInliner);
+void LLVMAddAggressiveDCEPass(LLVMPassManagerRef PM);
+void LLVMAddBitTrackingDCEPass(LLVMPassManagerRef PM);
+void LLVMAddAlignmentFromAssumptionsPass(LLVMPassManagerRef PM);
+void LLVMAddCFGSimplificationPass(LLVMPassManagerRef PM);
+void LLVMAddDeadStoreEliminationPass(LLVMPassManagerRef PM);
+void LLVMAddScalarizerPass(LLVMPassManagerRef PM);
+void LLVMAddMergedLoadStoreMotionPass(LLVMPassManagerRef PM);
+void LLVMAddGVNPass(LLVMPassManagerRef PM);
+void LLVMAddNewGVNPass(LLVMPassManagerRef PM);
+void LLVMAddIndVarSimplifyPass(LLVMPassManagerRef PM);
+void LLVMAddInstructionCombiningPass(LLVMPassManagerRef PM);
+void LLVMAddJumpThreadingPass(LLVMPassManagerRef PM);
+void LLVMAddLICMPass(LLVMPassManagerRef PM);
+void LLVMAddLoopDeletionPass(LLVMPassManagerRef PM);
+void LLVMAddLoopIdiomPass(LLVMPassManagerRef PM);
+void LLVMAddLoopRotatePass(LLVMPassManagerRef PM);
+void LLVMAddLoopRerollPass(LLVMPassManagerRef PM);
+void LLVMAddLoopUnrollPass(LLVMPassManagerRef PM);
+void LLVMAddLoopUnswitchPass(LLVMPassManagerRef PM);
+void LLVMAddMemCpyOptPass(LLVMPassManagerRef PM);
+void LLVMAddPartiallyInlineLibCallsPass(LLVMPassManagerRef PM);
+void LLVMAddLowerSwitchPass(LLVMPassManagerRef PM);
+void LLVMAddPromoteMemoryToRegisterPass(LLVMPassManagerRef PM);
+void LLVMAddReassociatePass(LLVMPassManagerRef PM);
+void LLVMAddSCCPPass(LLVMPassManagerRef PM);
+void LLVMAddScalarReplAggregatesPass(LLVMPassManagerRef PM);
+void LLVMAddScalarReplAggregatesPassSSA(LLVMPassManagerRef PM);
+void LLVMAddScalarReplAggregatesPassWithThreshold(LLVMPassManagerRef PM, int Threshold);
+void LLVMAddSimplifyLibCallsPass(LLVMPassManagerRef PM);
+void LLVMAddTailCallEliminationPass(LLVMPassManagerRef PM);
+void LLVMAddConstantPropagationPass(LLVMPassManagerRef PM);
+void LLVMAddDemoteMemoryToRegisterPass(LLVMPassManagerRef PM);
+void LLVMAddVerifierPass(LLVMPassManagerRef PM);
+void LLVMAddCorrelatedValuePropagationPass(LLVMPassManagerRef PM);
+void LLVMAddEarlyCSEPass(LLVMPassManagerRef PM);
+void LLVMAddEarlyCSEMemSSAPass(LLVMPassManagerRef PM);
+void LLVMAddLowerExpectIntrinsicPass(LLVMPassManagerRef PM);
+void LLVMAddTypeBasedAliasAnalysisPass(LLVMPassManagerRef PM);
+void LLVMAddScopedNoAliasAAPass(LLVMPassManagerRef PM);
+void LLVMAddBasicAliasAnalysisPass(LLVMPassManagerRef PM);
+void LLVMAddArgumentPromotionPass(LLVMPassManagerRef PM);
+void LLVMAddConstantMergePass(LLVMPassManagerRef PM);
+void LLVMAddDeadArgEliminationPass(LLVMPassManagerRef PM);
+void LLVMAddFunctionAttrsPass(LLVMPassManagerRef PM);
+void LLVMAddFunctionInliningPass(LLVMPassManagerRef PM);
+void LLVMAddAlwaysInlinerPass(LLVMPassManagerRef PM);
+void LLVMAddGlobalDCEPass(LLVMPassManagerRef PM);
+void LLVMAddGlobalOptimizerPass(LLVMPassManagerRef PM);
+void LLVMAddIPConstantPropagationPass(LLVMPassManagerRef PM);
+void LLVMAddPruneEHPass(LLVMPassManagerRef PM);
+void LLVMAddIPSCCPPass(LLVMPassManagerRef PM);
+void LLVMAddInternalizePass(LLVMPassManagerRef, unsigned AllButMain);
+void LLVMAddStripDeadPrototypesPass(LLVMPassManagerRef PM);
+void LLVMAddStripSymbolsPass(LLVMPassManagerRef PM);
+void LLVMAddBBVectorizePass(LLVMPassManagerRef PM);
+void LLVMAddLoopVectorizePass(LLVMPassManagerRef PM);
+void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
 ';
     private FFI $ffi;
     const HAVE_INTTYPES_H = 1;
@@ -1620,6 +1763,37 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     const LLVM_VERSION_MAJOR = 4;
     const LLVM_VERSION_MINOR = 0;
     const LLVM_VERSION_PATCH = 0;
+    const LLVMDisassembler_VariantKind_None = 0;
+    const LLVMDisassembler_VariantKind_ARM_HI16 = 1;
+    const LLVMDisassembler_VariantKind_ARM_LO16 = 2;
+    const LLVMDisassembler_VariantKind_ARM64_PAGE = 1;
+    const LLVMDisassembler_VariantKind_ARM64_PAGEOFF = 2;
+    const LLVMDisassembler_VariantKind_ARM64_GOTPAGE = 3;
+    const LLVMDisassembler_VariantKind_ARM64_GOTPAGEOFF = 4;
+    const LLVMDisassembler_VariantKind_ARM64_TLVP = 5;
+    const LLVMDisassembler_VariantKind_ARM64_TLVOFF = 6;
+    const LLVMDisassembler_ReferenceType_InOut_None = 0;
+    const LLVMDisassembler_ReferenceType_In_Branch = 1;
+    const LLVMDisassembler_ReferenceType_In_PCrel_Load = 2;
+    const LLVMDisassembler_ReferenceType_In_ARM64_ADRP = 0x100000001;
+    const LLVMDisassembler_ReferenceType_In_ARM64_ADDXri = 0x100000002;
+    const LLVMDisassembler_ReferenceType_In_ARM64_LDRXui = 0x100000003;
+    const LLVMDisassembler_ReferenceType_In_ARM64_LDRXl = 0x100000004;
+    const LLVMDisassembler_ReferenceType_In_ARM64_ADR = 0x100000005;
+    const LLVMDisassembler_ReferenceType_Out_SymbolStub = 1;
+    const LLVMDisassembler_ReferenceType_Out_LitPool_SymAddr = 2;
+    const LLVMDisassembler_ReferenceType_Out_LitPool_CstrAddr = 3;
+    const LLVMDisassembler_ReferenceType_Out_Objc_CFString_Ref = 4;
+    const LLVMDisassembler_ReferenceType_Out_Objc_Message = 5;
+    const LLVMDisassembler_ReferenceType_Out_Objc_Message_Ref = 6;
+    const LLVMDisassembler_ReferenceType_Out_Objc_Selector_Ref = 7;
+    const LLVMDisassembler_ReferenceType_Out_Objc_Class_Ref = 8;
+    const LLVMDisassembler_ReferenceType_DeMangled_Name = 9;
+    const LLVMDisassembler_Option_UseMarkup = 1;
+    const LLVMDisassembler_Option_PrintImmHex = 2;
+    const LLVMDisassembler_Option_AsmPrinterVariant = 4;
+    const LLVMDisassembler_Option_SetInstrComments = 8;
+    const LLVMDisassembler_Option_PrintLatency = 16;
     public function __construct(string $pathToSoFile = self::SOFILE) {
         $this->ffi = FFI::cdef(self::HEADER_DEF, $pathToSoFile);
     }
@@ -5608,6 +5782,411 @@ void LLVMViewFunctionCFGOnly(LLVMValueRef Fn);
     }
     public function LLVMViewFunctionCFGOnly(?LLVMValueRef $p0): void {
         $this->ffi->LLVMViewFunctionCFGOnly($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMParseBitcode(?LLVMMemoryBufferRef $p0, ?LLVMModuleRef_ptr $p1, ?string_ptr $p2): ?int {
+        $result = $this->ffi->LLVMParseBitcode($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+        return $result;
+    }
+    public function LLVMParseBitcode2(?LLVMMemoryBufferRef $p0, ?LLVMModuleRef_ptr $p1): ?int {
+        $result = $this->ffi->LLVMParseBitcode2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMParseBitcodeInContext(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?int {
+        $result = $this->ffi->LLVMParseBitcodeInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+        return $result;
+    }
+    public function LLVMParseBitcodeInContext2(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2): ?int {
+        $result = $this->ffi->LLVMParseBitcodeInContext2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+        return $result;
+    }
+    public function LLVMGetBitcodeModuleInContext(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?int {
+        $result = $this->ffi->LLVMGetBitcodeModuleInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+        return $result;
+    }
+    public function LLVMGetBitcodeModuleInContext2(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2): ?int {
+        $result = $this->ffi->LLVMGetBitcodeModuleInContext2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+        return $result;
+    }
+    public function LLVMGetBitcodeModule(?LLVMMemoryBufferRef $p0, ?LLVMModuleRef_ptr $p1, ?string_ptr $p2): ?int {
+        $result = $this->ffi->LLVMGetBitcodeModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
+        return $result;
+    }
+    public function LLVMGetBitcodeModule2(?LLVMMemoryBufferRef $p0, ?LLVMModuleRef_ptr $p1): ?int {
+        $result = $this->ffi->LLVMGetBitcodeModule2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMWriteBitcodeToFile(?LLVMModuleRef $p0, ?string $p1): ?int {
+        $result = $this->ffi->LLVMWriteBitcodeToFile($p0 === null ? null : $p0->getData(), $p1);
+        return $result;
+    }
+    public function LLVMWriteBitcodeToFD(?LLVMModuleRef $p0, ?int $p1, ?int $p2, ?int $p3): ?int {
+        $result = $this->ffi->LLVMWriteBitcodeToFD($p0 === null ? null : $p0->getData(), $p1, $p2, $p3);
+        return $result;
+    }
+    public function LLVMWriteBitcodeToFileHandle(?LLVMModuleRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMWriteBitcodeToFileHandle($p0 === null ? null : $p0->getData(), $p1);
+        return $result;
+    }
+    public function LLVMWriteBitcodeToMemoryBuffer(?LLVMModuleRef $p0): ?LLVMMemoryBufferRef {
+        $result = $this->ffi->LLVMWriteBitcodeToMemoryBuffer($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMMemoryBufferRef($result);
+    }
+    public function LLVMCreateDisasm(?string $p0, ?void_ptr $p1, ?int $p2, ?LLVMOpInfoCallback $p3, ?LLVMSymbolLookupCallback $p4): ?LLVMDisasmContextRef {
+        $result = $this->ffi->LLVMCreateDisasm($p0, $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
+        return $result === null ? null : new LLVMDisasmContextRef($result);
+    }
+    public function LLVMCreateDisasmCPU(?string $p0, ?string $p1, ?void_ptr $p2, ?int $p3, ?LLVMOpInfoCallback $p4, ?LLVMSymbolLookupCallback $p5): ?LLVMDisasmContextRef {
+        $result = $this->ffi->LLVMCreateDisasmCPU($p0, $p1, $p2 === null ? null : $p2->getData(), $p3, $p4 === null ? null : $p4->getData(), $p5 === null ? null : $p5->getData());
+        return $result === null ? null : new LLVMDisasmContextRef($result);
+    }
+    public function LLVMCreateDisasmCPUFeatures(?string $p0, ?string $p1, ?string $p2, ?void_ptr $p3, ?int $p4, ?LLVMOpInfoCallback $p5, ?LLVMSymbolLookupCallback $p6): ?LLVMDisasmContextRef {
+        $result = $this->ffi->LLVMCreateDisasmCPUFeatures($p0, $p1, $p2, $p3 === null ? null : $p3->getData(), $p4, $p5 === null ? null : $p5->getData(), $p6 === null ? null : $p6->getData());
+        return $result === null ? null : new LLVMDisasmContextRef($result);
+    }
+    public function LLVMSetDisasmOptions(?LLVMDisasmContextRef $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMSetDisasmOptions($p0 === null ? null : $p0->getData(), $p1);
+        return $result;
+    }
+    public function LLVMDisasmDispose(?LLVMDisasmContextRef $p0): void {
+        $this->ffi->LLVMDisasmDispose($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMDisasmInstruction(?LLVMDisasmContextRef $p0, ?int_ptr $p1, ?int $p2, ?int $p3, ?string $p4, ?size_t $p5): ?size_t {
+        $result = $this->ffi->LLVMDisasmInstruction($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3, $p4, $p5 === null ? null : $p5->getData());
+        return $result === null ? null : new size_t($result);
+    }
+    public function LLVMParseIRInContext(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?int {
+        $result = $this->ffi->LLVMParseIRInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+        return $result;
+    }
+    // typedefenum LLVMLinkerMode
+    const LLVMLinkerDestroySource = (0) + 0;
+    const LLVMLinkerPreserveSource_Removed = (1) + 0;
+    public function LLVMLinkModules2(?LLVMModuleRef $p0, ?LLVMModuleRef $p1): ?int {
+        $result = $this->ffi->LLVMLinkModules2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMCreateObjectFile(?LLVMMemoryBufferRef $p0): ?LLVMObjectFileRef {
+        $result = $this->ffi->LLVMCreateObjectFile($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMObjectFileRef($result);
+    }
+    public function LLVMDisposeObjectFile(?LLVMObjectFileRef $p0): void {
+        $this->ffi->LLVMDisposeObjectFile($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMGetSections(?LLVMObjectFileRef $p0): ?LLVMSectionIteratorRef {
+        $result = $this->ffi->LLVMGetSections($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMSectionIteratorRef($result);
+    }
+    public function LLVMDisposeSectionIterator(?LLVMSectionIteratorRef $p0): void {
+        $this->ffi->LLVMDisposeSectionIterator($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMIsSectionIteratorAtEnd(?LLVMObjectFileRef $p0, ?LLVMSectionIteratorRef $p1): ?int {
+        $result = $this->ffi->LLVMIsSectionIteratorAtEnd($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMMoveToNextSection(?LLVMSectionIteratorRef $p0): void {
+        $this->ffi->LLVMMoveToNextSection($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMMoveToContainingSection(?LLVMSectionIteratorRef $p0, ?LLVMSymbolIteratorRef $p1): void {
+        $this->ffi->LLVMMoveToContainingSection($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    }
+    public function LLVMGetSymbols(?LLVMObjectFileRef $p0): ?LLVMSymbolIteratorRef {
+        $result = $this->ffi->LLVMGetSymbols($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMSymbolIteratorRef($result);
+    }
+    public function LLVMDisposeSymbolIterator(?LLVMSymbolIteratorRef $p0): void {
+        $this->ffi->LLVMDisposeSymbolIterator($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMIsSymbolIteratorAtEnd(?LLVMObjectFileRef $p0, ?LLVMSymbolIteratorRef $p1): ?int {
+        $result = $this->ffi->LLVMIsSymbolIteratorAtEnd($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMMoveToNextSymbol(?LLVMSymbolIteratorRef $p0): void {
+        $this->ffi->LLVMMoveToNextSymbol($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMGetSectionName(?LLVMSectionIteratorRef $p0): ?int_ptr {
+        $result = $this->ffi->LLVMGetSectionName($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new int_ptr($result);
+    }
+    public function LLVMGetSectionSize(?LLVMSectionIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetSectionSize($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetSectionContents(?LLVMSectionIteratorRef $p0): ?int_ptr {
+        $result = $this->ffi->LLVMGetSectionContents($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new int_ptr($result);
+    }
+    public function LLVMGetSectionAddress(?LLVMSectionIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetSectionAddress($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetSectionContainsSymbol(?LLVMSectionIteratorRef $p0, ?LLVMSymbolIteratorRef $p1): ?int {
+        $result = $this->ffi->LLVMGetSectionContainsSymbol($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMGetRelocations(?LLVMSectionIteratorRef $p0): ?LLVMRelocationIteratorRef {
+        $result = $this->ffi->LLVMGetRelocations($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMRelocationIteratorRef($result);
+    }
+    public function LLVMDisposeRelocationIterator(?LLVMRelocationIteratorRef $p0): void {
+        $this->ffi->LLVMDisposeRelocationIterator($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMIsRelocationIteratorAtEnd(?LLVMSectionIteratorRef $p0, ?LLVMRelocationIteratorRef $p1): ?int {
+        $result = $this->ffi->LLVMIsRelocationIteratorAtEnd($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+        return $result;
+    }
+    public function LLVMMoveToNextRelocation(?LLVMRelocationIteratorRef $p0): void {
+        $this->ffi->LLVMMoveToNextRelocation($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMGetSymbolName(?LLVMSymbolIteratorRef $p0): ?int_ptr {
+        $result = $this->ffi->LLVMGetSymbolName($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new int_ptr($result);
+    }
+    public function LLVMGetSymbolAddress(?LLVMSymbolIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetSymbolAddress($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetSymbolSize(?LLVMSymbolIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetSymbolSize($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetRelocationOffset(?LLVMRelocationIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetRelocationOffset($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetRelocationSymbol(?LLVMRelocationIteratorRef $p0): ?LLVMSymbolIteratorRef {
+        $result = $this->ffi->LLVMGetRelocationSymbol($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new LLVMSymbolIteratorRef($result);
+    }
+    public function LLVMGetRelocationType(?LLVMRelocationIteratorRef $p0): ?int {
+        $result = $this->ffi->LLVMGetRelocationType($p0 === null ? null : $p0->getData());
+        return $result;
+    }
+    public function LLVMGetRelocationTypeName(?LLVMRelocationIteratorRef $p0): ?int_ptr {
+        $result = $this->ffi->LLVMGetRelocationTypeName($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new int_ptr($result);
+    }
+    public function LLVMGetRelocationValueString(?LLVMRelocationIteratorRef $p0): ?int_ptr {
+        $result = $this->ffi->LLVMGetRelocationValueString($p0 === null ? null : $p0->getData());
+        return $result === null ? null : new int_ptr($result);
+    }
+    public function LLVMLoadLibraryPermanently(?string $p0): ?int {
+        $result = $this->ffi->LLVMLoadLibraryPermanently($p0);
+        return $result;
+    }
+    public function LLVMParseCommandLineOptions(?int $p0, ?string_ptr $p1, ?string $p2): void {
+        $this->ffi->LLVMParseCommandLineOptions($p0, $p1 === null ? null : $p1->getData(), $p2);
+    }
+    public function LLVMSearchForAddressOfSymbol(?string $p0): ?void_ptr {
+        $result = $this->ffi->LLVMSearchForAddressOfSymbol($p0);
+        return $result === null ? null : new void_ptr($result);
+    }
+    public function LLVMAddSymbol(?string $p0, ?void_ptr $p1): void {
+        $this->ffi->LLVMAddSymbol($p0, $p1 === null ? null : $p1->getData());
+    }
+    public function LLVMPassManagerBuilderCreate(): ?LLVMPassManagerBuilderRef {
+        $result = $this->ffi->LLVMPassManagerBuilderCreate();
+        return $result === null ? null : new LLVMPassManagerBuilderRef($result);
+    }
+    public function LLVMPassManagerBuilderDispose(?LLVMPassManagerBuilderRef $p0): void {
+        $this->ffi->LLVMPassManagerBuilderDispose($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMPassManagerBuilderSetOptLevel(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderSetOptLevel($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderSetSizeLevel(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderSetSizeLevel($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderSetDisableUnitAtATime(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderSetDisableUnitAtATime($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderSetDisableUnrollLoops(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderSetDisableUnrollLoops($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderSetDisableSimplifyLibCalls(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderSetDisableSimplifyLibCalls($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderUseInlinerWithThreshold(?LLVMPassManagerBuilderRef $p0, ?int $p1): void {
+        $this->ffi->LLVMPassManagerBuilderUseInlinerWithThreshold($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMPassManagerBuilderPopulateFunctionPassManager(?LLVMPassManagerBuilderRef $p0, ?LLVMPassManagerRef $p1): void {
+        $this->ffi->LLVMPassManagerBuilderPopulateFunctionPassManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    }
+    public function LLVMPassManagerBuilderPopulateModulePassManager(?LLVMPassManagerBuilderRef $p0, ?LLVMPassManagerRef $p1): void {
+        $this->ffi->LLVMPassManagerBuilderPopulateModulePassManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    }
+    public function LLVMPassManagerBuilderPopulateLTOPassManager(?LLVMPassManagerBuilderRef $p0, ?LLVMPassManagerRef $p1, ?int $p2, ?int $p3): void {
+        $this->ffi->LLVMPassManagerBuilderPopulateLTOPassManager($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3);
+    }
+    public function LLVMAddAggressiveDCEPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddAggressiveDCEPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddBitTrackingDCEPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddBitTrackingDCEPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddAlignmentFromAssumptionsPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddAlignmentFromAssumptionsPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddCFGSimplificationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddCFGSimplificationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddDeadStoreEliminationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddDeadStoreEliminationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddScalarizerPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddScalarizerPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddMergedLoadStoreMotionPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddMergedLoadStoreMotionPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddGVNPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddGVNPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddNewGVNPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddNewGVNPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddIndVarSimplifyPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddIndVarSimplifyPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddInstructionCombiningPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddInstructionCombiningPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddJumpThreadingPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddJumpThreadingPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLICMPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLICMPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopDeletionPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopDeletionPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopIdiomPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopIdiomPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopRotatePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopRotatePass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopRerollPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopRerollPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopUnrollPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopUnrollPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopUnswitchPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopUnswitchPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddMemCpyOptPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddMemCpyOptPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddPartiallyInlineLibCallsPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddPartiallyInlineLibCallsPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLowerSwitchPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLowerSwitchPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddPromoteMemoryToRegisterPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddPromoteMemoryToRegisterPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddReassociatePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddReassociatePass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddSCCPPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddSCCPPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddScalarReplAggregatesPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddScalarReplAggregatesPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddScalarReplAggregatesPassSSA(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddScalarReplAggregatesPassSSA($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddScalarReplAggregatesPassWithThreshold(?LLVMPassManagerRef $p0, ?int $p1): void {
+        $this->ffi->LLVMAddScalarReplAggregatesPassWithThreshold($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMAddSimplifyLibCallsPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddSimplifyLibCallsPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddTailCallEliminationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddTailCallEliminationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddConstantPropagationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddConstantPropagationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddDemoteMemoryToRegisterPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddDemoteMemoryToRegisterPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddVerifierPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddVerifierPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddCorrelatedValuePropagationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddCorrelatedValuePropagationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddEarlyCSEPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddEarlyCSEPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddEarlyCSEMemSSAPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddEarlyCSEMemSSAPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLowerExpectIntrinsicPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLowerExpectIntrinsicPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddTypeBasedAliasAnalysisPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddTypeBasedAliasAnalysisPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddScopedNoAliasAAPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddScopedNoAliasAAPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddBasicAliasAnalysisPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddBasicAliasAnalysisPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddArgumentPromotionPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddArgumentPromotionPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddConstantMergePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddConstantMergePass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddDeadArgEliminationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddDeadArgEliminationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddFunctionAttrsPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddFunctionAttrsPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddFunctionInliningPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddFunctionInliningPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddAlwaysInlinerPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddAlwaysInlinerPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddGlobalDCEPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddGlobalDCEPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddGlobalOptimizerPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddGlobalOptimizerPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddIPConstantPropagationPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddIPConstantPropagationPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddPruneEHPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddPruneEHPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddIPSCCPPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddIPSCCPPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddInternalizePass(?LLVMPassManagerRef $p0, ?int $p1): void {
+        $this->ffi->LLVMAddInternalizePass($p0 === null ? null : $p0->getData(), $p1);
+    }
+    public function LLVMAddStripDeadPrototypesPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddStripDeadPrototypesPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddStripSymbolsPass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddStripSymbolsPass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddBBVectorizePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddBBVectorizePass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddLoopVectorizePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddLoopVectorizePass($p0 === null ? null : $p0->getData());
+    }
+    public function LLVMAddSLPVectorizePass(?LLVMPassManagerRef $p0): void {
+        $this->ffi->LLVMAddSLPVectorizePass($p0 === null ? null : $p0->getData());
     }
 }
 
@@ -11744,4 +12323,356 @@ class LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr implements illvm {
     public function addr(): LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr_ptr { return new LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
     public function deref(int $n = 0): LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr { return new LLVMMemoryManagerDestroyCallback_ptr_ptr_ptr($this->data[$n]); }
     public static function getType(): string { return 'LLVMMemoryManagerDestroyCallback****'; }
+}
+class LLVMDisasmContextRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMDisasmContextRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMDisasmContextRef_ptr { return new LLVMDisasmContextRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMDisasmContextRef'; }
+}
+class LLVMDisasmContextRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMDisasmContextRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMDisasmContextRef_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMDisasmContextRef { return new LLVMDisasmContextRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMDisasmContextRef*'; }
+}
+class LLVMDisasmContextRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMDisasmContextRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMDisasmContextRef_ptr_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMDisasmContextRef_ptr { return new LLVMDisasmContextRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMDisasmContextRef**'; }
+}
+class LLVMDisasmContextRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMDisasmContextRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMDisasmContextRef_ptr_ptr_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMDisasmContextRef_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMDisasmContextRef***'; }
+}
+class LLVMDisasmContextRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMDisasmContextRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMDisasmContextRef_ptr_ptr_ptr_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMDisasmContextRef_ptr_ptr_ptr { return new LLVMDisasmContextRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMDisasmContextRef****'; }
+}
+class LLVMOpInfoCallback implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMOpInfoCallback $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMOpInfoCallback_ptr { return new LLVMOpInfoCallback_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMOpInfoCallback'; }
+}
+class LLVMOpInfoCallback_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMOpInfoCallback_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMOpInfoCallback_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMOpInfoCallback { return new LLVMOpInfoCallback($this->data[$n]); }
+    public static function getType(): string { return 'LLVMOpInfoCallback*'; }
+}
+class LLVMOpInfoCallback_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMOpInfoCallback_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMOpInfoCallback_ptr_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMOpInfoCallback_ptr { return new LLVMOpInfoCallback_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMOpInfoCallback**'; }
+}
+class LLVMOpInfoCallback_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMOpInfoCallback_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMOpInfoCallback_ptr_ptr_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMOpInfoCallback_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMOpInfoCallback***'; }
+}
+class LLVMOpInfoCallback_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMOpInfoCallback_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMOpInfoCallback_ptr_ptr_ptr_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMOpInfoCallback_ptr_ptr_ptr { return new LLVMOpInfoCallback_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMOpInfoCallback****'; }
+}
+class LLVMSymbolLookupCallback implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolLookupCallback $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolLookupCallback_ptr { return new LLVMSymbolLookupCallback_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMSymbolLookupCallback'; }
+}
+class LLVMSymbolLookupCallback_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolLookupCallback_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolLookupCallback_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolLookupCallback { return new LLVMSymbolLookupCallback($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolLookupCallback*'; }
+}
+class LLVMSymbolLookupCallback_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolLookupCallback_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolLookupCallback_ptr_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolLookupCallback_ptr { return new LLVMSymbolLookupCallback_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolLookupCallback**'; }
+}
+class LLVMSymbolLookupCallback_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolLookupCallback_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolLookupCallback_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolLookupCallback***'; }
+}
+class LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolLookupCallback_ptr_ptr_ptr { return new LLVMSymbolLookupCallback_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolLookupCallback****'; }
+}
+class LLVMObjectFileRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMObjectFileRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMObjectFileRef_ptr { return new LLVMObjectFileRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMObjectFileRef'; }
+}
+class LLVMObjectFileRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMObjectFileRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMObjectFileRef_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMObjectFileRef { return new LLVMObjectFileRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMObjectFileRef*'; }
+}
+class LLVMObjectFileRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMObjectFileRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMObjectFileRef_ptr_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMObjectFileRef_ptr { return new LLVMObjectFileRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMObjectFileRef**'; }
+}
+class LLVMObjectFileRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMObjectFileRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMObjectFileRef_ptr_ptr_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMObjectFileRef_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMObjectFileRef***'; }
+}
+class LLVMObjectFileRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMObjectFileRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMObjectFileRef_ptr_ptr_ptr_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMObjectFileRef_ptr_ptr_ptr { return new LLVMObjectFileRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMObjectFileRef****'; }
+}
+class LLVMSectionIteratorRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSectionIteratorRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSectionIteratorRef_ptr { return new LLVMSectionIteratorRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMSectionIteratorRef'; }
+}
+class LLVMSectionIteratorRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSectionIteratorRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSectionIteratorRef_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSectionIteratorRef { return new LLVMSectionIteratorRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSectionIteratorRef*'; }
+}
+class LLVMSectionIteratorRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSectionIteratorRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSectionIteratorRef_ptr_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSectionIteratorRef_ptr { return new LLVMSectionIteratorRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSectionIteratorRef**'; }
+}
+class LLVMSectionIteratorRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSectionIteratorRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSectionIteratorRef_ptr_ptr_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSectionIteratorRef_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSectionIteratorRef***'; }
+}
+class LLVMSectionIteratorRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSectionIteratorRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSectionIteratorRef_ptr_ptr_ptr_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSectionIteratorRef_ptr_ptr_ptr { return new LLVMSectionIteratorRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSectionIteratorRef****'; }
+}
+class LLVMSymbolIteratorRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolIteratorRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolIteratorRef_ptr { return new LLVMSymbolIteratorRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMSymbolIteratorRef'; }
+}
+class LLVMSymbolIteratorRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolIteratorRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolIteratorRef_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolIteratorRef { return new LLVMSymbolIteratorRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolIteratorRef*'; }
+}
+class LLVMSymbolIteratorRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolIteratorRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolIteratorRef_ptr_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolIteratorRef_ptr { return new LLVMSymbolIteratorRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolIteratorRef**'; }
+}
+class LLVMSymbolIteratorRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolIteratorRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolIteratorRef_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolIteratorRef***'; }
+}
+class LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMSymbolIteratorRef_ptr_ptr_ptr { return new LLVMSymbolIteratorRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMSymbolIteratorRef****'; }
+}
+class LLVMRelocationIteratorRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMRelocationIteratorRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMRelocationIteratorRef_ptr { return new LLVMRelocationIteratorRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMRelocationIteratorRef'; }
+}
+class LLVMRelocationIteratorRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMRelocationIteratorRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMRelocationIteratorRef_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMRelocationIteratorRef { return new LLVMRelocationIteratorRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMRelocationIteratorRef*'; }
+}
+class LLVMRelocationIteratorRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMRelocationIteratorRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMRelocationIteratorRef_ptr_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMRelocationIteratorRef_ptr { return new LLVMRelocationIteratorRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMRelocationIteratorRef**'; }
+}
+class LLVMRelocationIteratorRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMRelocationIteratorRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMRelocationIteratorRef_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMRelocationIteratorRef***'; }
+}
+class LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMRelocationIteratorRef_ptr_ptr_ptr { return new LLVMRelocationIteratorRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMRelocationIteratorRef****'; }
+}
+class LLVMPassManagerBuilderRef implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMPassManagerBuilderRef $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMPassManagerBuilderRef_ptr { return new LLVMPassManagerBuilderRef_ptr(FFI::addr($this->data)); }
+    public static function getType(): string { return 'LLVMPassManagerBuilderRef'; }
+}
+class LLVMPassManagerBuilderRef_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMPassManagerBuilderRef_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMPassManagerBuilderRef_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMPassManagerBuilderRef { return new LLVMPassManagerBuilderRef($this->data[$n]); }
+    public static function getType(): string { return 'LLVMPassManagerBuilderRef*'; }
+}
+class LLVMPassManagerBuilderRef_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMPassManagerBuilderRef_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMPassManagerBuilderRef_ptr_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMPassManagerBuilderRef_ptr { return new LLVMPassManagerBuilderRef_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMPassManagerBuilderRef**'; }
+}
+class LLVMPassManagerBuilderRef_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMPassManagerBuilderRef_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMPassManagerBuilderRef_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMPassManagerBuilderRef***'; }
+}
+class LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr implements illvm {
+    private FFI\CData $data;
+    public function __construct(FFI\CData $data) { $this->data = $data; }
+    public function getData(): FFI\CData { return $this->data; }
+    public function equals(LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr $other): bool { return $this->data == $other->data; }
+    public function addr(): LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr_ptr_ptr_ptr(FFI::addr($this->data)); }
+    public function deref(int $n = 0): LLVMPassManagerBuilderRef_ptr_ptr_ptr { return new LLVMPassManagerBuilderRef_ptr_ptr_ptr($this->data[$n]); }
+    public static function getType(): string { return 'LLVMPassManagerBuilderRef****'; }
 }

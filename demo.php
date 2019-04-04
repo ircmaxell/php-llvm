@@ -32,3 +32,17 @@ $engine = $module->createExecutionEngine();
 $machine = $engine->getTargetMachine();
 
 $machine->emitToFile($module, __DIR__ . '/test.asm', $machine::CODEGEN_FILE_TYPE_ASM);
+
+$machine->emitToFile($module, __DIR__ . '/test.o', $machine::CODEGEN_FILE_TYPE_OBJECT);
+
+$addr = $engine->getFunctionAddress('add');
+$code = FFI::new('size_t');
+$code = $addr;
+$cb = FFI::new('long(*)(long, long)');
+FFI::memcpy(
+    FFI::addr($cb),
+    FFI::addr($code),
+    FFI::sizeof($cb)
+);
+
+var_dump($cb(1, 2));

@@ -73,4 +73,16 @@ class Instruction extends Value implements CoreValue\Instruction {
         // Todo: map ordering
     }
 
+    public function getNumArgOperands(): int {
+        return $this->llvm->lib->LLVMGetNumArgOperands($this->value);
+    }
+
+    public function addCase(CoreValue $onValue, CoreBasicBlock $dest): void {
+        $this->llvm->lib->LLVMAddCase($this->value, $onValue->value, $dest->block);
+    }
+
+    public function addDestination(CoreBasicBlock $dest): void {
+        $this->llvm->lib->LLVMAddDestination($this->value, $dest->block);
+    }
+
 }

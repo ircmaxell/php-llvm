@@ -47,4 +47,11 @@ interface Context {
     public function mmxType(): Type;
 
     public function constString(string $string, bool $dontNullTerminate): Value;
+
+    public function createEnumAttribute(int $kind, int $value): Attribute;
+
+    public function createStringAttribute(string $kind, string $value): Attribute;
+
+    public function parseIR(MemoryBuffer $buffer, string &$message): Module;
+    
 }

@@ -4,23 +4,29 @@ namespace PHPLLVM\LLVM4;
 
 use PHPLLVM\LLVM as CoreLLVM;
 use PHPLLVM\Context as CoreContext;
+use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\TargetData as CoreTargetData;
 use PHPLLVM\Target as CoreTarget;
+use PHPLLVM\TargetSet as CoreTargetSet;
 use PHPLLVM\PassManager as CorePassManager;
+use PHPLLVM\PassManagerBuilder as CorePassManagerBuilder;
 
 use llvm4\llvm as lib;
 use llvm4\LLVMBool;
 use llvm4\string_ptr;
 use llvm4\LLVMTargetRef_ptr;
+use llvm4\LLVMMemoryBufferRef;
 use llvm4\string_;
 
 class LLVM implements CoreLLVM {
 
+    private array $targetSets = [];
     public lib $lib;
 
     public function __construct(?string $pathToSoFile = null) {
         $this->lib = new lib($pathToSoFile ?? lib::SOFILE);
+        $this->loadTargetSets();
     }
 
     public function contextCreate(): CoreContext {
@@ -112,119 +118,61 @@ class LLVM implements CoreLLVM {
     }
 
     public function initializeNative(): void {
-        $this->initializeX86();
+        foreach ($this->targetSets as $set) {
+            if ($set->isNative()) {
+                $set->initialize();
+            }
+        }
     }
 
-    public function initializeAArch64(): void {
-        $this->lib->LLVMInitializeAArch64TargetInfo();
-        $this->lib->LLVMInitializeAArch64Target();
-        $this->lib->LLVMInitializeAArch64TargetMC();
-        $this->lib->LLVMInitializeAArch64AsmParser();
-        $this->lib->LLVMInitializeAArch64AsmPrinter();
+    public function initializeAll(): void {
+        foreach ($this->targetSets as $set) {
+            $set->initialize();
+        }
     }
 
-    public function initializeAMDGPU(): void {
-        $this->lib->LLVMInitializeAMDGPUTargetInfo();
-        $this->lib->LLVMInitializeAMDGPUTarget();
-        $this->lib->LLVMInitializeAMDGPUTargetMC();
-        $this->lib->LLVMInitializeAMDGPUAsmParser();
-        $this->lib->LLVMInitializeAMDGPUAsmPrinter();
+    public function initialize(string $name): void {
+        $lcName = strtolower($name);
+        foreach ($this->targetSets as $set) {
+            if (strtolower($set->getName()) === $lcName) {
+                $set->initialize();
+                return;
+            }
+        }
+        throw new \LogicException("Could not find compiler target $name");
     }
 
-    public function initializeARM(): void {
-        $this->lib->LLVMInitializeARMTargetInfo();
-        $this->lib->LLVMInitializeARMTarget();
-        $this->lib->LLVMInitializeARMTargetMC();
-        $this->lib->LLVMInitializeARMAsmParser();
-        $this->lib->LLVMInitializeARMAsmPrinter();
+    private function loadTargetSets(): void {
+        $it = new \GlobIterator(__DIR__ . '/TargetSet/*.php');
+        foreach ($it as $file) {
+            $target = $file->getBasename('.php');
+            $class = __NAMESPACE__ . '\\TargetSet\\' . $target;
+            $this->targetSets[] = new $class($this);
+        }
     }
 
-    public function initializeHexagon(): void {
-        $this->lib->LLVMInitializeHexagonTargetInfo();
-        $this->lib->LLVMInitializeHexagonTarget();
-        $this->lib->LLVMInitializeHexagonTargetMC();
-        $this->lib->LLVMInitializeHexagonAsmParser();
-        $this->lib->LLVMInitializeHexagonAsmPrinter();
+    public function addTargetSet(CoreTargetSet $targetSet) {
+        $this->targetSets[] = $targetSet;
     }
 
-    public function initializeLenai(): void {
-        $this->lib->LLVMInitializeLenaiTargetInfo();
-        $this->lib->LLVMInitializeLenaiTarget();
-        $this->lib->LLVMInitializeLenaiTargetMC();
-        $this->lib->LLVMInitializeLenaiAsmParser();
-        $this->lib->LLVMInitializeLenaiAsmPrinter();
+    public function createMemoryBufferWithFile(string $path, string &$message): CoreMemoryBuffer {
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $buffer = new LLVMMemoryBufferRef($this->lib->getFFI()->new('LLVMMemoryBufferRef'));
+        if (!$this->fromBool($this->lib->LLVMCreateMemoryBufferWithContentsOfFile($path, $buffer->addr(), $error))) {
+            $message = $error->deref(0);
+            $this->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Create memory buffer with file failed due to $message");
+        }
+        return new MemoryBuffer($this, $buffer);
     }
 
-    public function initializeMips(): void {
-        $this->lib->LLVMInitializeMipsTargetInfo();
-        $this->lib->LLVMInitializeMipsTarget();
-        $this->lib->LLVMInitializeMipsTargetMC();
-        $this->lib->LLVMInitializeMipsAsmParser();
-        $this->lib->LLVMInitializeMipsAsmPrinter();
+    public function createMemoryBufferWithString(string $data, string $name): CoreMemoryBuffer {
+        return new MemoryBuffer($this, $this->lib->LLVMCreateMemoryBufferWithMemoryRangeCopy($data, strlen($data), $name));
     }
 
-    public function initializeMSP430(): void {
-        $this->lib->LLVMInitializeMSP430TargetInfo();
-        $this->lib->LLVMInitializeMSP430Target();
-        $this->lib->LLVMInitializeMSP430TargetMC();
-        $this->lib->LLVMInitializeMSP430AsmParser();
-        $this->lib->LLVMInitializeMSP430AsmPrinter();
+    public function createPassManagerBuilder(): CorePassManagerBuilder {
+        return new PassManagerBuilder($this, $this->lib->LLVMPassManagerBuilderCreate());
     }
 
-    public function initializeNVPTXT(): void {
-        $this->lib->LLVMInitializeNVPTXTTargetInfo();
-        $this->lib->LLVMInitializeNVPTXTTarget();
-        $this->lib->LLVMInitializeNVPTXTTargetMC();
-        $this->lib->LLVMInitializeNVPTXTAsmParser();
-        $this->lib->LLVMInitializeNVPTXTAsmPrinter();
-    }
-
-    public function initializePowerPC(): void {
-        $this->lib->LLVMInitializePowerPCTargetInfo();
-        $this->lib->LLVMInitializePowerPCTarget();
-        $this->lib->LLVMInitializePowerPCTargetMC();
-        $this->lib->LLVMInitializePowerPCAsmParser();
-        $this->lib->LLVMInitializePowerPCAsmPrinter();
-    }
-
-    public function initializeRISCV(): void {
-        $this->lib->LLVMInitializeRISCVTargetInfo();
-        $this->lib->LLVMInitializeRISCVTarget();
-        $this->lib->LLVMInitializeRISCVTargetMC();
-        $this->lib->LLVMInitializeRISCVAsmParser();
-        $this->lib->LLVMInitializeRISCVAsmPrinter();
-    }
-
-    public function initializeSparc(): void {
-        $this->lib->LLVMInitializeSparcTargetInfo();
-        $this->lib->LLVMInitializeSparcTarget();
-        $this->lib->LLVMInitializeSparcTargetMC();
-        $this->lib->LLVMInitializeSparcAsmParser();
-        $this->lib->LLVMInitializeSparcAsmPrinter();
-    }
-
-    public function initializeSystemZ(): void {
-        $this->lib->LLVMInitializeSystemZTargetInfo();
-        $this->lib->LLVMInitializeSystemZTarget();
-        $this->lib->LLVMInitializeSystemZTargetMC();
-        $this->lib->LLVMInitializeSystemZAsmParser();
-        $this->lib->LLVMInitializeSystemZAsmPrinter();
-    }
-
-    public function initializeX86(): void {
-        $this->lib->LLVMInitializeX86TargetInfo();
-        $this->lib->LLVMInitializeX86Target();
-        $this->lib->LLVMInitializeX86TargetMC();
-        $this->lib->LLVMInitializeX86AsmParser();
-        $this->lib->LLVMInitializeX86AsmPrinter();
-    }
-
-    public function initializeXCore(): void {
-        $this->lib->LLVMInitializeXCoreTargetInfo();
-        $this->lib->LLVMInitializeXCoreTarget();
-        $this->lib->LLVMInitializeXCoreTargetMC();
-        $this->lib->LLVMInitializeXCoreAsmParser();
-        $this->lib->LLVMInitializeXCoreAsmPrinter();
-    }
 
 }

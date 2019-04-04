@@ -3,8 +3,10 @@
 namespace PHPLLVM\LLVM4;
 
 use PHPLLVM\LLVM as CoreLLVM;
+use PHPLLVM\Attribute as CoreAttribute;
 use PHPLLVM\Builder as CoreBuilder;
 use PHPLLVM\Context as CoreContext;
+use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
 use PHPLLVM\Value as CoreValue;
@@ -12,6 +14,7 @@ use PHPLLVM\Value as CoreValue;
 use llvm4\llvm as lib;
 use llvm4\LLVMContextRef;
 use llvm4\LLVMTypeRef_ptr;
+use llvm4\LLVMModuleRef;
 
 class Context implements CoreContext {
 
@@ -131,6 +134,27 @@ class Context implements CoreContext {
 
     public function constString(string $string, bool $dontNullTerminate): CoreValue {
         return Value::value($this->llvm, $this, $this->llvm->lib->LLVMConstStringInContext($this->context, $string, strlen($string), $this->llvm->toBool($dontNullTerminate)));
+    }
+
+    public function createEnumAttribute(int $kind, int $value): CoreAttribute {
+        // Todo: map kind
+        return Attribute::attribute($this->llvm, $this, $this->llvm->lib->LLVMCreateEnumAttribute($this->context, $kind, $value));
+    }
+
+    public function createStringAttribute(string $kind, string $value): CoreAttribute {
+        // Todo: map kind
+        return Attribute::attribute($this->llvm, $this, $this->llvm->lib->LLVMCreateStringAttribute($this->context, $kind, strlen($kind), $value, strlen($value)));
+    }
+
+    public function parseIR(CoreMemoryBuffer $buffer, string &$message): CoreModule {
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $module = new LLVMModuleRef($this->lib->getFFI()->new('LLVMModuleRef'));
+        if (!$this->fromBool($this->llvm->lib->LLVMParseIRInContext($this->context, $buffer->buffer, $module->addr(), $error))) {
+            $message = $error->deref(0);
+            $this->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Parse IR from Memory Buffer failed due to $message");
+        }
+        return new Module($this->llvm, $this, $module);
     }
 
 

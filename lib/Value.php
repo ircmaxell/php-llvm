@@ -221,6 +221,10 @@ interface Value {
 
     public function isConstantString(): bool;
 
-    
+    public function hasMetadata(): bool;
+
+    public function getMetadata(int $kind): Value;
+
+    public function setMetadata(int $kind, Value $node): void;
 
 }

@@ -4,6 +4,7 @@ namespace PHPLLVM\LLVM4;
 
 use PHPLLVM\LLVM as CoreLLVM;
 use PHPLLVM\Context as CoreContext;
+use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
 use PHPLLVM\Value as CoreValue;
@@ -110,11 +111,11 @@ class Module implements CoreModule {
     }
 
     public function getModuleDataLayout(): CoreTargetData {
-
+        return new TargetData($this->llvm, $this->llvm->lib->LLVMGetModuleDataLayout($this->module));
     }
 
     public function setModuleDataLayout(CoreTargetData $targetData) {
-
+        $this->llvm->lib->LLVMSetModuleDataLayout($this->module, $targetData->targetData);
     }
 
     public function createExecutionEngine(): CoreExecutionEngine {
@@ -130,11 +131,27 @@ class Module implements CoreModule {
     }
 
     public function createInterpreter(): CoreExecutionEngine {
-
+        $engine = new LLVMExecutionEngineRef($this->llvm->lib->getFFI()->new('LLVMExecutionEngineRef'));
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $result = $this->llvm->fromBool($this->llvm->lib->LLVMCreateInterpreterForModule($engine->addr(), $this->module, $error));
+        if (!$result) {
+            $message = $error->deref(0)->toString();
+            $this->llvm->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Could not create interpreter: $message");
+        }
+        return new ExecutionEngine($this->llvm, $this->context, $engine);
     }
 
     public function createJITCompiler(int $optLevel): CoreExecutionEngine {
-
+        $engine = new LLVMExecutionEngineRef($this->llvm->lib->getFFI()->new('LLVMExecutionEngineRef'));
+        $error = new string_ptr(FFI::addr(FFI::new('char*')));
+        $result = $this->llvm->fromBool($this->llvm->lib->LLVMCreateJITCompilerForModule($engine->addr(), $this->module, $optLevel, $error));
+        if (!$result) {
+            $message = $error->deref(0)->toString();
+            $this->llvm->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Could not create jit compiler: $message");
+        }
+        return new ExecutionEngine($this->llvm, $this->context, $engine);
     }
 
     public function verify(int $verifyAction, &$outMessage): bool {
@@ -160,6 +177,34 @@ class Module implements CoreModule {
             throw new \RuntimeException("Module verification failed due to $outMessage");
         }
         return $result;
+    }
+
+    public function getNamedMetadataNumOperands(string $name): int {
+        return $this->llvm->lib->LLVMGetNamedMetadataNumOperands($this->module, $name);
+    }
+
+    public function getNamedMetadataOperands(string $name): array {
+        // Todo determine how to count...
+    }
+
+    public function addNamedMetadataOperand(string $name, CoreValue $ref): void {
+        $this->llvm->lib->LLVMAddNamedMetadataOperand($this->module, $name, $rev->value);
+    }
+
+    public function addAlias(CoreType $type, CoreValue $aliasee, string $name): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddAlias($this->module, $type->type, $aliasee->value, $name));
+    }
+
+    public function writeBitcodeToFile(string $path): int {
+        return $this->llvm->lib->LLVMWriteBitcodeToFile($this->module, $path);
+    }
+
+    public function writeBitcodeToMemoryBuffer(): CoreMemoryBuffer {
+        return new MemoryBuffer($this->llvm, $this->llvm->lib->LLVMWriteBitcodeToMemoryBuffer($this->module));
+    }
+
+    public function link(CoreModule $other): bool {
+        return $this->llvm->fromBool($this->llvm->lib->LLVMLinkModules2($this->module, $other->module));
     }
 
     

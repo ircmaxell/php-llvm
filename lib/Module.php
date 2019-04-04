@@ -56,4 +56,18 @@ interface Module {
 
     public function createFunctionPassManager(): PassManager;
 
+    public function getNamedMetadataNumOperands(string $name): int;
+
+    public function getNamedMetadataOperands(string $name): array;
+
+    public function addNamedMetadataOperand(string $name, Value $ref): void;
+
+    public function addAlias(Type $type, Value $aliasee, string $name): Value;
+
+    public function writeBitcodeToFile(string $path): int;
+
+    public function writeBitcodeToMemoryBuffer(): MemoryBuffer;
+
+    public function link(Module $other): bool;
+
 }

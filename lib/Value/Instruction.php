@@ -41,4 +41,10 @@ interface Instruction extends Value {
 
     public function setOrdering(int $ordering): void;
 
+    public function getNumArgOperands(): int;
+    
+    public function addCase(Value $onValue, BasicBlock $dest): void;
+
+    public function addDestination(BasicBlock $dest): void;
+
 }
