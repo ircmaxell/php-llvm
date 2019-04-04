@@ -27,4 +27,5 @@ class Pointer extends Type implements CoreType\Pointer {
     public function getKind(): int {
         return self::KIND_POINTER;
     }
+
 }

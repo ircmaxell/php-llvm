@@ -6,6 +6,6 @@ use PHPLLVM\Type;
 
 interface Pointer extends Element {
 
-    public function getSize(): int;
-    
+    public function getAddressSpace(): int;
+        
 }
