@@ -5,7 +5,7 @@ use PHPLLVM\LLVM4\LLVM;
 use PHPLLVM\LLVM4\Type;
 
 $llvm = new LLVM;
-$llvm->initializeNativeTarget();
+$llvm->initializeNative();
 $llvm->linkInMCJit();
 
 $context = $llvm->contextCreate();

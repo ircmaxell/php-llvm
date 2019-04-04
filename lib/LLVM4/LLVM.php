@@ -111,12 +111,120 @@ class LLVM implements CoreLLVM {
         return new PassManager($this, $this->lib->LLVMCreatePassManager());
     }
 
-    public function initializeNativeTarget(): void {
+    public function initializeNative(): void {
+        $this->initializeX86();
+    }
+
+    public function initializeAArch64(): void {
+        $this->lib->LLVMInitializeAArch64TargetInfo();
+        $this->lib->LLVMInitializeAArch64Target();
+        $this->lib->LLVMInitializeAArch64TargetMC();
+        $this->lib->LLVMInitializeAArch64AsmParser();
+        $this->lib->LLVMInitializeAArch64AsmPrinter();
+    }
+
+    public function initializeAMDGPU(): void {
+        $this->lib->LLVMInitializeAMDGPUTargetInfo();
+        $this->lib->LLVMInitializeAMDGPUTarget();
+        $this->lib->LLVMInitializeAMDGPUTargetMC();
+        $this->lib->LLVMInitializeAMDGPUAsmParser();
+        $this->lib->LLVMInitializeAMDGPUAsmPrinter();
+    }
+
+    public function initializeARM(): void {
+        $this->lib->LLVMInitializeARMTargetInfo();
+        $this->lib->LLVMInitializeARMTarget();
+        $this->lib->LLVMInitializeARMTargetMC();
+        $this->lib->LLVMInitializeARMAsmParser();
+        $this->lib->LLVMInitializeARMAsmPrinter();
+    }
+
+    public function initializeHexagon(): void {
+        $this->lib->LLVMInitializeHexagonTargetInfo();
+        $this->lib->LLVMInitializeHexagonTarget();
+        $this->lib->LLVMInitializeHexagonTargetMC();
+        $this->lib->LLVMInitializeHexagonAsmParser();
+        $this->lib->LLVMInitializeHexagonAsmPrinter();
+    }
+
+    public function initializeLenai(): void {
+        $this->lib->LLVMInitializeLenaiTargetInfo();
+        $this->lib->LLVMInitializeLenaiTarget();
+        $this->lib->LLVMInitializeLenaiTargetMC();
+        $this->lib->LLVMInitializeLenaiAsmParser();
+        $this->lib->LLVMInitializeLenaiAsmPrinter();
+    }
+
+    public function initializeMips(): void {
+        $this->lib->LLVMInitializeMipsTargetInfo();
+        $this->lib->LLVMInitializeMipsTarget();
+        $this->lib->LLVMInitializeMipsTargetMC();
+        $this->lib->LLVMInitializeMipsAsmParser();
+        $this->lib->LLVMInitializeMipsAsmPrinter();
+    }
+
+    public function initializeMSP430(): void {
+        $this->lib->LLVMInitializeMSP430TargetInfo();
+        $this->lib->LLVMInitializeMSP430Target();
+        $this->lib->LLVMInitializeMSP430TargetMC();
+        $this->lib->LLVMInitializeMSP430AsmParser();
+        $this->lib->LLVMInitializeMSP430AsmPrinter();
+    }
+
+    public function initializeNVPTXT(): void {
+        $this->lib->LLVMInitializeNVPTXTTargetInfo();
+        $this->lib->LLVMInitializeNVPTXTTarget();
+        $this->lib->LLVMInitializeNVPTXTTargetMC();
+        $this->lib->LLVMInitializeNVPTXTAsmParser();
+        $this->lib->LLVMInitializeNVPTXTAsmPrinter();
+    }
+
+    public function initializePowerPC(): void {
+        $this->lib->LLVMInitializePowerPCTargetInfo();
+        $this->lib->LLVMInitializePowerPCTarget();
+        $this->lib->LLVMInitializePowerPCTargetMC();
+        $this->lib->LLVMInitializePowerPCAsmParser();
+        $this->lib->LLVMInitializePowerPCAsmPrinter();
+    }
+
+    public function initializeRISCV(): void {
+        $this->lib->LLVMInitializeRISCVTargetInfo();
+        $this->lib->LLVMInitializeRISCVTarget();
+        $this->lib->LLVMInitializeRISCVTargetMC();
+        $this->lib->LLVMInitializeRISCVAsmParser();
+        $this->lib->LLVMInitializeRISCVAsmPrinter();
+    }
+
+    public function initializeSparc(): void {
+        $this->lib->LLVMInitializeSparcTargetInfo();
+        $this->lib->LLVMInitializeSparcTarget();
+        $this->lib->LLVMInitializeSparcTargetMC();
+        $this->lib->LLVMInitializeSparcAsmParser();
+        $this->lib->LLVMInitializeSparcAsmPrinter();
+    }
+
+    public function initializeSystemZ(): void {
+        $this->lib->LLVMInitializeSystemZTargetInfo();
+        $this->lib->LLVMInitializeSystemZTarget();
+        $this->lib->LLVMInitializeSystemZTargetMC();
+        $this->lib->LLVMInitializeSystemZAsmParser();
+        $this->lib->LLVMInitializeSystemZAsmPrinter();
+    }
+
+    public function initializeX86(): void {
         $this->lib->LLVMInitializeX86TargetInfo();
         $this->lib->LLVMInitializeX86Target();
         $this->lib->LLVMInitializeX86TargetMC();
         $this->lib->LLVMInitializeX86AsmParser();
         $this->lib->LLVMInitializeX86AsmPrinter();
+    }
+
+    public function initializeXCore(): void {
+        $this->lib->LLVMInitializeXCoreTargetInfo();
+        $this->lib->LLVMInitializeXCoreTarget();
+        $this->lib->LLVMInitializeXCoreTargetMC();
+        $this->lib->LLVMInitializeXCoreAsmParser();
+        $this->lib->LLVMInitializeXCoreAsmPrinter();
     }
 
 }

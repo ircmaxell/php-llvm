@@ -34,6 +34,34 @@ interface LLVM {
 
     public function createPassManager(): PassManager;
 
-    public function initializeNativeTarget(): void;
+    public function initializeNative(): void;
+
+    public function initializeAArch64(): void;
+
+    public function initializeAMDGPU(): void;
+
+    public function initializeARM(): void;
+
+    public function initializeHexagon(): void;
+
+    public function initializeLenai(): void;
+
+    public function initializeMips(): void;
+
+    public function initializeMSP430(): void;
+
+    public function initializeNVPTXT(): void;
+
+    public function initializePowerPC(): void;
+
+    public function initializeRISCV(): void;
+
+    public function initializeSparc(): void;
+
+    public function initializeSystemZ(): void;
+
+    public function initializeX86(): void;
+
+    public function initializeXCore(): void;
 
 }
