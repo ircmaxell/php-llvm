@@ -27,6 +27,10 @@ class Builder implements CoreBuilder {
         $this->builder = $builder;
     }
 
+    public function __destruct() {
+        $this->dispose();
+    }
+
     public function position(CoreBasicBlock $block, CoreValue $instr): void {
         $this->llvm->lib->LLVMPositionBuilder($this->builder, $block->block, $instr->value);
     }

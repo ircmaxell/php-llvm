@@ -4,7 +4,7 @@ namespace PHPLLVM\Type;
 
 use PHPLLVM\Type;
 
-interface Pointer extends Element {
+interface Vector extends Element {
 
     public function getAddressSpace(): int;
     

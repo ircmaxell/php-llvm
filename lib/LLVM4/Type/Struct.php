@@ -24,7 +24,7 @@ class Struct extends Type implements CoreType\Struct {
                 $elements
             )
         );
-        $this->llvm->lib->LLVMStructTypeInContext(
+        $this->llvm->lib->LLVMStructSetBody(
             $this->type,
             $elementWrapper,
             count($elements),

@@ -19,6 +19,10 @@ class MemoryBuffer implements CoreMemoryBuffer {
         $this->buffer = $buffer;
     }
 
+    public function __destruct() {
+        $this->dispose();
+    }
+
     public function getStart(): string {
         return $this->llvm->lib->LLVMGetBufferStart($this->buffer)->toString();
     }

@@ -70,4 +70,14 @@ interface Module {
 
     public function link(Module $other): bool;
 
+    public function addGlobal(Type $type, string $name): Value;
+
+    public function addGlobalInAddressSpace(Type $type, string $name, int $addressSpace): Value;
+
+    public function getNamedGlobal(string $name): Value;
+
+    public function getFirstGlobal(): Value;
+
+    public function getLastGlobal(): Value;
+
 }

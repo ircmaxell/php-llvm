@@ -32,6 +32,10 @@ class Module implements CoreModule {
         $this->name = $name;
     }
 
+    public function __destruct() {
+        $this->dispose();
+    }
+
     public function dispose(): void {
         $this->llvm->lib->LLVMDisposeModule($this->module);
     }
@@ -207,5 +211,24 @@ class Module implements CoreModule {
         return $this->llvm->fromBool($this->llvm->lib->LLVMLinkModules2($this->module, $other->module));
     }
 
+    public function addGlobal(CoreType $type, string $name): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddGlobal($this->module, $type->type, $name));
+    }
+
+    public function addGlobalInAddressSpace(CoreType $type, string $name, int $addressSpace): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddGlobalInAddressSpace($this->module, $type->type, $name, $addressSpace));
+    }
+
+    public function getNamedGlobal(string $name): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetNamedGlobal($this->module, $name));
+    }
+
+    public function getFirstGlobal(): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetFirstGlobal($this->module));
+    }
+
+    public function getLastGlobal(): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetLastGlobal($this->module));
+    }
     
 }

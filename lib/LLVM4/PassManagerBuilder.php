@@ -27,6 +27,10 @@ class PassManagerBuilder implements CorePassManagerBuilder {
         $this->passManagerBuilder = $passManagerBuilder;
     }
 
+    public function __destruct() {
+        $this->dispose();
+    }
+
     public function dispose(): void {
         $this->llvm->lib->LLVMPassManagerBuilderDispose($this->passManagerBuilder);
     }

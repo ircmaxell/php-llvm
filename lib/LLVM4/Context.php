@@ -28,6 +28,10 @@ class Context implements CoreContext {
         $this->context = $context;
     }
 
+    public function __destruct() {
+        $this->dispose();
+    }
+
     public function dispose(): void {
         $this->llvm->lib->LLVMContextDispose($this->context);
     }
