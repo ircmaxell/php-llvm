@@ -274,7 +274,7 @@ class Builder implements CoreBuilder {
                 $indices
             )
         );
-        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildGEP($this->builder, $pointer->value, $valueWrapper, count($values), ''));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildGEP($this->builder, $pointer->value, $valueWrapper, count($indices), ''));
     }
 
     public function inBoundsGep(CoreValue $pointer, CoreValue ... $indices): CoreValue {
@@ -287,7 +287,7 @@ class Builder implements CoreBuilder {
                 $indices
             )
         );
-        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildInBoundsGEP($this->builder, $pointer->value, $valueWrapper, count($values), ''));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildInBoundsGEP($this->builder, $pointer->value, $valueWrapper, count($indices), ''));
     }
 
     public function structGep(CoreValue $struct, int $index): CoreValue {
