@@ -109,7 +109,8 @@ class Context implements CoreContext {
                 $returnType->type,
                 $paramWrapper,
                 count($parameters),
-                $this->llvm->toBool($isVarArgs)
+                // LLVM is stupid, and even though the type is declared LLVMBool, it's not, and is a normal "1/0" bool instead of the weird reversed...
+                $isVarArgs ? 1 : 0
             )
         );
     }
