@@ -84,7 +84,7 @@ class Builder implements CoreBuilder {
     }
 
     public function returnAggregate(CoreValue ...$values): CoreValue {
-        $valueWrapper = $llvm->lib->makeArray(
+        $valueWrapper = $this->llvm->lib->makeArray(
             LLVMValueRev_ptr::class,
             array_map(
                 function(Value $value) {
