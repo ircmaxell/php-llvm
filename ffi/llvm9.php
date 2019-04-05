@@ -3290,8 +3290,8 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMGetMDKindID($p0, $p1);
         return $result;
     }
-    public function LLVMGetEnumAttributeKindForName(?string $p0, ?size_t $p1): ?int {
-        $result = $this->ffi->LLVMGetEnumAttributeKindForName($p0, $p1 === null ? null : $p1->getData());
+    public function LLVMGetEnumAttributeKindForName(?string $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMGetEnumAttributeKindForName($p0, $p1);
         return $result;
     }
     public function LLVMGetLastEnumAttributeKind(): ?int {
@@ -3345,19 +3345,19 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMDisposeModule(?LLVMModuleRef $p0): void {
         $this->ffi->LLVMDisposeModule($p0 === null ? null : $p0->getData());
     }
-    public function LLVMGetModuleIdentifier(?LLVMModuleRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetModuleIdentifier(?LLVMModuleRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetModuleIdentifier($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMSetModuleIdentifier(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): void {
-        $this->ffi->LLVMSetModuleIdentifier($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMSetModuleIdentifier(?LLVMModuleRef $p0, ?string $p1, ?int $p2): void {
+        $this->ffi->LLVMSetModuleIdentifier($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMGetSourceFileName(?LLVMModuleRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetSourceFileName(?LLVMModuleRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetSourceFileName($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMSetSourceFileName(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): void {
-        $this->ffi->LLVMSetSourceFileName($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMSetSourceFileName(?LLVMModuleRef $p0, ?string $p1, ?int $p2): void {
+        $this->ffi->LLVMSetSourceFileName($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
     public function LLVMGetDataLayoutStr(?LLVMModuleRef $p0): ?int_ptr {
         $result = $this->ffi->LLVMGetDataLayoutStr($p0 === null ? null : $p0->getData());
@@ -3377,7 +3377,7 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMSetTarget(?LLVMModuleRef $p0, ?string $p1): void {
         $this->ffi->LLVMSetTarget($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMCopyModuleFlagsMetadata(?LLVMModuleRef $p0, ?size_t_ptr $p1): ?LLVMModuleFlagEntry_ptr {
+    public function LLVMCopyModuleFlagsMetadata(?LLVMModuleRef $p0, ?int_ptr $p1): ?LLVMModuleFlagEntry_ptr {
         $result = $this->ffi->LLVMCopyModuleFlagsMetadata($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new LLVMModuleFlagEntry_ptr($result);
     }
@@ -3388,7 +3388,7 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMModuleFlagEntriesGetFlagBehavior($p0 === null ? null : $p0->getData(), $p1);
         return $result;
     }
-    public function LLVMModuleFlagEntriesGetKey(?LLVMModuleFlagEntry_ptr $p0, ?int $p1, ?size_t_ptr $p2): ?int_ptr {
+    public function LLVMModuleFlagEntriesGetKey(?LLVMModuleFlagEntry_ptr $p0, ?int $p1, ?int_ptr $p2): ?int_ptr {
         $result = $this->ffi->LLVMModuleFlagEntriesGetKey($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
         return $result === null ? null : new int_ptr($result);
     }
@@ -3396,12 +3396,12 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMModuleFlagEntriesGetMetadata($p0 === null ? null : $p0->getData(), $p1);
         return $result === null ? null : new LLVMMetadataRef($result);
     }
-    public function LLVMGetModuleFlag(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): ?LLVMMetadataRef {
-        $result = $this->ffi->LLVMGetModuleFlag($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMGetModuleFlag(?LLVMModuleRef $p0, ?string $p1, ?int $p2): ?LLVMMetadataRef {
+        $result = $this->ffi->LLVMGetModuleFlag($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMMetadataRef($result);
     }
-    public function LLVMAddModuleFlag(?LLVMModuleRef $p0, ?int $p1, ?string $p2, ?size_t $p3, ?LLVMMetadataRef $p4): void {
-        $this->ffi->LLVMAddModuleFlag($p0 === null ? null : $p0->getData(), $p1, $p2, $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
+    public function LLVMAddModuleFlag(?LLVMModuleRef $p0, ?int $p1, ?string $p2, ?int $p3, ?LLVMMetadataRef $p4): void {
+        $this->ffi->LLVMAddModuleFlag($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4 === null ? null : $p4->getData());
     }
     public function LLVMDumpModule(?LLVMModuleRef $p0): void {
         $this->ffi->LLVMDumpModule($p0 === null ? null : $p0->getData());
@@ -3414,18 +3414,18 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMPrintModuleToString($p0 === null ? null : $p0->getData());
         return $result === null ? null : new string_($result);
     }
-    public function LLVMGetModuleInlineAsm(?LLVMModuleRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetModuleInlineAsm(?LLVMModuleRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetModuleInlineAsm($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMSetModuleInlineAsm2(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): void {
-        $this->ffi->LLVMSetModuleInlineAsm2($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMSetModuleInlineAsm2(?LLVMModuleRef $p0, ?string $p1, ?int $p2): void {
+        $this->ffi->LLVMSetModuleInlineAsm2($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMAppendModuleInlineAsm(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): void {
-        $this->ffi->LLVMAppendModuleInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMAppendModuleInlineAsm(?LLVMModuleRef $p0, ?string $p1, ?int $p2): void {
+        $this->ffi->LLVMAppendModuleInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
-    public function LLVMGetInlineAsm(?LLVMTypeRef $p0, ?string $p1, ?size_t $p2, ?string $p3, ?size_t $p4, ?int $p5, ?int $p6, ?int $p7): ?LLVMValueRef {
-        $result = $this->ffi->LLVMGetInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3, $p4 === null ? null : $p4->getData(), $p5, $p6, $p7);
+    public function LLVMGetInlineAsm(?LLVMTypeRef $p0, ?string $p1, ?int $p2, ?string $p3, ?int $p4, ?int $p5, ?int $p6, ?int $p7): ?LLVMValueRef {
+        $result = $this->ffi->LLVMGetInlineAsm($p0 === null ? null : $p0->getData(), $p1, $p2, $p3, $p4, $p5, $p6, $p7);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMGetModuleContext(?LLVMModuleRef $p0): ?LLVMContextRef {
@@ -3452,15 +3452,15 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMGetPreviousNamedMetadata($p0 === null ? null : $p0->getData());
         return $result === null ? null : new LLVMNamedMDNodeRef($result);
     }
-    public function LLVMGetNamedMetadata(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): ?LLVMNamedMDNodeRef {
-        $result = $this->ffi->LLVMGetNamedMetadata($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMGetNamedMetadata(?LLVMModuleRef $p0, ?string $p1, ?int $p2): ?LLVMNamedMDNodeRef {
+        $result = $this->ffi->LLVMGetNamedMetadata($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMNamedMDNodeRef($result);
     }
-    public function LLVMGetOrInsertNamedMetadata(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): ?LLVMNamedMDNodeRef {
-        $result = $this->ffi->LLVMGetOrInsertNamedMetadata($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMGetOrInsertNamedMetadata(?LLVMModuleRef $p0, ?string $p1, ?int $p2): ?LLVMNamedMDNodeRef {
+        $result = $this->ffi->LLVMGetOrInsertNamedMetadata($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMNamedMDNodeRef($result);
     }
-    public function LLVMGetNamedMetadataName(?LLVMNamedMDNodeRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetNamedMetadataName(?LLVMNamedMDNodeRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetNamedMetadataName($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
@@ -3780,12 +3780,12 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMGetValueKind($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMGetValueName2(?LLVMValueRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetValueName2(?LLVMValueRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetValueName2($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMSetValueName2(?LLVMValueRef $p0, ?string $p1, ?size_t $p2): void {
-        $this->ffi->LLVMSetValueName2($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMSetValueName2(?LLVMValueRef $p0, ?string $p1, ?int $p2): void {
+        $this->ffi->LLVMSetValueName2($p0 === null ? null : $p0->getData(), $p1, $p2);
     }
     public function LLVMDumpValue(?LLVMValueRef $p0): void {
         $this->ffi->LLVMDumpValue($p0 === null ? null : $p0->getData());
@@ -4243,7 +4243,7 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMIsConstantString($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMGetAsString(?LLVMValueRef $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMGetAsString(?LLVMValueRef $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMGetAsString($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
@@ -4609,7 +4609,7 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMGlobalClearMetadata(?LLVMValueRef $p0): void {
         $this->ffi->LLVMGlobalClearMetadata($p0 === null ? null : $p0->getData());
     }
-    public function LLVMGlobalCopyAllMetadata(?LLVMValueRef $p0, ?size_t_ptr $p1): ?LLVMValueMetadataEntry_ptr {
+    public function LLVMGlobalCopyAllMetadata(?LLVMValueRef $p0, ?int_ptr $p1): ?LLVMValueMetadataEntry_ptr {
         $result = $this->ffi->LLVMGlobalCopyAllMetadata($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new LLVMValueMetadataEntry_ptr($result);
     }
@@ -4694,8 +4694,8 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMAddAlias($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMGetNamedGlobalAlias(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMGetNamedGlobalAlias($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMGetNamedGlobalAlias(?LLVMModuleRef $p0, ?string $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMGetNamedGlobalAlias($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMGetFirstGlobalAlias(?LLVMModuleRef $p0): ?LLVMValueRef {
@@ -4735,28 +4735,28 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMSetPersonalityFn(?LLVMValueRef $p0, ?LLVMValueRef $p1): void {
         $this->ffi->LLVMSetPersonalityFn($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
     }
-    public function LLVMLookupIntrinsicID(?string $p0, ?size_t $p1): ?int {
-        $result = $this->ffi->LLVMLookupIntrinsicID($p0, $p1 === null ? null : $p1->getData());
+    public function LLVMLookupIntrinsicID(?string $p0, ?int $p1): ?int {
+        $result = $this->ffi->LLVMLookupIntrinsicID($p0, $p1);
         return $result;
     }
     public function LLVMGetIntrinsicID(?LLVMValueRef $p0): ?int {
         $result = $this->ffi->LLVMGetIntrinsicID($p0 === null ? null : $p0->getData());
         return $result;
     }
-    public function LLVMGetIntrinsicDeclaration(?LLVMModuleRef $p0, ?int $p1, ?LLVMTypeRef_ptr $p2, ?size_t $p3): ?LLVMValueRef {
-        $result = $this->ffi->LLVMGetIntrinsicDeclaration($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+    public function LLVMGetIntrinsicDeclaration(?LLVMModuleRef $p0, ?int $p1, ?LLVMTypeRef_ptr $p2, ?int $p3): ?LLVMValueRef {
+        $result = $this->ffi->LLVMGetIntrinsicDeclaration($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMIntrinsicGetType(?LLVMContextRef $p0, ?int $p1, ?LLVMTypeRef_ptr $p2, ?size_t $p3): ?LLVMTypeRef {
-        $result = $this->ffi->LLVMIntrinsicGetType($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+    public function LLVMIntrinsicGetType(?LLVMContextRef $p0, ?int $p1, ?LLVMTypeRef_ptr $p2, ?int $p3): ?LLVMTypeRef {
+        $result = $this->ffi->LLVMIntrinsicGetType($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3);
         return $result === null ? null : new LLVMTypeRef($result);
     }
-    public function LLVMIntrinsicGetName(?int $p0, ?size_t_ptr $p1): ?int_ptr {
+    public function LLVMIntrinsicGetName(?int $p0, ?int_ptr $p1): ?int_ptr {
         $result = $this->ffi->LLVMIntrinsicGetName($p0, $p1 === null ? null : $p1->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMIntrinsicCopyOverloadedName(?int $p0, ?LLVMTypeRef_ptr $p1, ?size_t $p2, ?size_t_ptr $p3): ?int_ptr {
-        $result = $this->ffi->LLVMIntrinsicCopyOverloadedName($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
+    public function LLVMIntrinsicCopyOverloadedName(?int $p0, ?LLVMTypeRef_ptr $p1, ?int $p2, ?int_ptr $p3): ?int_ptr {
+        $result = $this->ffi->LLVMIntrinsicCopyOverloadedName($p0, $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
         return $result === null ? null : new int_ptr($result);
     }
     public function LLVMIntrinsicIsOverloaded(?int $p0): ?int {
@@ -4838,12 +4838,12 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMSetParamAlignment(?LLVMValueRef $p0, ?int $p1): void {
         $this->ffi->LLVMSetParamAlignment($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMAddGlobalIFunc(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2, ?LLVMTypeRef $p3, ?int $p4, ?LLVMValueRef $p5): ?LLVMValueRef {
-        $result = $this->ffi->LLVMAddGlobalIFunc($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4, $p5 === null ? null : $p5->getData());
+    public function LLVMAddGlobalIFunc(?LLVMModuleRef $p0, ?string $p1, ?int $p2, ?LLVMTypeRef $p3, ?int $p4, ?LLVMValueRef $p5): ?LLVMValueRef {
+        $result = $this->ffi->LLVMAddGlobalIFunc($p0 === null ? null : $p0->getData(), $p1, $p2, $p3 === null ? null : $p3->getData(), $p4, $p5 === null ? null : $p5->getData());
         return $result === null ? null : new LLVMValueRef($result);
     }
-    public function LLVMGetNamedGlobalIFunc(?LLVMModuleRef $p0, ?string $p1, ?size_t $p2): ?LLVMValueRef {
-        $result = $this->ffi->LLVMGetNamedGlobalIFunc($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
+    public function LLVMGetNamedGlobalIFunc(?LLVMModuleRef $p0, ?string $p1, ?int $p2): ?LLVMValueRef {
+        $result = $this->ffi->LLVMGetNamedGlobalIFunc($p0 === null ? null : $p0->getData(), $p1, $p2);
         return $result === null ? null : new LLVMValueRef($result);
     }
     public function LLVMGetFirstGlobalIFunc(?LLVMModuleRef $p0): ?LLVMValueRef {
@@ -5012,7 +5012,7 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMSetMetadata(?LLVMValueRef $p0, ?int $p1, ?LLVMValueRef $p2): void {
         $this->ffi->LLVMSetMetadata($p0 === null ? null : $p0->getData(), $p1, $p2 === null ? null : $p2->getData());
     }
-    public function LLVMInstructionGetAllMetadataOtherThanDebugLoc(?LLVMValueRef $p0, ?size_t_ptr $p1): ?LLVMValueMetadataEntry_ptr {
+    public function LLVMInstructionGetAllMetadataOtherThanDebugLoc(?LLVMValueRef $p0, ?int_ptr $p1): ?LLVMValueMetadataEntry_ptr {
         $result = $this->ffi->LLVMInstructionGetAllMetadataOtherThanDebugLoc($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result === null ? null : new LLVMValueMetadataEntry_ptr($result);
     }
@@ -5750,21 +5750,21 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMCreateMemoryBufferWithSTDIN($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
         return $result;
     }
-    public function LLVMCreateMemoryBufferWithMemoryRange(?string $p0, ?size_t $p1, ?string $p2, ?int $p3): ?LLVMMemoryBufferRef {
-        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRange($p0, $p1 === null ? null : $p1->getData(), $p2, $p3);
+    public function LLVMCreateMemoryBufferWithMemoryRange(?string $p0, ?int $p1, ?string $p2, ?int $p3): ?LLVMMemoryBufferRef {
+        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRange($p0, $p1, $p2, $p3);
         return $result === null ? null : new LLVMMemoryBufferRef($result);
     }
-    public function LLVMCreateMemoryBufferWithMemoryRangeCopy(?string $p0, ?size_t $p1, ?string $p2): ?LLVMMemoryBufferRef {
-        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRangeCopy($p0, $p1 === null ? null : $p1->getData(), $p2);
+    public function LLVMCreateMemoryBufferWithMemoryRangeCopy(?string $p0, ?int $p1, ?string $p2): ?LLVMMemoryBufferRef {
+        $result = $this->ffi->LLVMCreateMemoryBufferWithMemoryRangeCopy($p0, $p1, $p2);
         return $result === null ? null : new LLVMMemoryBufferRef($result);
     }
     public function LLVMGetBufferStart(?LLVMMemoryBufferRef $p0): ?int_ptr {
         $result = $this->ffi->LLVMGetBufferStart($p0 === null ? null : $p0->getData());
         return $result === null ? null : new int_ptr($result);
     }
-    public function LLVMGetBufferSize(?LLVMMemoryBufferRef $p0): ?size_t {
+    public function LLVMGetBufferSize(?LLVMMemoryBufferRef $p0): ?int {
         $result = $this->ffi->LLVMGetBufferSize($p0 === null ? null : $p0->getData());
-        return $result === null ? null : new size_t($result);
+        return $result;
     }
     public function LLVMDisposeMemoryBuffer(?LLVMMemoryBufferRef $p0): void {
         $this->ffi->LLVMDisposeMemoryBuffer($p0 === null ? null : $p0->getData());
@@ -6348,11 +6348,11 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->LLVMCreateJITCompilerForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3 === null ? null : $p3->getData());
         return $result;
     }
-    public function LLVMInitializeMCJITCompilerOptions(?LLVMMCJITCompilerOptions_ptr $p0, ?size_t $p1): void {
-        $this->ffi->LLVMInitializeMCJITCompilerOptions($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
+    public function LLVMInitializeMCJITCompilerOptions(?LLVMMCJITCompilerOptions_ptr $p0, ?int $p1): void {
+        $this->ffi->LLVMInitializeMCJITCompilerOptions($p0 === null ? null : $p0->getData(), $p1);
     }
-    public function LLVMCreateMCJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?LLVMMCJITCompilerOptions_ptr $p2, ?size_t $p3, ?string_ptr $p4): ?int {
-        $result = $this->ffi->LLVMCreateMCJITCompilerForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
+    public function LLVMCreateMCJITCompilerForModule(?LLVMExecutionEngineRef_ptr $p0, ?LLVMModuleRef $p1, ?LLVMMCJITCompilerOptions_ptr $p2, ?int $p3, ?string_ptr $p4): ?int {
+        $result = $this->ffi->LLVMCreateMCJITCompilerForModule($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3, $p4 === null ? null : $p4->getData());
         return $result;
     }
     public function LLVMDisposeExecutionEngine(?LLVMExecutionEngineRef $p0): void {
@@ -6521,9 +6521,9 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     public function LLVMDisasmDispose(?LLVMDisasmContextRef $p0): void {
         $this->ffi->LLVMDisasmDispose($p0 === null ? null : $p0->getData());
     }
-    public function LLVMDisasmInstruction(?LLVMDisasmContextRef $p0, ?int_ptr $p1, ?int $p2, ?int $p3, ?string $p4, ?size_t $p5): ?size_t {
-        $result = $this->ffi->LLVMDisasmInstruction($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3, $p4, $p5 === null ? null : $p5->getData());
-        return $result === null ? null : new size_t($result);
+    public function LLVMDisasmInstruction(?LLVMDisasmContextRef $p0, ?int_ptr $p1, ?int $p2, ?int $p3, ?string $p4, ?int $p5): ?int {
+        $result = $this->ffi->LLVMDisasmInstruction($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2, $p3, $p4, $p5);
+        return $result;
     }
     public function LLVMParseIRInContext(?LLVMContextRef $p0, ?LLVMMemoryBufferRef $p1, ?LLVMModuleRef_ptr $p2, ?string_ptr $p3): ?int {
         $result = $this->ffi->LLVMParseIRInContext($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData());
