@@ -26,7 +26,7 @@ interface Module {
 
     public function dump(): void;
 
-    public function printToFile(string $filename, string &$errorMessage): bool;
+    public function printToFile(string $filename): void;
 
     public function printToString(): string;
 

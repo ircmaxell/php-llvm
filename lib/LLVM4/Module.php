@@ -69,13 +69,13 @@ class Module implements CoreModule {
         $this->llvm->lib->LLVMDumpModule($this->module);
     }
 
-    public function printToFile(string $filename, string &$errorMessage): bool {
+    public function printToFile(string $filename): void {
         $error = new string_ptr(FFI::addr(FFI::new('char*')));
-        $bool = $this->llvm->lib->LLVMPrintModuleToFile($this->module, $filename, $error);
-
-        $errorMessage = $error->deref(0)->toString();
-        $this->llvm->disposeMessage($error->deref(0));
-        return $this->llvm->fromBool($bool);
+        if (!$this->llvm->fromBool($this->llvm->lib->LLVMPrintModuleToFile($this->module, $filename, $error))) {
+            $errorMessage = $error->deref(0)->toString();
+            $this->llvm->disposeMessage($error->deref(0));
+            throw new \RuntimeException("Printing to file failed with message: $errorMessage");
+        }
     }
 
     public function printToString(): string {
