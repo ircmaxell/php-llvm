@@ -85,7 +85,7 @@ class Builder implements CoreBuilder {
 
     public function returnAggregate(CoreValue ...$values): CoreValue {
         $valueWrapper = $this->llvm->lib->makeArray(
-            LLVMValueRev_ptr::class,
+            LLVMValueRef_ptr::class,
             array_map(
                 function(Value $value) {
                     return $value->value;
@@ -266,7 +266,7 @@ class Builder implements CoreBuilder {
 
     public function gep(CoreValue $pointer, CoreValue ... $indices): CoreValue {
         $valueWrapper = $this->llvm->lib->makeArray(
-            LLVMValueRev_ptr::class,
+            LLVMValueRef_ptr::class,
             array_map(
                 function(Value $value) {
                     return $value->value;
@@ -279,7 +279,7 @@ class Builder implements CoreBuilder {
 
     public function inBoundsGep(CoreValue $pointer, CoreValue ... $indices): CoreValue {
         $valueWrapper = $this->llvm->lib->makeArray(
-            LLVMValueRev_ptr::class,
+            LLVMValueRef_ptr::class,
             array_map(
                 function(Value $value) {
                     return $value->value;
@@ -472,7 +472,7 @@ class Builder implements CoreBuilder {
 
     public function call(CoreValue\Function_ $function, CoreValue ... $args): CoreValue {
         $valueWrapper = $this->llvm->lib->makeArray(
-            LLVMValueRev_ptr::class,
+            LLVMValueRef_ptr::class,
             array_map(
                 function(Value $value) {
                     return $value->value;
