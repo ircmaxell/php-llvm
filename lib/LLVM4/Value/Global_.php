@@ -11,7 +11,7 @@ use PHPLLVM\LLVM4\Value;
 
 class Global_ extends Value implements CoreValue\Global_ {
 
-    public function getNext(): ?Value {
+    public function getNext(): ?CoreValue {
         $value = $this->llvm->lib->LLVMGetNextGlobal($this->value);
         if ($value === null) {
             return null;
@@ -19,7 +19,7 @@ class Global_ extends Value implements CoreValue\Global_ {
         return Value::value($this->llvm, $this->context, $value);
     }
 
-    public function getPrevious(): ?Value {
+    public function getPrevious(): ?CoreValue {
         $value = $this->llvm->lib->LLVMGetPreviousGlobal($this->value);
         if ($value === null) {
             return null;
@@ -31,11 +31,11 @@ class Global_ extends Value implements CoreValue\Global_ {
         $this->llvm->lib->LLVMDeleteGlobal($this->value);
     }
 
-    public function getInitializer(): Value {
+    public function getInitializer(): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetInitializer($this->value));
     }
 
-    public function setInitializer(Value $value): void {
+    public function setInitializer(CoreValue $value): void {
         $this->llvm->lib->LLVMSetInitializer($this->value, $value->value);
     }
 

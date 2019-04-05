@@ -14,7 +14,7 @@ class Array_ extends Type implements CoreType\Array_ {
         return Type::type($this->llvm, $this->context, $this->llvm->lib->LLVMGetElementType($this->type));
     }
 
-    public function getArrayLength(): int {
+    public function getLength(): int {
         return $this->llvm->lib->LLVMGetArrayLength($this->type);
     }
 
