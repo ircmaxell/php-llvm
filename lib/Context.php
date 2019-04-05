@@ -56,4 +56,6 @@ interface Context {
 
     public function parseIR(MemoryBuffer $buffer, string &$message): Module;
 
+    public function getEnumAttributeKindForName(string $kind): int;
+
 }

@@ -147,14 +147,8 @@ char * LLVMGetDiagInfoDescription(LLVMDiagnosticInfoRef DI);
 LLVMDiagnosticSeverity LLVMGetDiagInfoSeverity(LLVMDiagnosticInfoRef DI);
 unsigned LLVMGetMDKindIDInContext(LLVMContextRef C, char *Name, unsigned SLen);
 unsigned LLVMGetMDKindID(char *Name, unsigned SLen);
-unsigned LLVMGetEnumAttributeKindForName(char *Name, size_t SLen);
 unsigned LLVMGetLastEnumAttributeKind(void);
-unsigned LLVMGetEnumAttributeKind(LLVMAttributeRef A);
-uint64_t LLVMGetEnumAttributeValue(LLVMAttributeRef A);
-char * LLVMGetStringAttributeKind(LLVMAttributeRef A, unsigned *Length);
-char * LLVMGetStringAttributeValue(LLVMAttributeRef A, unsigned *Length);
-LLVMBool LLVMIsEnumAttribute(LLVMAttributeRef A);
-LLVMBool LLVMIsStringAttribute(LLVMAttributeRef A);
+
 
 unsigned LLVMGetNamedMetadataNumOperands(LLVMModuleRef M, char *Name);
 void LLVMGetNamedMetadataOperands(LLVMModuleRef M, char *Name, LLVMValueRef *Dest);
@@ -182,9 +176,6 @@ LLVMValueRef LLVMConstNamedStruct(LLVMTypeRef StructTy, LLVMValueRef *ConstantVa
 LLVMValueRef LLVMGetElementAsConstant(LLVMValueRef C, unsigned idx);
 LLVMValueRef LLVMConstVector(LLVMValueRef *ScalarConstantVals, unsigned Size);
 LLVMOpcode LLVMGetConstOpcode(LLVMValueRef ConstantVal);
-LLVMValueRef LLVMAlignOf(LLVMTypeRef Ty);
-LLVMValueRef LLVMSizeOf(LLVMTypeRef Ty);
-
 
 LLVMValueRef LLVMConstNeg(LLVMValueRef ConstantVal);
 LLVMValueRef LLVMConstNSWNeg(LLVMValueRef ConstantVal);
@@ -277,22 +268,7 @@ LLVMBool LLVMHasUnnamedAddr(LLVMValueRef Global);
 void LLVMSetUnnamedAddr(LLVMValueRef Global, LLVMBool HasUnnamedAddr);
 unsigned LLVMGetAlignment(LLVMValueRef V);
 void LLVMSetAlignment(LLVMValueRef V, unsigned Bytes);
-LLVMValueRef LLVMAddGlobal(LLVMModuleRef M, LLVMTypeRef Ty, char *Name);
-LLVMValueRef LLVMAddGlobalInAddressSpace(LLVMModuleRef M, LLVMTypeRef Ty, char *Name, unsigned AddressSpace);
-LLVMValueRef LLVMGetNamedGlobal(LLVMModuleRef M, char *Name);
-LLVMValueRef LLVMGetFirstGlobal(LLVMModuleRef M);
-LLVMValueRef LLVMGetLastGlobal(LLVMModuleRef M);
-LLVMValueRef LLVMGetNextGlobal(LLVMValueRef GlobalVar);
-LLVMValueRef LLVMGetPreviousGlobal(LLVMValueRef GlobalVar);
-void LLVMDeleteGlobal(LLVMValueRef GlobalVar);
-LLVMValueRef LLVMGetInitializer(LLVMValueRef GlobalVar);
-void LLVMSetInitializer(LLVMValueRef GlobalVar, LLVMValueRef ConstantVal);
-LLVMBool LLVMIsThreadLocal(LLVMValueRef GlobalVar);
-void LLVMSetThreadLocal(LLVMValueRef GlobalVar, LLVMBool IsThreadLocal);
-LLVMBool LLVMIsGlobalConstant(LLVMValueRef GlobalVar);
-void LLVMSetGlobalConstant(LLVMValueRef GlobalVar, LLVMBool IsConstant);
-LLVMThreadLocalMode LLVMGetThreadLocalMode(LLVMValueRef GlobalVar);
-void LLVMSetThreadLocalMode(LLVMValueRef GlobalVar, LLVMThreadLocalMode Mode);
+
 LLVMBool LLVMIsExternallyInitialized(LLVMValueRef GlobalVar);
 void LLVMSetExternallyInitialized(LLVMValueRef GlobalVar, LLVMBool IsExtInit);
 

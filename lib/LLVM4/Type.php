@@ -132,4 +132,13 @@ class Type implements CoreType {
     public function constReal(float $n): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMConstReal($this->type, $n));
     }
+
+    public function sizeOf(): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMSizeOf($this->type));
+    }
+
+    public function alignOf(): CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAlignOf($this->type));
+    }
+
 }

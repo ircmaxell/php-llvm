@@ -182,5 +182,9 @@ class Context implements CoreContext {
         return new Module($this->llvm, $this, $module);
     }
 
+    public function getEnumAttributeKindForName(string $kind): int {
+        return $this->llvm->lib->LLVMGetEnumAttributeKindForName($kind, strlen($kind));
+    }
+
 
 }

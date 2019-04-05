@@ -45,4 +45,8 @@ interface Type {
 
     public function constReal(float $n): Value;
 
+    public function sizeOf(): Value;
+
+    public function alignOf(): Value;
+
 }
