@@ -77,6 +77,7 @@ class Intrinsic implements CoreIntrinsic {
     }
 
     public function memcpy(CoreValue $dest, CoreValue $src, CoreValue $size, CoreValue $isVolatile): void {
+        $int1 = $this->context->int1Type();
         $is32Bit = $size->typeOf()->getWidth() === 32;
         $funcName = $is32Bit ? 'llvm.memcpy.p0i8.p0i8.i32' : 'llvm.memcpy.p0i8.p0i8.i64';
         $func = $this->module->getNamedFunction($funcName);
@@ -90,7 +91,7 @@ class Intrinsic implements CoreIntrinsic {
                     $this->context->int8Type()->pointerType(0),
                     $is32Bit ? $this->context->int32Type() : $this->context->int64Type(),
                     $this->context->int32Type(),
-                    $this->context->int1Type()
+                    $int1
                 )
             );
         }
@@ -100,11 +101,12 @@ class Intrinsic implements CoreIntrinsic {
             $src,
             $size,
             $this->context->int32Type()->constInt(0, false), // alignment
-            $isVolatile
+            $int1->constInt($isVolatile ? 1 : 0, false)
         );
     }
 
     public function memmove(CoreValue $dest, CoreValue $src, CoreValue $size, CoreValue $isVolatile): void {
+        $int1 = $this->context->int1Type();
         $is32Bit = $size->typeOf()->getWidth() === 32;
         $funcName = $is32Bit ? 'llvm.memmove.p0i8.p0i8.i32' : 'llvm.memmove.p0i8.p0i8.i64';
         $func = $this->module->getNamedFunction($funcName);
@@ -118,7 +120,7 @@ class Intrinsic implements CoreIntrinsic {
                     $this->context->int8Type()->pointerType(0),
                     $is32Bit ? $this->context->int32Type() : $this->context->int64Type(),
                     $this->context->int32Type(),
-                    $this->context->int1Type()
+                    $int1
                 )
             );
         }
@@ -128,11 +130,12 @@ class Intrinsic implements CoreIntrinsic {
             $src,
             $size,
             $this->context->int32Type()->constInt(0, false), // alignment
-            $isVolatile
+            $int1->constInt($isVolatile ? 1 : 0, false)
         );
     }
 
-    public function memset(CoreValue $dest, CoreValue $src, CoreValue $size, CoreValue $isVolatile): void {
+    public function memset(CoreValue $dest, CoreValue $src, CoreValue $size, bool $isVolatile): void {
+        $int1 = $this->context->int1Type();
         $is32Bit = $size->typeOf()->getWidth() === 32;
         $funcName = $is32Bit ? 'llvm.memset.p0i8.i32' : 'llvm.memset.p0i8.i64';
         $func = $this->module->getNamedFunction($funcName);
@@ -146,7 +149,7 @@ class Intrinsic implements CoreIntrinsic {
                     $this->context->int8Type(),
                     $is32Bit ? $this->context->int32Type() : $this->context->int64Type(),
                     $this->context->int32Type(),
-                    $this->context->int1Type()
+                    $int1
                 )
             );
         }
@@ -156,7 +159,7 @@ class Intrinsic implements CoreIntrinsic {
             $src,
             $size,
             $this->context->int32Type()->constInt(0, false), // alignment
-            $isVolatile
+            $int1->constInt($isVolatile ? 1 : 0, false)
         );
     }
 

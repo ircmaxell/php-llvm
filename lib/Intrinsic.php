@@ -10,11 +10,11 @@ interface Intrinsic {
 
     public function va_copy(Value $dest, Value $src): void;
 
-    public function memcpy(Value $dest, Value $src, Value $size, Value $isVolatile): void;
+    public function memcpy(Value $dest, Value $src, Value $size, bool $isVolatile): void;
 
-    public function memmove(Value $dest, Value $src, Value $size, Value $isVolatile): void;
+    public function memmove(Value $dest, Value $src, Value $size, bool $isVolatile): void;
 
-    public function memset(Value $dest, Value $src, Value $size, Value $isVolatile): void;
+    public function memset(Value $dest, Value $src, Value $size, bool $isVolatile): void;
 
     public function bitreverse(Value $value): Value;
 
