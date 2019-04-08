@@ -76,7 +76,7 @@ class Intrinsic implements CoreIntrinsic {
         $this->builder->call($func, $arglist);
     }
 
-    public function memcpy(CoreValue $dest, CoreValue $src, CoreValue $size, CoreValue $isVolatile): void {
+    public function memcpy(CoreValue $dest, CoreValue $src, CoreValue $size, bool $isVolatile): void {
         $int1 = $this->context->int1Type();
         $is32Bit = $size->typeOf()->getWidth() === 32;
         $funcName = $is32Bit ? 'llvm.memcpy.p0i8.p0i8.i32' : 'llvm.memcpy.p0i8.p0i8.i64';
@@ -105,7 +105,7 @@ class Intrinsic implements CoreIntrinsic {
         );
     }
 
-    public function memmove(CoreValue $dest, CoreValue $src, CoreValue $size, CoreValue $isVolatile): void {
+    public function memmove(CoreValue $dest, CoreValue $src, CoreValue $size, bool $isVolatile): void {
         $int1 = $this->context->int1Type();
         $is32Bit = $size->typeOf()->getWidth() === 32;
         $funcName = $is32Bit ? 'llvm.memmove.p0i8.p0i8.i32' : 'llvm.memmove.p0i8.p0i8.i64';
