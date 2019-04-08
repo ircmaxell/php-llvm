@@ -18,9 +18,12 @@ $builder->positionAtEnd($main);
 $a = $add->getParam(0);
 $b = $add->getParam(1);
 
+$int = $module->intrinsic($builder);
+$c = $int->cttz($a, false);
+
 $ret = $builder->add($a, $b);
 
-$builder->returnValue($ret);
+$builder->returnValue($c);
 
 $module->verify($module::VERIFY_ACTION_THROW, $message);
 
@@ -43,3 +46,4 @@ FFI::memcpy(
 );
 
 var_dump($cb(1, 2));
+

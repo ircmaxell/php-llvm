@@ -3,7 +3,9 @@
 namespace PHPLLVM\LLVM4;
 
 use PHPLLVM\LLVM as CoreLLVM;
+use PHPLLVM\Builder as CoreBuilder;
 use PHPLLVM\Context as CoreContext;
+use PHPLLVM\Intrinsic as CoreIntrinsic;
 use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;
@@ -23,6 +25,7 @@ class Module implements CoreModule {
     public LLVM $llvm;
     public Context $context;
     public LLVMModuleRef $module;
+    private ?Intrinsic $intrinsic = null;
     public string $name;
 
     public function __construct(LLVM $llvm, Context $context, LLVMModuleRef $module, string $name) {
@@ -86,7 +89,7 @@ class Module implements CoreModule {
         $this->llvm->lib->LLVMSetModuleInlineAsm($this->module, $asm);
     }
 
-    public function getTypeByName(string $name): CoreType {
+    public function getTypeByName(string $name): ?CoreType {
         return new Type($this->llvm, $this->context, $this->llvm->lib->LLVMGetTypeByName($this->module, $name));
     }
 
@@ -94,7 +97,7 @@ class Module implements CoreModule {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddFunction($this->module, $name, $func->type));
     }
 
-    public function getNamedFunction(string $name): CoreValue {
+    public function getNamedFunction(string $name): ?CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetNamedFunction($this->module, $name));
     }
 
@@ -215,7 +218,7 @@ class Module implements CoreModule {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAddGlobalInAddressSpace($this->module, $type->type, $name, $addressSpace));
     }
 
-    public function getNamedGlobal(string $name): CoreValue {
+    public function getNamedGlobal(string $name): ?CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetNamedGlobal($this->module, $name));
     }
 
@@ -225,6 +228,10 @@ class Module implements CoreModule {
 
     public function getLastGlobal(): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetLastGlobal($this->module));
+    }
+
+    public function intrinsic(CoreBuilder $builder): CoreIntrinsic {
+        return new Intrinsic($this->llvm, $this->context, $this, $builder);
     }
     
 }

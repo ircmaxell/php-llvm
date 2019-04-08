@@ -22,46 +22,47 @@ class Type implements CoreType {
     public LLVM $llvm;
     public Context $context;
     public LLVMTypeRef $type;
+    public int $kind;
 
-    private function __construct(LLVM $llvm, Context $context, LLVMTypeRef $type) {
+    private function __construct(LLVM $llvm, Context $context, LLVMTypeRef $type, int $kind) {
         $this->llvm = $llvm;
         $this->context = $context;
         $this->type = $type;
+        $this->kind = $kind;
     }
 
     public static function type(LLVM $llvm, Context $context, LLVMTypeRef $type): CoreType {
         $kind = $llvm->lib->LLVMGetTypeKind($type);
         switch ($kind) {
             case lib::LLVMFunctionTypeKind:
-                return new Type\Function_($llvm, $context, $type);
+                return new Type\Function_($llvm, $context, $type, $kind);
             case lib::LLVMStructTypeKind:
-                return new Type\Struct($llvm, $context, $type);
+                return new Type\Struct($llvm, $context, $type, $kind);
             case lib::LLVMArrayTypeKind:
-                return new Type\Array_($llvm, $context, $type);
+                return new Type\Array_($llvm, $context, $type, $kind);
             case lib::LLVMPointerTypeKind:
-                return new Type\Pointer($llvm, $context, $type);
+                return new Type\Pointer($llvm, $context, $type, $kind);
             case lib::LLVMVectorTypeKind:
-                return new Type\Vector($llvm, $context, $type);
+                return new Type\Vector($llvm, $context, $type, $kind);
             default:
-                return new Type($llvm, $context, $type);
+                return new Type($llvm, $context, $type, $kind);
         }
     }
 
     public function arrayType(int $numElements): CoreArrayType {
-        return new Type\Array_($this->llvm, $this->context, $this->llvm->lib->LLVMArrayType($this->type, $numElements));
+        return new Type\Array_($this->llvm, $this->context, $this->llvm->lib->LLVMArrayType($this->type, $numElements), lib::LLVMArrayTypeKind);
     }
 
     public function pointerType(int $addressSpace): CorePointerType {
-        return new Type\Pointer($this->llvm, $this->context, $this->llvm->lib->LLVMPointerType($this->type, $addressSpace));
+        return new Type\Pointer($this->llvm, $this->context, $this->llvm->lib->LLVMPointerType($this->type, $addressSpace), lib::LLVMPointerTypeKind);
     }
 
     public function vectorType(int $elementCount): CoreVectorType {
-        return new Type\Vector($this->llvm, $this->context, $this->llvm->lib->LLVMVectorType($this->type, $elementCount));
+        return new Type\Vector($this->llvm, $this->context, $this->llvm->lib->LLVMVectorType($this->type, $elementCount), lib::LLVMVectorTypeKind);
     }
 
     public function getKind(): int {
-        $kind = $this->llvm->lib->LLVMGetTypeKind($this->type);
-        switch ($kind) {
+        switch ($this->kind) {
             case lib::LLVMVoidTypeKind:
                 return self::KIND_VOID;
             case lib::LLVMHalfTypeKind:
@@ -97,7 +98,7 @@ class Type implements CoreType {
             case lib::LLVMTokenTypeKin:
                 return self::KIND_TOKEN;
         }
-        throw new \LogicException("Unknown kind returned from LLVM: " . ($kind->getData() + 0));
+        throw new \LogicException("Unknown kind returned from LLVM: " . ($kind));
     }
 
     public function isSized(): bool {
@@ -139,6 +140,10 @@ class Type implements CoreType {
 
     public function alignOf(): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMAlignOf($this->type));
+    }
+
+    public function getWidth(): int {
+        return $this->llvm->lib->LLVMGetIntTypeWidth($this->type);
     }
 
 }

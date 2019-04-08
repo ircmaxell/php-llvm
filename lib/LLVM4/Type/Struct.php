@@ -11,7 +11,7 @@ use llvm4\LLVMTypeRef_ptr;
 class Struct extends Type implements CoreType\Struct {
 
     public function getName(): string {
-        return $this->llvm->lib->LLVMGetStructName($this->type);
+        return $this->llvm->lib->LLVMGetStructName($this->type)->toString();
     }
 
     public function setBody(bool $packed, CoreType ... $elements): void {

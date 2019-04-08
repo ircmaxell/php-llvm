@@ -69,12 +69,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ircmaxell/FFIMe.git",
-                "reference": "6c75346a4897c43da65003fddb1a8bc57cff3eae"
+                "reference": "7a42dfb129c8898f8896a6da0f92feeaf67cd565"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/6c75346a4897c43da65003fddb1a8bc57cff3eae",
-                "reference": "6c75346a4897c43da65003fddb1a8bc57cff3eae",
+                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/7a42dfb129c8898f8896a6da0f92feeaf67cd565",
+                "reference": "7a42dfb129c8898f8896a6da0f92feeaf67cd565",
                 "shasum": ""
             },
             "require": {
@@ -101,7 +101,7 @@
                 }
             ],
             "description": "Make life easy when working with 7.4's FFI",
-            "time": "2019-04-05T12:09:38+00:00"
+            "time": "2019-04-08T21:45:56+00:00"
         },
         {
             "name": "ircmaxell/php-c-parser",
@@ -149,12 +149,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
+                "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
+                "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
                 "shasum": ""
             },
             "require": {
@@ -189,7 +189,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-06-11T23:09:50+00:00"
+            "time": "2019-04-07T13:18:21+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -766,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "42f63b2c42b59053ce7de1848da09d7c79ec7e63"
+                "reference": "893a342763f454e029579b6a5175cd8c4a408168"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/42f63b2c42b59053ce7de1848da09d7c79ec7e63",
-                "reference": "42f63b2c42b59053ce7de1848da09d7c79ec7e63",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/893a342763f454e029579b6a5175cd8c4a408168",
+                "reference": "893a342763f454e029579b6a5175cd8c4a408168",
                 "shasum": ""
             },
             "require": {
@@ -840,7 +840,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-04-05T10:27:58+00:00"
+            "time": "2019-04-08T16:09:04+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -8,9 +8,9 @@ interface BasicBlock {
 
     public function getName(): string;
 
-    public function getParent(): Value;
+    public function getParent(): ?Value;
 
-    public function getTerminator(): Value;
+    public function getTerminator(): ?Value;
 
     public function getNext(): ?BasicBlock;
 

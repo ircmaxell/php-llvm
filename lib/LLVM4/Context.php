@@ -6,6 +6,7 @@ use PHPLLVM\LLVM as CoreLLVM;
 use PHPLLVM\Attribute as CoreAttribute;
 use PHPLLVM\Builder as CoreBuilder;
 use PHPLLVM\Context as CoreContext;
+use PHPLLVM\Intrinsic as CoreIntrinsic;
 use PHPLLVM\MemoryBuffer as CoreMemoryBuffer;
 use PHPLLVM\Module as CoreModule;
 use PHPLLVM\Type as CoreType;

@@ -24,7 +24,10 @@ class Value implements CoreValue {
         $this->value = $value;
     }
 
-    public static function value(LLVM $llvm, Context $context, LLVMValueRef $value): Value {
+    public static function value(LLVM $llvm, Context $context, ?LLVMValueRef $value): ?Value {
+        if (is_null($value)) {
+            return null;
+        }
         switch ($llvm->lib->LLVMGetValueKind($value)) {
             case lib::LLVMArgumentValueKind:
                 return new Value\Argument($llvm, $context, $value);

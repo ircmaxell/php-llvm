@@ -32,11 +32,11 @@ interface Module {
 
     public function setInlineAsm(string $asm): void;
 
-    public function getTypeByName(string $name): Type;
+    public function getTypeByName(string $name): ?Type;
 
     public function addFunction(string $name, Type\Function_ $func): Value;
 
-    public function getNamedFunction(string $name): Value;
+    public function getNamedFunction(string $name): ?Value;
 
     public function getFirstFunction(): Value;
 
@@ -74,10 +74,12 @@ interface Module {
 
     public function addGlobalInAddressSpace(Type $type, string $name, int $addressSpace): Value;
 
-    public function getNamedGlobal(string $name): Value;
+    public function getNamedGlobal(string $name): ?Value;
 
     public function getFirstGlobal(): Value;
 
     public function getLastGlobal(): Value;
+
+    public function intrinsic(Builder $builder): Intrinsic;
 
 }

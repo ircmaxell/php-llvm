@@ -26,19 +26,19 @@ class BasicBlock implements CoreBasicBlock {
     }
 
     public function asValue(): CoreValue\BasicBlock {
-        return Value::value($this->llvm->lib->LLVMBasicBlockAsValue($this->block));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBasicBlockAsValue($this->block));
     }
 
     public function getName(): string {
         return $this->llvm->lib->LLVMGetBasicBlockName($this->block)->toString();
     }
 
-    public function getParent(): CoreValue {
-        return Value::value($this->llvm->lib->LLVMGetBasicBlockParent($this->block));
+    public function getParent(): ?CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetBasicBlockParent($this->block));
     }
 
-    public function getTerminator(): CoreValue {
-        return Value::value($this->llvm->lib->LLVMGetBasicBlockTerminator($this->block));
+    public function getTerminator(): ?CoreValue {
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetBasicBlockTerminator($this->block));
     }
 
     public function getNext(): ?CoreBasicBlock {
@@ -58,7 +58,7 @@ class BasicBlock implements CoreBasicBlock {
     }
 
     public function insertBasicBlock(string $name): CoreBasicBlock {
-        return new BasicBlock($this->llvm->lib->LLVMInsertBasicBlock($this->block, $name));
+        return new BasicBlock($this->llvm, $this->context, $this->llvm->lib->LLVMInsertBasicBlock($this->block, $name));
     }
 
     public function delete(): void {
@@ -78,10 +78,10 @@ class BasicBlock implements CoreBasicBlock {
     }
 
     public function getFirstInstruction(): CoreValue {
-        return Value::value($this->llvm->lib->LLVMGetFirstInstruction($this->block));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetFirstInstruction($this->block));
     }
 
     public function getLastInstruction(): CoreValue {
-        return Value::value($this->llvm->lib->LLVMGetLastInstruction($this->block));
+        return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMGetLastInstruction($this->block));
     }
 }

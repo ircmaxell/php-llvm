@@ -49,4 +49,6 @@ interface Type {
 
     public function alignOf(): Value;
 
+    public function getWidth(): int;
+
 }
