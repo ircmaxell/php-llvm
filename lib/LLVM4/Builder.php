@@ -44,7 +44,7 @@ class Builder implements CoreBuilder {
     }
 
     public function getInsertBlock(): CoreBasicBlock {
-        return new BasicBlock($this->llvm->lib->LLVMGetInsertBlock($this->builder));
+        return new BasicBlock($this->llvm, $this->context, $this->llvm->lib->LLVMGetInsertBlock($this->builder));
     }
 
     public function clearInsertionPosition(): void {
