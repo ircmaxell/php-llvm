@@ -104,11 +104,11 @@ class Builder implements CoreBuilder {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildCondBr($this->builder, $cond->value, $if->block, $else->block));
     }
 
-    public function branchSwitch(CoreValue $value, CoreBasicBlock $default, int $numCases): CoreValue\SwitchBranch {
+    public function branchSwitch(CoreValue $value, CoreBasicBlock $default, int $numCases): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildSwitch($this->builder, $value->value, $default->block, $numCases));
     }
 
-    public function branchIndirect(CoreValue $addr, int $numDests): CoreValue\IndirectBranch {
+    public function branchIndirect(CoreValue $addr, int $numDests): CoreValue {
         return Value::value($this->llvm, $this->context, $this->llvm->lib->LLVMBuildIndirectBr($this->builder, $addr->value, $numDests));
     }
 

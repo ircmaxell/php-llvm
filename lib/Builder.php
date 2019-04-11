@@ -62,9 +62,9 @@ interface Builder {
 
     public function branchIf(Value $cond, BasicBlock $if, BasicBlock $else): Value;
 
-    public function branchSwitch(Value $value, BasicBlock $default, int $numCases): Value\SwitchBranch;
+    public function branchSwitch(Value $value, BasicBlock $default, int $numCases): Value;
 
-    public function branchIndirect(Value $addr, int $numDests): Value\IndirectBranch;
+    public function branchIndirect(Value $addr, int $numDests): Value;
 
     public function add(Value $left, Value $right): Value;
 
