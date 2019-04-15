@@ -69,16 +69,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ircmaxell/FFIMe.git",
-                "reference": "7a42dfb129c8898f8896a6da0f92feeaf67cd565"
+                "reference": "07a685169641851bed727e3f89edeab0200b8468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/7a42dfb129c8898f8896a6da0f92feeaf67cd565",
-                "reference": "7a42dfb129c8898f8896a6da0f92feeaf67cd565",
+                "url": "https://api.github.com/repos/ircmaxell/FFIMe/zipball/07a685169641851bed727e3f89edeab0200b8468",
+                "reference": "07a685169641851bed727e3f89edeab0200b8468",
                 "shasum": ""
             },
             "require": {
                 "ircmaxell/php-c-parser": "dev-master",
+                "ircmaxell/php-elf-symbolresolver": "^1.0",
                 "php": ">=7.4"
             },
             "require-dev": {
@@ -101,7 +102,7 @@
                 }
             ],
             "description": "Make life easy when working with 7.4's FFI",
-            "time": "2019-04-08T21:45:56+00:00"
+            "time": "2019-04-14T16:55:57+00:00"
         },
         {
             "name": "ircmaxell/php-c-parser",
@@ -142,6 +143,42 @@
             ],
             "description": "Parse C when using PHP",
             "time": "2019-04-01T12:52:03+00:00"
+        },
+        {
+            "name": "ircmaxell/php-elf-symbolresolver",
+            "version": "v1.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/php-elf-symbolresolver.git",
+                "reference": "675dc5f12600f30aec2bb0f3dfaf8f3480775033"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/php-elf-symbolresolver/zipball/675dc5f12600f30aec2bb0f3dfaf8f3480775033",
+                "reference": "675dc5f12600f30aec2bb0f3dfaf8f3480775033",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPELFSymbolResolver\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@gmail.com"
+                }
+            ],
+            "description": "A linux object file (ELF) parser",
+            "time": "2019-04-14T01:28:33+00:00"
         },
         {
             "name": "myclabs/deep-copy",

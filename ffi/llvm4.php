@@ -19,210 +19,20 @@ extern double tan(double __x);
 extern double cosh(double __x);
 extern double sinh(double __x);
 extern double tanh(double __x);
-extern double acosh(double __x);
-extern double asinh(double __x);
-extern double atanh(double __x);
 extern double exp(double __x);
-extern double frexp(double __x, int *__exponent);
-extern double ldexp(double __x, int __exponent);
 extern double log(double __x);
 extern double log10(double __x);
-extern double modf(double __x, double *__iptr);
-extern double expm1(double __x);
-extern double log1p(double __x);
-extern double logb(double __x);
 extern double exp2(double __x);
 extern double log2(double __x);
 extern double pow(double __x, double __y);
 extern double sqrt(double __x);
-extern double hypot(double __x, double __y);
-extern double cbrt(double __x);
 extern double ceil(double __x);
 extern double fabs(double __x);
 extern double floor(double __x);
 extern double fmod(double __x, double __y);
-extern int isinf(double __value);
-extern int finite(double __value);
-extern double drem(double __x, double __y);
-extern double significand(double __x);
-extern double copysign(double __x, double __y);
-extern double nan(char *__tagb);
-extern int isnan(double __value);
-extern double j0(double);
-extern double j1(double);
-extern double jn(int, double);
-extern double y0(double);
-extern double y1(double);
-extern double yn(int, double);
-extern double erf(double);
-extern double erfc(double);
-extern double lgamma(double);
-extern double tgamma(double);
-extern double gamma(double);
-extern double lgamma_r(double, int *__signgamp);
 extern double rint(double __x);
-extern double nextafter(double __x, double __y);
-extern double nexttoward(double __x, long double __y);
-extern double remainder(double __x, double __y);
-extern double scalbn(double __x, int __n);
-extern int ilogb(double __x);
-extern double scalbln(double __x, long int __n);
-extern double nearbyint(double __x);
 extern double round(double __x);
-extern double trunc(double __x);
-extern double remquo(double __x, double __y, int *__quo);
-extern long int lrint(double __x);
-extern long long int llrint(double __x);
-extern long int lround(double __x);
-extern long long int llround(double __x);
-extern double fdim(double __x, double __y);
-extern double fmax(double __x, double __y);
-extern double fmin(double __x, double __y);
-extern double fma(double __x, double __y, double __z);
-extern double scalb(double __x, double __n);
-extern float acosf(float __x);
-extern float asinf(float __x);
-extern float atanf(float __x);
-extern float atan2f(float __y, float __x);
-extern float cosf(float __x);
-extern float sinf(float __x);
-extern float tanf(float __x);
-extern float coshf(float __x);
-extern float sinhf(float __x);
-extern float tanhf(float __x);
-extern float acoshf(float __x);
-extern float asinhf(float __x);
-extern float atanhf(float __x);
-extern float expf(float __x);
-extern float frexpf(float __x, int *__exponent);
-extern float ldexpf(float __x, int __exponent);
-extern float logf(float __x);
-extern float log10f(float __x);
-extern float modff(float __x, float *__iptr);
-extern float expm1f(float __x);
-extern float log1pf(float __x);
-extern float logbf(float __x);
-extern float exp2f(float __x);
-extern float log2f(float __x);
-extern float powf(float __x, float __y);
-extern float sqrtf(float __x);
-extern float hypotf(float __x, float __y);
-extern float cbrtf(float __x);
-extern float ceilf(float __x);
-extern float fabsf(float __x);
-extern float floorf(float __x);
 extern float fmodf(float __x, float __y);
-extern int isinff(float __value);
-extern int finitef(float __value);
-extern float dremf(float __x, float __y);
-extern float significandf(float __x);
-extern float copysignf(float __x, float __y);
-extern float nanf(char *__tagb);
-extern int isnanf(float __value);
-extern float j0f(float);
-extern float j1f(float);
-extern float jnf(int, float);
-extern float y0f(float);
-extern float y1f(float);
-extern float ynf(int, float);
-extern float erff(float);
-extern float erfcf(float);
-extern float lgammaf(float);
-extern float tgammaf(float);
-extern float gammaf(float);
-extern float lgammaf_r(float, int *__signgamp);
-extern float rintf(float __x);
-extern float nextafterf(float __x, float __y);
-extern float nexttowardf(float __x, long double __y);
-extern float remainderf(float __x, float __y);
-extern float scalbnf(float __x, int __n);
-extern int ilogbf(float __x);
-extern float scalblnf(float __x, long int __n);
-extern float nearbyintf(float __x);
-extern float roundf(float __x);
-extern float truncf(float __x);
-extern float remquof(float __x, float __y, int *__quo);
-extern long int lrintf(float __x);
-extern long long int llrintf(float __x);
-extern long int lroundf(float __x);
-extern long long int llroundf(float __x);
-extern float fdimf(float __x, float __y);
-extern float fmaxf(float __x, float __y);
-extern float fminf(float __x, float __y);
-extern float fmaf(float __x, float __y, float __z);
-extern float scalbf(float __x, float __n);
-extern long double acosl(long double __x);
-extern long double asinl(long double __x);
-extern long double atanl(long double __x);
-extern long double atan2l(long double __y, long double __x);
-extern long double cosl(long double __x);
-extern long double sinl(long double __x);
-extern long double tanl(long double __x);
-extern long double coshl(long double __x);
-extern long double sinhl(long double __x);
-extern long double tanhl(long double __x);
-extern long double acoshl(long double __x);
-extern long double asinhl(long double __x);
-extern long double atanhl(long double __x);
-extern long double expl(long double __x);
-extern long double frexpl(long double __x, int *__exponent);
-extern long double ldexpl(long double __x, int __exponent);
-extern long double logl(long double __x);
-extern long double log10l(long double __x);
-extern long double modfl(long double __x, long double *__iptr);
-extern long double expm1l(long double __x);
-extern long double log1pl(long double __x);
-extern long double logbl(long double __x);
-extern long double exp2l(long double __x);
-extern long double log2l(long double __x);
-extern long double powl(long double __x, long double __y);
-extern long double sqrtl(long double __x);
-extern long double hypotl(long double __x, long double __y);
-extern long double cbrtl(long double __x);
-extern long double ceill(long double __x);
-extern long double fabsl(long double __x);
-extern long double floorl(long double __x);
-extern long double fmodl(long double __x, long double __y);
-extern int isinfl(long double __value);
-extern int finitel(long double __value);
-extern long double dreml(long double __x, long double __y);
-extern long double significandl(long double __x);
-extern long double copysignl(long double __x, long double __y);
-extern long double nanl(char *__tagb);
-extern int isnanl(long double __value);
-extern long double j0l(long double);
-extern long double j1l(long double);
-extern long double jnl(int, long double);
-extern long double y0l(long double);
-extern long double y1l(long double);
-extern long double ynl(int, long double);
-extern long double erfl(long double);
-extern long double erfcl(long double);
-extern long double lgammal(long double);
-extern long double tgammal(long double);
-extern long double gammal(long double);
-extern long double lgammal_r(long double, int *__signgamp);
-extern long double rintl(long double __x);
-extern long double nextafterl(long double __x, long double __y);
-extern long double nexttowardl(long double __x, long double __y);
-extern long double remainderl(long double __x, long double __y);
-extern long double scalbnl(long double __x, int __n);
-extern int ilogbl(long double __x);
-extern long double scalblnl(long double __x, long int __n);
-extern long double nearbyintl(long double __x);
-extern long double roundl(long double __x);
-extern long double truncl(long double __x);
-extern long double remquol(long double __x, long double __y, int *__quo);
-extern long int lrintl(long double __x);
-extern long long int llrintl(long double __x);
-extern long int lroundl(long double __x);
-extern long long int llroundl(long double __x);
-extern long double fdiml(long double __x, long double __y);
-extern long double fmaxl(long double __x, long double __y);
-extern long double fminl(long double __x, long double __y);
-extern long double fmal(long double __x, long double __y, long double __z);
-extern long double scalbl(long double __x, long double __n);
-extern int signgam;
 enum {
   FP_NAN = 0,
   FP_INFINITE = 1,
@@ -237,7 +47,6 @@ typedef enum {
   _POSIX_,
   _ISOC_,
 } _LIB_VERSION_TYPE;
-extern _LIB_VERSION_TYPE _LIB_VERSION;
 struct exception {
   int type;
   char *name;
@@ -245,7 +54,6 @@ struct exception {
   double arg2;
   double retval;
 };
-extern int matherr(struct exception *__exc);
 typedef signed char int_least8_t;
 typedef short int int_least16_t;
 typedef int int_least32_t;
@@ -270,12 +78,6 @@ typedef struct {
   long int quot;
   long int rem;
 } imaxdiv_t;
-extern intmax_t imaxabs(intmax_t __n);
-extern imaxdiv_t imaxdiv(intmax_t __numer, intmax_t __denom);
-extern intmax_t strtoimax(char *__nptr, char **__endptr, int __base);
-extern uintmax_t strtoumax(char *__nptr, char **__endptr, int __base);
-extern intmax_t wcstoimax(__gwchar_t *__nptr, __gwchar_t **__endptr, int __base);
-extern uintmax_t wcstoumax(__gwchar_t *__nptr, __gwchar_t **__endptr, int __base);
 typedef unsigned char __u_char;
 typedef unsigned short int __u_short;
 typedef unsigned int __u_int;
@@ -364,16 +166,11 @@ typedef struct {
   __fd_mask __fds_bits[(1024 / (8 * ((int)(sizeof (__fd_mask)))))];
 } fd_set;
 typedef __fd_mask fd_mask;
-extern int select(int __nfds, fd_set *__readfds, fd_set *__writefds, fd_set *__exceptfds, struct timeval *__timeout);
-extern int pselect(int __nfds, fd_set *__readfds, fd_set *__writefds, fd_set *__exceptfds, struct timespec *__timeout, __sigset_t *__sigmask);
 struct timezone {
   int tz_minuteswest;
   int tz_dsttime;
 };
 typedef struct timezone * __timezone_ptr_t;
-extern int gettimeofday(struct timeval *__tv, __timezone_ptr_t __tz);
-extern int settimeofday(struct timeval *__tv, struct timezone *__tz);
-extern int adjtime(struct timeval *__delta, struct timeval *__olddelta);
 enum __itimer_which {
   ITIMER_REAL = 0,
   ITIMER_VIRTUAL = 1,
@@ -384,11 +181,6 @@ struct itimerval {
   struct timeval it_value;
 };
 typedef int __itimer_which_t;
-extern int getitimer(__itimer_which_t __which, struct itimerval *__value);
-extern int setitimer(__itimer_which_t __which, struct itimerval *__new, struct itimerval *__old);
-extern int utimes(char *__file, struct timeval __tvp[2]);
-extern int lutimes(char *__file, struct timeval __tvp[2]);
-extern int futimes(int __fd, struct timeval __tvp[2]);
 typedef unsigned long int ulong;
 typedef unsigned short int ushort;
 typedef unsigned int uint;
@@ -397,9 +189,6 @@ typedef unsigned short int u_int16_t;
 typedef unsigned int u_int32_t;
 typedef unsigned long int u_int64_t;
 typedef int register_t;
-extern unsigned int gnu_dev_major(unsigned long long int __dev);
-extern unsigned int gnu_dev_minor(unsigned long long int __dev);
-extern unsigned long long int gnu_dev_makedev(unsigned int __major, unsigned int __minor);
 typedef __blksize_t blksize_t;
 typedef __blkcnt_t blkcnt_t;
 typedef __fsblkcnt_t fsblkcnt_t;
@@ -1834,8 +1623,6 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     
     public function __get(string $name) {
         switch($name) {
-            case 'signgam': return $this->ffi->signgam;
-            case '_LIB_VERSION': return $this->ffi->_LIB_VERSION;
             default: return $this->ffi->$name;
         }
     }
@@ -1888,28 +1675,8 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->tanh($p0);
         return $result;
     }
-    public function acosh(?float $p0): ?float {
-        $result = $this->ffi->acosh($p0);
-        return $result;
-    }
-    public function asinh(?float $p0): ?float {
-        $result = $this->ffi->asinh($p0);
-        return $result;
-    }
-    public function atanh(?float $p0): ?float {
-        $result = $this->ffi->atanh($p0);
-        return $result;
-    }
     public function exp(?float $p0): ?float {
         $result = $this->ffi->exp($p0);
-        return $result;
-    }
-    public function frexp(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->frexp($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function ldexp(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->ldexp($p0, $p1);
         return $result;
     }
     public function log(?float $p0): ?float {
@@ -1918,22 +1685,6 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     }
     public function log10(?float $p0): ?float {
         $result = $this->ffi->log10($p0);
-        return $result;
-    }
-    public function modf(?float $p0, ?float_ptr $p1): ?float {
-        $result = $this->ffi->modf($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function expm1(?float $p0): ?float {
-        $result = $this->ffi->expm1($p0);
-        return $result;
-    }
-    public function log1p(?float $p0): ?float {
-        $result = $this->ffi->log1p($p0);
-        return $result;
-    }
-    public function logb(?float $p0): ?float {
-        $result = $this->ffi->logb($p0);
         return $result;
     }
     public function exp2(?float $p0): ?float {
@@ -1952,14 +1703,6 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->sqrt($p0);
         return $result;
     }
-    public function hypot(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->hypot($p0, $p1);
-        return $result;
-    }
-    public function cbrt(?float $p0): ?float {
-        $result = $this->ffi->cbrt($p0);
-        return $result;
-    }
     public function ceil(?float $p0): ?float {
         $result = $this->ffi->ceil($p0);
         return $result;
@@ -1976,728 +1719,16 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
         $result = $this->ffi->fmod($p0, $p1);
         return $result;
     }
-    public function isinf(?float $p0): ?int {
-        $result = $this->ffi->isinf($p0);
-        return $result;
-    }
-    public function finite(?float $p0): ?int {
-        $result = $this->ffi->finite($p0);
-        return $result;
-    }
-    public function drem(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->drem($p0, $p1);
-        return $result;
-    }
-    public function significand(?float $p0): ?float {
-        $result = $this->ffi->significand($p0);
-        return $result;
-    }
-    public function copysign(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->copysign($p0, $p1);
-        return $result;
-    }
-    public function nan(?string $p0): ?float {
-        $result = $this->ffi->nan($p0);
-        return $result;
-    }
-    public function isnan(?float $p0): ?int {
-        $result = $this->ffi->isnan($p0);
-        return $result;
-    }
-    public function j0(?float $p0): ?float {
-        $result = $this->ffi->j0($p0);
-        return $result;
-    }
-    public function j1(?float $p0): ?float {
-        $result = $this->ffi->j1($p0);
-        return $result;
-    }
-    public function jn(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->jn($p0, $p1);
-        return $result;
-    }
-    public function y0(?float $p0): ?float {
-        $result = $this->ffi->y0($p0);
-        return $result;
-    }
-    public function y1(?float $p0): ?float {
-        $result = $this->ffi->y1($p0);
-        return $result;
-    }
-    public function yn(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->yn($p0, $p1);
-        return $result;
-    }
-    public function erf(?float $p0): ?float {
-        $result = $this->ffi->erf($p0);
-        return $result;
-    }
-    public function erfc(?float $p0): ?float {
-        $result = $this->ffi->erfc($p0);
-        return $result;
-    }
-    public function lgamma(?float $p0): ?float {
-        $result = $this->ffi->lgamma($p0);
-        return $result;
-    }
-    public function tgamma(?float $p0): ?float {
-        $result = $this->ffi->tgamma($p0);
-        return $result;
-    }
-    public function gamma(?float $p0): ?float {
-        $result = $this->ffi->gamma($p0);
-        return $result;
-    }
-    public function lgamma_r(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->lgamma_r($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
     public function rint(?float $p0): ?float {
         $result = $this->ffi->rint($p0);
-        return $result;
-    }
-    public function nextafter(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nextafter($p0, $p1);
-        return $result;
-    }
-    public function nexttoward(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nexttoward($p0, $p1);
-        return $result;
-    }
-    public function remainder(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->remainder($p0, $p1);
-        return $result;
-    }
-    public function scalbn(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalbn($p0, $p1);
-        return $result;
-    }
-    public function ilogb(?float $p0): ?int {
-        $result = $this->ffi->ilogb($p0);
-        return $result;
-    }
-    public function scalbln(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalbln($p0, $p1);
-        return $result;
-    }
-    public function nearbyint(?float $p0): ?float {
-        $result = $this->ffi->nearbyint($p0);
         return $result;
     }
     public function round(?float $p0): ?float {
         $result = $this->ffi->round($p0);
         return $result;
     }
-    public function trunc(?float $p0): ?float {
-        $result = $this->ffi->trunc($p0);
-        return $result;
-    }
-    public function remquo(?float $p0, ?float $p1, ?int_ptr $p2): ?float {
-        $result = $this->ffi->remquo($p0, $p1, $p2 === null ? null : $p2->getData());
-        return $result;
-    }
-    public function lrint(?float $p0): ?int {
-        $result = $this->ffi->lrint($p0);
-        return $result;
-    }
-    public function llrint(?float $p0): ?int {
-        $result = $this->ffi->llrint($p0);
-        return $result;
-    }
-    public function lround(?float $p0): ?int {
-        $result = $this->ffi->lround($p0);
-        return $result;
-    }
-    public function llround(?float $p0): ?int {
-        $result = $this->ffi->llround($p0);
-        return $result;
-    }
-    public function fdim(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fdim($p0, $p1);
-        return $result;
-    }
-    public function fmax(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fmax($p0, $p1);
-        return $result;
-    }
-    public function fmin(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fmin($p0, $p1);
-        return $result;
-    }
-    public function fma(?float $p0, ?float $p1, ?float $p2): ?float {
-        $result = $this->ffi->fma($p0, $p1, $p2);
-        return $result;
-    }
-    public function scalb(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->scalb($p0, $p1);
-        return $result;
-    }
-    public function acosf(?float $p0): ?float {
-        $result = $this->ffi->acosf($p0);
-        return $result;
-    }
-    public function asinf(?float $p0): ?float {
-        $result = $this->ffi->asinf($p0);
-        return $result;
-    }
-    public function atanf(?float $p0): ?float {
-        $result = $this->ffi->atanf($p0);
-        return $result;
-    }
-    public function atan2f(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->atan2f($p0, $p1);
-        return $result;
-    }
-    public function cosf(?float $p0): ?float {
-        $result = $this->ffi->cosf($p0);
-        return $result;
-    }
-    public function sinf(?float $p0): ?float {
-        $result = $this->ffi->sinf($p0);
-        return $result;
-    }
-    public function tanf(?float $p0): ?float {
-        $result = $this->ffi->tanf($p0);
-        return $result;
-    }
-    public function coshf(?float $p0): ?float {
-        $result = $this->ffi->coshf($p0);
-        return $result;
-    }
-    public function sinhf(?float $p0): ?float {
-        $result = $this->ffi->sinhf($p0);
-        return $result;
-    }
-    public function tanhf(?float $p0): ?float {
-        $result = $this->ffi->tanhf($p0);
-        return $result;
-    }
-    public function acoshf(?float $p0): ?float {
-        $result = $this->ffi->acoshf($p0);
-        return $result;
-    }
-    public function asinhf(?float $p0): ?float {
-        $result = $this->ffi->asinhf($p0);
-        return $result;
-    }
-    public function atanhf(?float $p0): ?float {
-        $result = $this->ffi->atanhf($p0);
-        return $result;
-    }
-    public function expf(?float $p0): ?float {
-        $result = $this->ffi->expf($p0);
-        return $result;
-    }
-    public function frexpf(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->frexpf($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function ldexpf(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->ldexpf($p0, $p1);
-        return $result;
-    }
-    public function logf(?float $p0): ?float {
-        $result = $this->ffi->logf($p0);
-        return $result;
-    }
-    public function log10f(?float $p0): ?float {
-        $result = $this->ffi->log10f($p0);
-        return $result;
-    }
-    public function modff(?float $p0, ?float_ptr $p1): ?float {
-        $result = $this->ffi->modff($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function expm1f(?float $p0): ?float {
-        $result = $this->ffi->expm1f($p0);
-        return $result;
-    }
-    public function log1pf(?float $p0): ?float {
-        $result = $this->ffi->log1pf($p0);
-        return $result;
-    }
-    public function logbf(?float $p0): ?float {
-        $result = $this->ffi->logbf($p0);
-        return $result;
-    }
-    public function exp2f(?float $p0): ?float {
-        $result = $this->ffi->exp2f($p0);
-        return $result;
-    }
-    public function log2f(?float $p0): ?float {
-        $result = $this->ffi->log2f($p0);
-        return $result;
-    }
-    public function powf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->powf($p0, $p1);
-        return $result;
-    }
-    public function sqrtf(?float $p0): ?float {
-        $result = $this->ffi->sqrtf($p0);
-        return $result;
-    }
-    public function hypotf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->hypotf($p0, $p1);
-        return $result;
-    }
-    public function cbrtf(?float $p0): ?float {
-        $result = $this->ffi->cbrtf($p0);
-        return $result;
-    }
-    public function ceilf(?float $p0): ?float {
-        $result = $this->ffi->ceilf($p0);
-        return $result;
-    }
-    public function fabsf(?float $p0): ?float {
-        $result = $this->ffi->fabsf($p0);
-        return $result;
-    }
-    public function floorf(?float $p0): ?float {
-        $result = $this->ffi->floorf($p0);
-        return $result;
-    }
     public function fmodf(?float $p0, ?float $p1): ?float {
         $result = $this->ffi->fmodf($p0, $p1);
-        return $result;
-    }
-    public function isinff(?float $p0): ?int {
-        $result = $this->ffi->isinff($p0);
-        return $result;
-    }
-    public function finitef(?float $p0): ?int {
-        $result = $this->ffi->finitef($p0);
-        return $result;
-    }
-    public function dremf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->dremf($p0, $p1);
-        return $result;
-    }
-    public function significandf(?float $p0): ?float {
-        $result = $this->ffi->significandf($p0);
-        return $result;
-    }
-    public function copysignf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->copysignf($p0, $p1);
-        return $result;
-    }
-    public function nanf(?string $p0): ?float {
-        $result = $this->ffi->nanf($p0);
-        return $result;
-    }
-    public function isnanf(?float $p0): ?int {
-        $result = $this->ffi->isnanf($p0);
-        return $result;
-    }
-    public function j0f(?float $p0): ?float {
-        $result = $this->ffi->j0f($p0);
-        return $result;
-    }
-    public function j1f(?float $p0): ?float {
-        $result = $this->ffi->j1f($p0);
-        return $result;
-    }
-    public function jnf(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->jnf($p0, $p1);
-        return $result;
-    }
-    public function y0f(?float $p0): ?float {
-        $result = $this->ffi->y0f($p0);
-        return $result;
-    }
-    public function y1f(?float $p0): ?float {
-        $result = $this->ffi->y1f($p0);
-        return $result;
-    }
-    public function ynf(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->ynf($p0, $p1);
-        return $result;
-    }
-    public function erff(?float $p0): ?float {
-        $result = $this->ffi->erff($p0);
-        return $result;
-    }
-    public function erfcf(?float $p0): ?float {
-        $result = $this->ffi->erfcf($p0);
-        return $result;
-    }
-    public function lgammaf(?float $p0): ?float {
-        $result = $this->ffi->lgammaf($p0);
-        return $result;
-    }
-    public function tgammaf(?float $p0): ?float {
-        $result = $this->ffi->tgammaf($p0);
-        return $result;
-    }
-    public function gammaf(?float $p0): ?float {
-        $result = $this->ffi->gammaf($p0);
-        return $result;
-    }
-    public function lgammaf_r(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->lgammaf_r($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function rintf(?float $p0): ?float {
-        $result = $this->ffi->rintf($p0);
-        return $result;
-    }
-    public function nextafterf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nextafterf($p0, $p1);
-        return $result;
-    }
-    public function nexttowardf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nexttowardf($p0, $p1);
-        return $result;
-    }
-    public function remainderf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->remainderf($p0, $p1);
-        return $result;
-    }
-    public function scalbnf(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalbnf($p0, $p1);
-        return $result;
-    }
-    public function ilogbf(?float $p0): ?int {
-        $result = $this->ffi->ilogbf($p0);
-        return $result;
-    }
-    public function scalblnf(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalblnf($p0, $p1);
-        return $result;
-    }
-    public function nearbyintf(?float $p0): ?float {
-        $result = $this->ffi->nearbyintf($p0);
-        return $result;
-    }
-    public function roundf(?float $p0): ?float {
-        $result = $this->ffi->roundf($p0);
-        return $result;
-    }
-    public function truncf(?float $p0): ?float {
-        $result = $this->ffi->truncf($p0);
-        return $result;
-    }
-    public function remquof(?float $p0, ?float $p1, ?int_ptr $p2): ?float {
-        $result = $this->ffi->remquof($p0, $p1, $p2 === null ? null : $p2->getData());
-        return $result;
-    }
-    public function lrintf(?float $p0): ?int {
-        $result = $this->ffi->lrintf($p0);
-        return $result;
-    }
-    public function llrintf(?float $p0): ?int {
-        $result = $this->ffi->llrintf($p0);
-        return $result;
-    }
-    public function lroundf(?float $p0): ?int {
-        $result = $this->ffi->lroundf($p0);
-        return $result;
-    }
-    public function llroundf(?float $p0): ?int {
-        $result = $this->ffi->llroundf($p0);
-        return $result;
-    }
-    public function fdimf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fdimf($p0, $p1);
-        return $result;
-    }
-    public function fmaxf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fmaxf($p0, $p1);
-        return $result;
-    }
-    public function fminf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fminf($p0, $p1);
-        return $result;
-    }
-    public function fmaf(?float $p0, ?float $p1, ?float $p2): ?float {
-        $result = $this->ffi->fmaf($p0, $p1, $p2);
-        return $result;
-    }
-    public function scalbf(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->scalbf($p0, $p1);
-        return $result;
-    }
-    public function acosl(?float $p0): ?float {
-        $result = $this->ffi->acosl($p0);
-        return $result;
-    }
-    public function asinl(?float $p0): ?float {
-        $result = $this->ffi->asinl($p0);
-        return $result;
-    }
-    public function atanl(?float $p0): ?float {
-        $result = $this->ffi->atanl($p0);
-        return $result;
-    }
-    public function atan2l(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->atan2l($p0, $p1);
-        return $result;
-    }
-    public function cosl(?float $p0): ?float {
-        $result = $this->ffi->cosl($p0);
-        return $result;
-    }
-    public function sinl(?float $p0): ?float {
-        $result = $this->ffi->sinl($p0);
-        return $result;
-    }
-    public function tanl(?float $p0): ?float {
-        $result = $this->ffi->tanl($p0);
-        return $result;
-    }
-    public function coshl(?float $p0): ?float {
-        $result = $this->ffi->coshl($p0);
-        return $result;
-    }
-    public function sinhl(?float $p0): ?float {
-        $result = $this->ffi->sinhl($p0);
-        return $result;
-    }
-    public function tanhl(?float $p0): ?float {
-        $result = $this->ffi->tanhl($p0);
-        return $result;
-    }
-    public function acoshl(?float $p0): ?float {
-        $result = $this->ffi->acoshl($p0);
-        return $result;
-    }
-    public function asinhl(?float $p0): ?float {
-        $result = $this->ffi->asinhl($p0);
-        return $result;
-    }
-    public function atanhl(?float $p0): ?float {
-        $result = $this->ffi->atanhl($p0);
-        return $result;
-    }
-    public function expl(?float $p0): ?float {
-        $result = $this->ffi->expl($p0);
-        return $result;
-    }
-    public function frexpl(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->frexpl($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function ldexpl(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->ldexpl($p0, $p1);
-        return $result;
-    }
-    public function logl(?float $p0): ?float {
-        $result = $this->ffi->logl($p0);
-        return $result;
-    }
-    public function log10l(?float $p0): ?float {
-        $result = $this->ffi->log10l($p0);
-        return $result;
-    }
-    public function modfl(?float $p0, ?float_ptr $p1): ?float {
-        $result = $this->ffi->modfl($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function expm1l(?float $p0): ?float {
-        $result = $this->ffi->expm1l($p0);
-        return $result;
-    }
-    public function log1pl(?float $p0): ?float {
-        $result = $this->ffi->log1pl($p0);
-        return $result;
-    }
-    public function logbl(?float $p0): ?float {
-        $result = $this->ffi->logbl($p0);
-        return $result;
-    }
-    public function exp2l(?float $p0): ?float {
-        $result = $this->ffi->exp2l($p0);
-        return $result;
-    }
-    public function log2l(?float $p0): ?float {
-        $result = $this->ffi->log2l($p0);
-        return $result;
-    }
-    public function powl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->powl($p0, $p1);
-        return $result;
-    }
-    public function sqrtl(?float $p0): ?float {
-        $result = $this->ffi->sqrtl($p0);
-        return $result;
-    }
-    public function hypotl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->hypotl($p0, $p1);
-        return $result;
-    }
-    public function cbrtl(?float $p0): ?float {
-        $result = $this->ffi->cbrtl($p0);
-        return $result;
-    }
-    public function ceill(?float $p0): ?float {
-        $result = $this->ffi->ceill($p0);
-        return $result;
-    }
-    public function fabsl(?float $p0): ?float {
-        $result = $this->ffi->fabsl($p0);
-        return $result;
-    }
-    public function floorl(?float $p0): ?float {
-        $result = $this->ffi->floorl($p0);
-        return $result;
-    }
-    public function fmodl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fmodl($p0, $p1);
-        return $result;
-    }
-    public function isinfl(?float $p0): ?int {
-        $result = $this->ffi->isinfl($p0);
-        return $result;
-    }
-    public function finitel(?float $p0): ?int {
-        $result = $this->ffi->finitel($p0);
-        return $result;
-    }
-    public function dreml(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->dreml($p0, $p1);
-        return $result;
-    }
-    public function significandl(?float $p0): ?float {
-        $result = $this->ffi->significandl($p0);
-        return $result;
-    }
-    public function copysignl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->copysignl($p0, $p1);
-        return $result;
-    }
-    public function nanl(?string $p0): ?float {
-        $result = $this->ffi->nanl($p0);
-        return $result;
-    }
-    public function isnanl(?float $p0): ?int {
-        $result = $this->ffi->isnanl($p0);
-        return $result;
-    }
-    public function j0l(?float $p0): ?float {
-        $result = $this->ffi->j0l($p0);
-        return $result;
-    }
-    public function j1l(?float $p0): ?float {
-        $result = $this->ffi->j1l($p0);
-        return $result;
-    }
-    public function jnl(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->jnl($p0, $p1);
-        return $result;
-    }
-    public function y0l(?float $p0): ?float {
-        $result = $this->ffi->y0l($p0);
-        return $result;
-    }
-    public function y1l(?float $p0): ?float {
-        $result = $this->ffi->y1l($p0);
-        return $result;
-    }
-    public function ynl(?int $p0, ?float $p1): ?float {
-        $result = $this->ffi->ynl($p0, $p1);
-        return $result;
-    }
-    public function erfl(?float $p0): ?float {
-        $result = $this->ffi->erfl($p0);
-        return $result;
-    }
-    public function erfcl(?float $p0): ?float {
-        $result = $this->ffi->erfcl($p0);
-        return $result;
-    }
-    public function lgammal(?float $p0): ?float {
-        $result = $this->ffi->lgammal($p0);
-        return $result;
-    }
-    public function tgammal(?float $p0): ?float {
-        $result = $this->ffi->tgammal($p0);
-        return $result;
-    }
-    public function gammal(?float $p0): ?float {
-        $result = $this->ffi->gammal($p0);
-        return $result;
-    }
-    public function lgammal_r(?float $p0, ?int_ptr $p1): ?float {
-        $result = $this->ffi->lgammal_r($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function rintl(?float $p0): ?float {
-        $result = $this->ffi->rintl($p0);
-        return $result;
-    }
-    public function nextafterl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nextafterl($p0, $p1);
-        return $result;
-    }
-    public function nexttowardl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->nexttowardl($p0, $p1);
-        return $result;
-    }
-    public function remainderl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->remainderl($p0, $p1);
-        return $result;
-    }
-    public function scalbnl(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalbnl($p0, $p1);
-        return $result;
-    }
-    public function ilogbl(?float $p0): ?int {
-        $result = $this->ffi->ilogbl($p0);
-        return $result;
-    }
-    public function scalblnl(?float $p0, ?int $p1): ?float {
-        $result = $this->ffi->scalblnl($p0, $p1);
-        return $result;
-    }
-    public function nearbyintl(?float $p0): ?float {
-        $result = $this->ffi->nearbyintl($p0);
-        return $result;
-    }
-    public function roundl(?float $p0): ?float {
-        $result = $this->ffi->roundl($p0);
-        return $result;
-    }
-    public function truncl(?float $p0): ?float {
-        $result = $this->ffi->truncl($p0);
-        return $result;
-    }
-    public function remquol(?float $p0, ?float $p1, ?int_ptr $p2): ?float {
-        $result = $this->ffi->remquol($p0, $p1, $p2 === null ? null : $p2->getData());
-        return $result;
-    }
-    public function lrintl(?float $p0): ?int {
-        $result = $this->ffi->lrintl($p0);
-        return $result;
-    }
-    public function llrintl(?float $p0): ?int {
-        $result = $this->ffi->llrintl($p0);
-        return $result;
-    }
-    public function lroundl(?float $p0): ?int {
-        $result = $this->ffi->lroundl($p0);
-        return $result;
-    }
-    public function llroundl(?float $p0): ?int {
-        $result = $this->ffi->llroundl($p0);
-        return $result;
-    }
-    public function fdiml(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fdiml($p0, $p1);
-        return $result;
-    }
-    public function fmaxl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fmaxl($p0, $p1);
-        return $result;
-    }
-    public function fminl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->fminl($p0, $p1);
-        return $result;
-    }
-    public function fmal(?float $p0, ?float $p1, ?float $p2): ?float {
-        $result = $this->ffi->fmal($p0, $p1, $p2);
-        return $result;
-    }
-    public function scalbl(?float $p0, ?float $p1): ?float {
-        $result = $this->ffi->scalbl($p0, $p1);
         return $result;
     }
     // typedefenum _LIB_VERSION_TYPE
@@ -2706,90 +1737,10 @@ void LLVMAddSLPVectorizePass(LLVMPassManagerRef PM);
     const _XOPEN_ = ((-1)) + 2;
     const _POSIX_ = ((-1)) + 3;
     const _ISOC_ = ((-1)) + 4;
-    public function matherr(?exception_ptr $p0): ?int {
-        $result = $this->ffi->matherr($p0 === null ? null : $p0->getData());
-        return $result;
-    }
-    public function imaxabs(?int $p0): ?int {
-        $result = $this->ffi->imaxabs($p0);
-        return $result;
-    }
-    public function imaxdiv(?int $p0, ?int $p1): ?imaxdiv_t {
-        $result = $this->ffi->imaxdiv($p0, $p1);
-        return $result === null ? null : new imaxdiv_t($result);
-    }
-    public function strtoimax(?string $p0, ?string_ptr $p1, ?int $p2): ?int {
-        $result = $this->ffi->strtoimax($p0, $p1 === null ? null : $p1->getData(), $p2);
-        return $result;
-    }
-    public function strtoumax(?string $p0, ?string_ptr $p1, ?int $p2): ?int {
-        $result = $this->ffi->strtoumax($p0, $p1 === null ? null : $p1->getData(), $p2);
-        return $result;
-    }
-    public function wcstoimax(?int_ptr $p0, ?int_ptr_ptr $p1, ?int $p2): ?int {
-        $result = $this->ffi->wcstoimax($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
-        return $result;
-    }
-    public function wcstoumax(?int_ptr $p0, ?int_ptr_ptr $p1, ?int $p2): ?int {
-        $result = $this->ffi->wcstoumax($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData(), $p2);
-        return $result;
-    }
-    public function select(?int $p0, ?fd_set_ptr $p1, ?fd_set_ptr $p2, ?fd_set_ptr $p3, ?timeval_ptr $p4): ?int {
-        $result = $this->ffi->select($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData());
-        return $result;
-    }
-    public function pselect(?int $p0, ?fd_set_ptr $p1, ?fd_set_ptr $p2, ?fd_set_ptr $p3, ?timespec_ptr $p4, ?__sigset_t_ptr $p5): ?int {
-        $result = $this->ffi->pselect($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData(), $p3 === null ? null : $p3->getData(), $p4 === null ? null : $p4->getData(), $p5 === null ? null : $p5->getData());
-        return $result;
-    }
-    public function gettimeofday(?timeval_ptr $p0, ?__timezone_ptr_t $p1): ?int {
-        $result = $this->ffi->gettimeofday($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function settimeofday(?timeval_ptr $p0, ?timezone_ptr $p1): ?int {
-        $result = $this->ffi->settimeofday($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function adjtime(?timeval_ptr $p0, ?timeval_ptr $p1): ?int {
-        $result = $this->ffi->adjtime($p0 === null ? null : $p0->getData(), $p1 === null ? null : $p1->getData());
-        return $result;
-    }
     // enum __itimer_which
     const ITIMER_REAL = (0) + 0;
     const ITIMER_VIRTUAL = (1) + 0;
     const ITIMER_PROF = (2) + 0;
-    public function getitimer(?int $p0, ?itimerval_ptr $p1): ?int {
-        $result = $this->ffi->getitimer($p0, $p1 === null ? null : $p1->getData());
-        return $result;
-    }
-    public function setitimer(?int $p0, ?itimerval_ptr $p1, ?itimerval_ptr $p2): ?int {
-        $result = $this->ffi->setitimer($p0, $p1 === null ? null : $p1->getData(), $p2 === null ? null : $p2->getData());
-        return $result;
-    }
-    public function utimes(?string $p0, ?array $p1): ?int {
-        $result = $this->ffi->utimes($p0, $p1);
-        return $result;
-    }
-    public function lutimes(?string $p0, ?array $p1): ?int {
-        $result = $this->ffi->lutimes($p0, $p1);
-        return $result;
-    }
-    public function futimes(?int $p0, ?array $p1): ?int {
-        $result = $this->ffi->futimes($p0, $p1);
-        return $result;
-    }
-    public function gnu_dev_major(?int $p0): ?int {
-        $result = $this->ffi->gnu_dev_major($p0);
-        return $result;
-    }
-    public function gnu_dev_minor(?int $p0): ?int {
-        $result = $this->ffi->gnu_dev_minor($p0);
-        return $result;
-    }
-    public function gnu_dev_makedev(?int $p0, ?int $p1): ?int {
-        $result = $this->ffi->gnu_dev_makedev($p0, $p1);
-        return $result;
-    }
     // typedefenum LLVMOpcode
     const LLVMRet = (1) + 0;
     const LLVMBr = (2) + 0;
