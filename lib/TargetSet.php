@@ -4,6 +4,8 @@ namespace PHPLLVM;
 
 interface TargetSet {
 
+    public static function isSupported(LLVM $llvm): bool;
+
     public function initialize(): void;
 
     public function isNative(): bool;

@@ -2,13 +2,14 @@
 
 namespace PHPLLVM\LLVM8;
 
-use PHPLLVM\LLVM4\LLVM as CoreLLVM;
-use llvm8\llvm as lib;
+use PHPLLVM\LLVMAbstract\LLVM as CoreLLVM;
+use PHPLLVM\LLVMAbstract\Factory;
 
 class LLVM extends CoreLLVM {
 
     public function __construct(?string $pathToSoFile = null) {
-        $this->lib = new lib($pathToSoFile ?? lib::SOFILE);
-        $this->loadTargetSets();
+        $factory = new Factory($this);
+        parent::__construct($factory, $pathToSoFile);
     }
+
 }

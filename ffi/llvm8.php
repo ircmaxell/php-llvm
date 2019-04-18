@@ -1,4 +1,4 @@
-<?php namespace llvm8;
+<?php namespace llvm;
 use FFI;
 interface illvm {}
 class llvm {

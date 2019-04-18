@@ -19,7 +19,7 @@ $llvm->include("llvm-c/Transforms/PassManagerBuilder.h");
 $llvm->include("llvm-c/Transforms/Scalar.h");
 $llvm->include("llvm-c/Transforms/IPO.h");
 $llvm->include("llvm-c/Transforms/Vectorize.h");
-$llvm->codegen('llvm4\\llvm', __DIR__ . '/llvm4.php');
+$llvm->codegen('llvm\\llvm', __DIR__ . '/llvm4.php');
 
 $llvm = new FFIMe\FFIMe('/usr/lib/llvm-7/lib/libLLVM-7.so.1', ['/usr/include/llvm-c-7/', '/usr/include/llvm-7/']);
 $llvm->include("llvm-c/Core.h");
@@ -38,7 +38,7 @@ $llvm->include("llvm-c/Transforms/PassManagerBuilder.h");
 $llvm->include("llvm-c/Transforms/Scalar.h");
 $llvm->include("llvm-c/Transforms/IPO.h");
 $llvm->include("llvm-c/Transforms/Vectorize.h");
-$llvm->codegen('llvm7\\llvm', __DIR__ . '/llvm7.php');
+$llvm->codegen('llvm\\llvm', __DIR__ . '/llvm7.php');
 
 $llvm = new FFIMe\FFIMe('/usr/lib/llvm-8/lib/libLLVM-8.so.1', ['/usr/include/llvm-c-8/', '/usr/include/llvm-8/']);
 $llvm->include("llvm-c/Core.h");
@@ -57,7 +57,7 @@ $llvm->include("llvm-c/Transforms/PassManagerBuilder.h");
 $llvm->include("llvm-c/Transforms/Scalar.h");
 $llvm->include("llvm-c/Transforms/IPO.h");
 $llvm->include("llvm-c/Transforms/Vectorize.h");
-$llvm->codegen('llvm8\\llvm', __DIR__ . '/llvm8.php');
+$llvm->codegen('llvm\\llvm', __DIR__ . '/llvm8.php');
 
 $llvm = new FFIMe\FFIMe('/usr/lib/llvm-9/lib/libLLVM-9.so.1', ['/usr/include/llvm-c-9/', '/usr/include/llvm-9/']);
 $llvm->include("llvm-c/Core.h");
@@ -76,5 +76,5 @@ $llvm->include("llvm-c/Transforms/PassManagerBuilder.h");
 $llvm->include("llvm-c/Transforms/Scalar.h");
 $llvm->include("llvm-c/Transforms/IPO.h");
 $llvm->include("llvm-c/Transforms/Vectorize.h");
-$llvm->codegen('llvm9\\llvm', __DIR__ . '/llvm9.php');
+$llvm->codegen('llvm\\llvm', __DIR__ . '/llvm9.php');
 

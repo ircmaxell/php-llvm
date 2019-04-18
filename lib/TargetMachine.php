@@ -22,5 +22,4 @@ interface TargetMachine {
 
     public function emitToFile(Module $module, string $filename, int $codeGenType): bool;
 
-
 }

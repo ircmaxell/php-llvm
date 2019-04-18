@@ -17,9 +17,9 @@ use RecursiveIteratorIterator;
 class Chooser {
 
     public const FILES = [
-//        'libLLVM-9.so.1' => 9,
-//        'libLLVM-8.so.1' => 8,
-//        'libLLVM-7.so.1' => 7,
+        'libLLVM-9.so.1' => 9,
+        'libLLVM-8.so.1' => 8,
+        'libLLVM-7.so.1' => 7,
         'libLLVM-4.0.so.1' => 4,
     ];
 
