@@ -18,7 +18,7 @@ abstract class Attribute implements CoreAttribute {
     public Context $context;
     public LLVMAttributeRef $attribute;
 
-    private function __construct(LLVM $llvm, Context $context, LLVMAttributeRef $attribute) {
+    public function __construct(LLVM $llvm, Context $context, LLVMAttributeRef $attribute) {
         $this->llvm = $llvm;
         $this->context = $context;
         $this->attribute = $attribute;
