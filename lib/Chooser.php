@@ -33,13 +33,15 @@ class Chooser {
     public static function choose(): LLVM {
         foreach (self::FILES as $file => $version) {
             $path = self::findFile($file);
+
             if ($path !== null) {
                 require_once __DIR__ . '/../ffi/llvm' . $version . '.php';
                 $class = self::IMPLMAP[$version];
-                return new $class($path);
+                $obj = new $class($path);
+                return $obj;
             }
         }
-        throw new \LogicException("No supported version could be found on your system. Is LLVM installed correctly?");
+        throw new \LogicException("No supported LLVM version could be found on your system. Is LLVM installed correctly?");
     }
 
     protected static function findFile(string $file): ?string {
@@ -48,18 +50,13 @@ class Chooser {
             '/usr/local/lib',
             '/opt'
         ];
+
         foreach ($searchPaths as $path) {
-            $it = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator(
-                    $path,
-                    RecursiveDirectoryIterator::CURRENT_AS_PATHNAME | RecursiveDirectoryIterator::SKIP_DOTS
-                ),
-                RecursiveIteratorIterator::SELF_FIRST
-            );
-            foreach ($it as $folder) {
-                $fullPath = $folder . '/' . $file;
-                if (file_exists($fullPath) && self::matchesArchitecture($fullPath)) {
-                    return realpath($fullPath);
+            // search up to 3 subfolders
+            $fullPath = glob("$path/{,*/,*/*/,*/*/*/}$file", GLOB_BRACE | GLOB_NOSORT);
+            foreach ($fullPath as $candidate) {
+                if (self::matchesArchitecture($candidate)) {
+                    return realpath($candidate);
                 }
             }
         }
@@ -74,7 +71,7 @@ class Chooser {
      * @return [type]       [description]
      */
     protected static function matchesArchitecture(string $file): bool {
-        $fp = @fopen($folder . '/' . $file, 'r');
+        $fp = @fopen($file, 'r');
         if ($fp === false) {
             // can't open
             return false;
