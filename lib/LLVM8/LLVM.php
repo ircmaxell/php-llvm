@@ -3,7 +3,7 @@
 namespace PHPLLVM\LLVM8;
 
 use PHPLLVM\LLVMAbstract\LLVM as CoreLLVM;
-use PHPLLVM\LLVMAbstract\Factory;
+use PHPLLVM\LLVM7\Factory;
 
 class LLVM extends CoreLLVM {
 
